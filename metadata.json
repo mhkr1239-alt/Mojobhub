@@ -1,0 +1,7 @@
+{
+  "name": "Job Application Portal",
+  "description": "Job application and offers portal powered directly by Supabase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
