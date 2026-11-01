@@ -994,7 +994,17 @@ export const OfferDetailPage: React.FC = () => {
                         className="w-4 h-4 mt-0.5 rounded border-[#EBE7DF] text-[#0F6657] focus:ring-[#0F6657] cursor-pointer shrink-0"
                       />
                       <span>
-                        أوافق على استخدام بياناتي وصوري لأغراض التوظيف ومشاركتها مع الجهة المسؤولة عن الوظيفة. <span className="text-red-500">*</span>
+                        أوافق على استخدام بياناتي وصوري لأغراض التوظيف ومشاركتها مع الجهة المسؤولة
+                        عن الوظيفة وفقًا لـ{' '}
+                        <Link
+                          to="/privacy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#0F6657] font-bold underline underline-offset-2 hover:text-[#0c5246] transition-colors"
+                        >
+                          سياسة الخصوصية
+                        </Link>
+                        . <span className="text-red-500">*</span>
                       </span>
                     </label>
                     {fieldErrors['consent'] && (

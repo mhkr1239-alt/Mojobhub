@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Outlet, Link } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { AdminProtectedRoute } from './components/AdminProtectedRoute';
 import { Navbar } from './components/Navbar';
 import { AdminPwaSetup } from './components/AdminPwaSetup';
 import { HomePage } from './pages/HomePage';
 import { OfferDetailPage } from './pages/OfferDetailPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { AdminPage } from './pages/AdminPage';
 import { AdminApplicationDetailPage } from './pages/AdminApplicationDetailPage';
 import { AdminOffersPage } from './pages/AdminOffersPage';
@@ -25,7 +26,11 @@ function PublicLayout() {
           <div>
             <span>بوابة التقديم على الوظائف — جميع الحقوق محفوظة</span>
           </div>
-          <div className="text-[#5B6B67]/80">
+          <div className="text-[#5B6B67]/80 flex items-center gap-3">
+            <Link to="/privacy" className="hover:text-[#0F6657] underline underline-offset-2 transition-colors">
+              سياسة الخصوصية
+            </Link>
+            <span aria-hidden="true">•</span>
             <span>تقديم مباشر وسريع للوظائف المتاحة</span>
           </div>
         </div>
@@ -44,6 +49,7 @@ export default function App() {
           <Route element={<PublicLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/offers/:id" element={<OfferDetailPage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
           </Route>
 
           {/* Admin Authentication Gate */}
