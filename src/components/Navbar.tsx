@@ -38,9 +38,9 @@ export const Navbar: React.FC = () => {
 
           {/* Navigation Action */}
           <Link
-            to="/"
+            to="/jobs"
             className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-              location.pathname === '/'
+              location.pathname === '/jobs' || location.pathname.startsWith('/offers/')
                 ? 'bg-[#E7F3F0] text-[#0F6657] border border-[#0F6657]/15'
                 : 'text-[#5B6B67] hover:text-[#0B2B26] hover:bg-[#E7F3F0]/60'
             }`}

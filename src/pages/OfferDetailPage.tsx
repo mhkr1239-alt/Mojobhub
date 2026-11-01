@@ -557,7 +557,7 @@ export const OfferDetailPage: React.FC = () => {
           <h2 className="text-lg font-bold text-[#0B2B26] mb-1">تعذر فتح الوظيفة</h2>
           <p className="text-sm text-[#5B6B67] mb-5">{error || 'الوظيفة غير متاحة حالياً.'}</p>
           <Link
-            to="/"
+            to="/jobs"
             className="inline-flex items-center justify-center gap-2 bg-[#0F6657] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] hover:bg-[#0c5246] transition"
           >
             <ArrowRight className="w-4 h-4" />
@@ -608,7 +608,7 @@ export const OfferDetailPage: React.FC = () => {
 
           {/* Single return button */}
           <Link
-            to="/"
+            to="/jobs"
             className="w-full inline-flex items-center justify-center gap-2 bg-[#0F6657] hover:bg-[#0c5246] text-white font-bold text-base px-6 py-3.5 rounded-[12px] transition shadow-xs"
           >
             <span>العودة للوظائف</span>
@@ -715,7 +715,7 @@ export const OfferDetailPage: React.FC = () => {
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Back Link */}
         <Link
-          to="/"
+          to="/jobs"
           className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#5B6B67] hover:text-[#0B2B26] mb-5 transition-colors"
         >
           <ArrowRight className="w-4 h-4" />

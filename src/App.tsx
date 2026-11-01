@@ -5,6 +5,8 @@ import { AdminProtectedRoute } from './components/AdminProtectedRoute';
 import { Navbar } from './components/Navbar';
 import { AdminPwaSetup } from './components/AdminPwaSetup';
 import { HomePage } from './pages/HomePage';
+import { JobsPage } from './pages/JobsPage';
+import { ServicesPage } from './pages/ServicesPage';
 import { OfferDetailPage } from './pages/OfferDetailPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { AdminPage } from './pages/AdminPage';
@@ -48,6 +50,8 @@ export default function App() {
           {/* Public Candidate Experience */}
           <Route element={<PublicLayout />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/jobs" element={<JobsPage />} />
+            <Route path="/services" element={<ServicesPage />} />
             <Route path="/offers/:id" element={<OfferDetailPage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
           </Route>

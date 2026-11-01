@@ -127,7 +127,7 @@ export const PrivacyPolicyPage: React.FC = () => {
       {/* Back link */}
       <div className="mt-8 text-center">
         <Link
-          to="/"
+          to="/jobs"
           className="inline-flex items-center justify-center gap-2 bg-[#0F6657] hover:bg-[#0c5246] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] transition shadow-xs"
         >
           <span>العودة للوظائف</span>
