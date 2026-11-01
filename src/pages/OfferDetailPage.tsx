@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase, JobOffer, FormFieldDefinition } from '../lib/supabase';
 import { getJobTypeConfig } from '../lib/jobTypes';
+import { normalizeEgyptPhone } from '../lib/applicationUtils';
 import { 
   ArrowRight, 
   ArrowLeft,
@@ -425,6 +426,23 @@ export const OfferDetailPage: React.FC = () => {
       return;
     }
 
+    // Browser-side duplicate prevention (same number in two formats):
+    // convert the WhatsApp number to one canonical form before insert, so the
+    // database unique constraint catches the same number regardless of the
+    // format the applicant typed (01x / +201x / 00201x ...).
+    const normalizedWhatsapp = normalizeEgyptPhone(candidateWhatsapp);
+    if (!normalizedWhatsapp) {
+      setFieldErrors((prev) => ({
+        ...prev,
+        candidate_whatsapp: 'اكتب رقم واتساب صحيح (أرقام فقط)',
+      }));
+      if (inputRefs.current['candidate_whatsapp']) {
+        inputRefs.current['candidate_whatsapp']?.focus();
+        inputRefs.current['candidate_whatsapp']?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+
     setSubmitting(true);
     setSubmitStatus('sending');
 
@@ -462,7 +480,7 @@ export const OfferDetailPage: React.FC = () => {
       const payload = {
         offer_id: offer.id,
         candidate_name: candidateName.trim(),
-        candidate_whatsapp: candidateWhatsapp.trim(),
+        candidate_whatsapp: normalizedWhatsapp,
         status: 'submitted',
         data: finalData,
       };
