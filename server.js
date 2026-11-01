@@ -1,15 +1,16 @@
 // server.ts
-import express from "express";
+import express2 from "express";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
+import dotenv2 from "dotenv";
+
+// server-app.ts
+import express from "express";
 import dotenv from "dotenv";
 import { GoogleGenAI, Type } from "@google/genai";
 dotenv.config();
-var __filename = fileURLToPath(import.meta.url);
-var __dirname = path.dirname(__filename);
 var app = express();
-var PORT = Number(process.env.PORT) || 3e3;
 var SUPABASE_URL = process.env.VITE_SUPABASE_URL || "https://ritbknmhzpdbsmmkocmm.supabase.co";
 var SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY || "sb_publishable_UE_of2qzg4K7m6n6aFK8VQ_N6SJThWH";
 app.use(express.json({ limit: "1mb" }));
@@ -450,12 +451,19 @@ Rules:
     usedKey: usedKeyLabel
   });
 });
+var server_app_default = app;
+
+// server.ts
+dotenv2.config();
+var __filename = fileURLToPath(import.meta.url);
+var __dirname = path.dirname(__filename);
+var PORT = Number(process.env.PORT) || 3e3;
 async function setupServer() {
   const isProduction = process.env.NODE_ENV === "production";
   if (isProduction) {
     const distPath = path.resolve(__dirname, "dist");
-    app.use(
-      express.static(distPath, {
+    server_app_default.use(
+      express2.static(distPath, {
         index: false,
         setHeaders: (res, filePath) => {
           if (filePath.endsWith(".js") || filePath.endsWith("/service-worker.js")) {
@@ -468,7 +476,7 @@ async function setupServer() {
         }
       })
     );
-    app.get("*", (req, res, next) => {
+    server_app_default.get("*", (req, res, next) => {
       if (req.path.startsWith("/api")) {
         return next();
       }
@@ -487,9 +495,9 @@ async function setupServer() {
       server: { middlewareMode: true },
       appType: "spa"
     });
-    app.use(vite.middlewares);
+    server_app_default.use(vite.middlewares);
   }
-  app.listen(PORT, "0.0.0.0", () => {
+  server_app_default.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://0.0.0.0:${PORT} (${isProduction ? "production" : "development"})`);
   });
 }
