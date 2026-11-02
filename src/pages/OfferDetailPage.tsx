@@ -23,7 +23,8 @@ import {
   User,
   ShieldCheck,
   Lock,
-  X
+  X,
+  Copy
 } from 'lucide-react';
 
 interface FormStep {
@@ -58,6 +59,8 @@ export const OfferDetailPage: React.FC = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
+  const [referenceCode, setReferenceCode] = useState<string>('');
+  const [copiedRef, setCopiedRef] = useState<boolean>(false);
 
   const wizardRef = useRef<HTMLDivElement | null>(null);
   const inputRefs = useRef<Record<string, HTMLElement | null>>({});
@@ -398,6 +401,40 @@ export const OfferDetailPage: React.FC = () => {
     }
   };
 
+  const generateReferenceCode = (): string => {
+    const chars = 'ABCDEFGHIJKLMNPQRSTUVWXYZ23456789';
+    const array = new Uint8Array(6);
+    crypto.getRandomValues(array);
+    let code = '';
+    for (let i = 0; i < 6; i++) {
+      code += chars[array[i] % chars.length];
+    }
+    return `JM-${code}`;
+  };
+
+  const handleCopyReferenceCode = async () => {
+    if (!referenceCode) return;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(referenceCode);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = referenceCode;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+      setCopiedRef(true);
+      setTimeout(() => setCopiedRef(false), 2000);
+    } catch {
+      setCopiedRef(true);
+      setTimeout(() => setCopiedRef(false), 2000);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitError(null);
@@ -476,6 +513,9 @@ export const OfferDetailPage: React.FC = () => {
       finalData.consent = true;
       finalData.consented_at = new Date().toISOString();
 
+      const generatedRefCode = generateReferenceCode();
+      finalData.reference_code = generatedRefCode;
+
       // Insert directly into Supabase applications table (no .select() to avoid RLS error on anon insert)
       const payload = {
         offer_id: offer.id,
@@ -499,6 +539,7 @@ export const OfferDetailPage: React.FC = () => {
         throw new Error(insertError.message);
       }
 
+      setReferenceCode(generatedRefCode);
       setSubmitStatus('sent');
       setTimeout(() => {
         setSubmitSuccess(true);
@@ -595,6 +636,38 @@ export const OfferDetailPage: React.FC = () => {
           <p className="text-sm text-[#5B6B67] leading-relaxed mb-6">
             بياناتك اتسجلت بنجاح، وطلبك أصبح لدى فريق التوظيف للمراجعة.
           </p>
+
+          {/* Reference Code Card */}
+          {referenceCode && (
+            <div className="bg-white border border-[#EBE7DF] rounded-[16px] p-5 text-center mb-6 shadow-xs">
+              <div className="text-xs font-bold text-[#5B6B67] mb-1.5">رقم طلبك المرجعي</div>
+              <div className="text-2xl sm:text-3xl font-black font-mono tracking-wider text-[#0F6657] mb-3 select-all" dir="ltr">
+                {referenceCode}
+              </div>
+              <div className="flex justify-center mb-2.5">
+                <button
+                  type="button"
+                  onClick={handleCopyReferenceCode}
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold rounded-[10px] border border-[#0F6657]/20 bg-[#E7F3F0] text-[#0F6657] hover:bg-[#d8ece7] transition active:scale-95 cursor-pointer"
+                >
+                  {copiedRef ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-[#0F6657]" />
+                      <span>تم النسخ ✓</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5 text-[#0F6657]" />
+                      <span>نسخ الرقم</span>
+                    </>
+                  )}
+                </button>
+              </div>
+              <p className="text-xs text-[#5B6B67]">
+                احتفظ بالرقم ده — استخدمه لو راسلتنا عن طلبك
+              </p>
+            </div>
+          )}
 
           {/* Small summary card */}
           <div className="bg-[#FBF9F5] border border-[#F1EFEA] rounded-[16px] p-4 text-right mb-8">
