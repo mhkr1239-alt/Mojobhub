@@ -14,6 +14,36 @@ import {
   X
 } from 'lucide-react';
 
+const EGYPT_GOVERNORATES = [
+  'القاهرة',
+  'الجيزة',
+  'الإسكندرية',
+  'القليوبية',
+  'الدقهلية',
+  'الشرقية',
+  'الغربية',
+  'المنوفية',
+  'البحيرة',
+  'كفر الشيخ',
+  'دمياط',
+  'بورسعيد',
+  'الإسماعيلية',
+  'السويس',
+  'شمال سيناء',
+  'جنوب سيناء',
+  'البحر الأحمر',
+  'الوادي الجديد',
+  'مطروح',
+  'أسيوط',
+  'سوهاج',
+  'المنيا',
+  'بني سويف',
+  'الفيوم',
+  'قنا',
+  'الأقصر',
+  'أسوان',
+];
+
 const FILTER_TABS: { key: 'all' | JobTypeKey; label: string }[] = [
   { key: 'all', label: 'الكل' },
   { key: 'factory', label: jobTypeConfig.factory.label },
@@ -27,9 +57,10 @@ export const JobsPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Search & Type Filters
+  // Search & Type & Governorate Filters
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedType, setSelectedType] = useState<'all' | JobTypeKey>('all');
+  const [selectedGovernorate, setSelectedGovernorate] = useState<string>('');
 
   // Animated counter for live active offers stat
   const [displayCount, setDisplayCount] = useState<number>(0);
@@ -62,7 +93,7 @@ export const JobsPage: React.FC = () => {
     fetchOffers();
   }, []);
 
-  // Filtered offers by search query (title or company_name) and job type
+  // Filtered offers by search query (title or company_name), job type, and governorate
   const filteredOffers = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     return offers.filter((offer) => {
@@ -75,13 +106,18 @@ export const JobsPage: React.FC = () => {
         selectedType === 'all' ||
         getJobTypeConfig(offer.offer_type) === jobTypeConfig[selectedType];
 
-      return matchesQuery && matchesType;
+      const matchesGovernorate =
+        !selectedGovernorate ||
+        offer.details?.governorate === selectedGovernorate;
+
+      return matchesQuery && matchesType && matchesGovernorate;
     });
-  }, [offers, searchQuery, selectedType]);
+  }, [offers, searchQuery, selectedType, selectedGovernorate]);
 
   const handleClearFilters = () => {
     setSearchQuery('');
     setSelectedType('all');
+    setSelectedGovernorate('');
   };
 
   // Run single count-up animation over ~600ms once offers are loaded
@@ -194,28 +230,48 @@ export const JobsPage: React.FC = () => {
         {/* Search & Filter Controls (shown when offers are loaded) */}
         {!loading && !error && offers.length > 0 && (
           <div className="mb-6 space-y-3">
-            {/* 1. Search Input */}
-            <div className="relative">
-              <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-[#5B6B67]">
-                <Search className="w-5 h-5" />
+            {/* 1. Search & Governorate Controls */}
+            <div className="flex flex-col sm:flex-row gap-2.5">
+              {/* Search Input */}
+              <div className="relative flex-1">
+                <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-[#5B6B67]">
+                  <Search className="w-5 h-5" />
+                </div>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="ابحث بوظيفة أو شركة…"
+                  className="w-full pr-10 pl-10 py-3 bg-white border border-[#EBE7DF] rounded-[14px] text-sm text-[#0B2B26] placeholder-[#5B6B67]/60 focus:outline-none focus:border-[#0F6657] focus:ring-2 focus:ring-[#0F6657]/15 transition-all shadow-xs"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#5B6B67] hover:text-[#0B2B26] transition-colors"
+                    title="مسح البحث"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
               </div>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="ابحث بوظيفة أو شركة…"
-                className="w-full pr-10 pl-10 py-3 bg-white border border-[#EBE7DF] rounded-[14px] text-sm text-[#0B2B26] placeholder-[#5B6B67]/60 focus:outline-none focus:border-[#0F6657] focus:ring-2 focus:ring-[#0F6657]/15 transition-all shadow-xs"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#5B6B67] hover:text-[#0B2B26] transition-colors"
-                  title="مسح البحث"
+
+              {/* Governorate Dropdown */}
+              <div className="sm:w-48 shrink-0">
+                <select
+                  value={selectedGovernorate}
+                  onChange={(e) => setSelectedGovernorate(e.target.value)}
+                  aria-label="اختر المحافظة"
+                  className="w-full py-3 px-3.5 bg-white border border-[#EBE7DF] rounded-[14px] text-sm text-[#0B2B26] focus:outline-none focus:border-[#0F6657] focus:ring-2 focus:ring-[#0F6657]/15 transition-all shadow-xs cursor-pointer"
                 >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
+                  <option value="">كل المحافظات</option>
+                  {EGYPT_GOVERNORATES.map((gov) => (
+                    <option key={gov} value={gov}>
+                      {gov}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
             {/* 2. Horizontal Filter Chips (scrollable on mobile) */}
@@ -244,7 +300,7 @@ export const JobsPage: React.FC = () => {
               <span className="font-bold text-[#0B2B26]">
                 {filteredOffers.length} وظيفة متاحة
               </span>
-              {(searchQuery || selectedType !== 'all') && (
+              {(searchQuery || selectedType !== 'all' || selectedGovernorate !== '') && (
                 <button
                   type="button"
                   onClick={handleClearFilters}
