@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase, JobOffer } from '../lib/supabase';
-import { getJobTypeConfig } from '../lib/jobTypes';
+import { getJobTypeConfig, jobTypeConfig, JobTypeKey } from '../lib/jobTypes';
 import { 
   Building2, 
   MapPin, 
@@ -9,13 +9,27 @@ import {
   Clock, 
   ArrowLeft,
   Briefcase,
-  AlertCircle
+  AlertCircle,
+  Search,
+  X
 } from 'lucide-react';
+
+const FILTER_TABS: { key: 'all' | JobTypeKey; label: string }[] = [
+  { key: 'all', label: 'الكل' },
+  { key: 'factory', label: jobTypeConfig.factory.label },
+  { key: 'call_center', label: jobTypeConfig.call_center.label },
+  { key: 'sales', label: jobTypeConfig.sales.label },
+  { key: 'other', label: jobTypeConfig.other.label },
+];
 
 export const JobsPage: React.FC = () => {
   const [offers, setOffers] = useState<JobOffer[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Search & Type Filters
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [selectedType, setSelectedType] = useState<'all' | JobTypeKey>('all');
 
   // Animated counter for live active offers stat
   const [displayCount, setDisplayCount] = useState<number>(0);
@@ -47,6 +61,28 @@ export const JobsPage: React.FC = () => {
   useEffect(() => {
     fetchOffers();
   }, []);
+
+  // Filtered offers by search query (title or company_name) and job type
+  const filteredOffers = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    return offers.filter((offer) => {
+      const matchesQuery =
+        !q ||
+        (offer.title && offer.title.toLowerCase().includes(q)) ||
+        (offer.company_name && offer.company_name.toLowerCase().includes(q));
+
+      const matchesType =
+        selectedType === 'all' ||
+        getJobTypeConfig(offer.offer_type) === jobTypeConfig[selectedType];
+
+      return matchesQuery && matchesType;
+    });
+  }, [offers, searchQuery, selectedType]);
+
+  const handleClearFilters = () => {
+    setSearchQuery('');
+    setSelectedType('all');
+  };
 
   // Run single count-up animation over ~600ms once offers are loaded
   useEffect(() => {
@@ -144,7 +180,7 @@ export const JobsPage: React.FC = () => {
           </div>
         )}
 
-        {/* Empty State */}
+        {/* Empty State when no jobs exist in DB */}
         {!loading && !error && offers.length === 0 && (
           <div className="text-center py-16 bg-white border border-[#EBE7DF] rounded-[16px] p-8 shadow-xs">
             <Briefcase className="w-12 h-12 text-[#5B6B67]/40 mx-auto mb-3" />
@@ -155,10 +191,95 @@ export const JobsPage: React.FC = () => {
           </div>
         )}
 
-        {/* Offers list: Differentiated by jobTypeConfig with stagger animation & radius hierarchy */}
+        {/* Search & Filter Controls (shown when offers are loaded) */}
         {!loading && !error && offers.length > 0 && (
+          <div className="mb-6 space-y-3">
+            {/* 1. Search Input */}
+            <div className="relative">
+              <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-[#5B6B67]">
+                <Search className="w-5 h-5" />
+              </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="ابحث بوظيفة أو شركة…"
+                className="w-full pr-10 pl-10 py-3 bg-white border border-[#EBE7DF] rounded-[14px] text-sm text-[#0B2B26] placeholder-[#5B6B67]/60 focus:outline-none focus:border-[#0F6657] focus:ring-2 focus:ring-[#0F6657]/15 transition-all shadow-xs"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#5B6B67] hover:text-[#0B2B26] transition-colors"
+                  title="مسح البحث"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
+            {/* 2. Horizontal Filter Chips (scrollable on mobile) */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 no-scrollbar">
+              {FILTER_TABS.map((tab) => {
+                const isActive = selectedType === tab.key;
+                return (
+                  <button
+                    key={tab.key}
+                    type="button"
+                    onClick={() => setSelectedType(tab.key)}
+                    className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all border ${
+                      isActive
+                        ? 'bg-[#0F6657] text-white border-[#0F6657] shadow-xs'
+                        : 'bg-white text-[#5B6B67] hover:text-[#0B2B26] hover:bg-[#FBF9F5] border-[#EBE7DF]'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 3. Result Count */}
+            <div className="pt-1 flex items-center justify-between text-xs sm:text-sm text-[#5B6B67]">
+              <span className="font-bold text-[#0B2B26]">
+                {filteredOffers.length} وظيفة متاحة
+              </span>
+              {(searchQuery || selectedType !== 'all') && (
+                <button
+                  type="button"
+                  onClick={handleClearFilters}
+                  className="text-xs text-[#0F6657] hover:underline font-semibold"
+                >
+                  مسح الفلاتر
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* 4. Empty State when search/filter yields zero results */}
+        {!loading && !error && offers.length > 0 && filteredOffers.length === 0 && (
+          <div className="text-center py-12 sm:py-16 bg-white border border-[#EBE7DF] rounded-[16px] p-8 shadow-xs space-y-3">
+            <div className="w-12 h-12 rounded-full bg-[#E7F3F0] text-[#0F6657] flex items-center justify-center mx-auto mb-1">
+              <Search className="w-6 h-6" />
+            </div>
+            <h3 className="text-base sm:text-lg font-bold text-[#0B2B26]">مفيش وظائف مطابقة لبحثك</h3>
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={handleClearFilters}
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0F6657] hover:bg-[#0c5246] text-white text-xs sm:text-sm font-bold rounded-[12px] transition-colors shadow-xs"
+              >
+                <span>مسح البحث والفلاتر</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* 5. Offers list: Differentiated by jobTypeConfig with stagger animation & radius hierarchy */}
+        {!loading && !error && filteredOffers.length > 0 && (
           <div className="space-y-4">
-            {offers.map((offer, index) => {
+            {filteredOffers.map((offer, index) => {
               const details = offer.details || {};
               const salary = details.salary || details.مرتب;
               const location = details.location || details.مكان;
@@ -255,4 +376,5 @@ export const JobsPage: React.FC = () => {
     </div>
   );
 };
+
 
