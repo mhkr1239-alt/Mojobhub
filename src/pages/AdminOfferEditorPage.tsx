@@ -35,6 +35,36 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
+const EGYPT_GOVERNORATES = [
+  'القاهرة',
+  'الجيزة',
+  'الإسكندرية',
+  'القليوبية',
+  'الدقهلية',
+  'الشرقية',
+  'الغربية',
+  'المنوفية',
+  'البحيرة',
+  'كفر الشيخ',
+  'دمياط',
+  'بورسعيد',
+  'الإسماعيلية',
+  'السويس',
+  'شمال سيناء',
+  'جنوب سيناء',
+  'البحر الأحمر',
+  'الوادي الجديد',
+  'مطروح',
+  'أسيوط',
+  'سوهاج',
+  'المنيا',
+  'بني سويف',
+  'الفيوم',
+  'قنا',
+  'الأقصر',
+  'أسوان',
+];
+
 interface SuggestedField extends FormFieldDefinition {
   reason: string;
 }
@@ -82,6 +112,7 @@ export const AdminOfferEditorPage: React.FC = () => {
   // 2. Details tab state
   const [salary, setSalary] = useState<string>('');
   const [location, setLocation] = useState<string>('');
+  const [governorate, setGovernorate] = useState<string>('');
   const [shift, setShift] = useState<string>('');
   const [ageMin, setAgeMin] = useState<string>('');
   const [ageMax, setAgeMax] = useState<string>('');
@@ -125,6 +156,7 @@ export const AdminOfferEditorPage: React.FC = () => {
         setOriginalDetails(det);
         setSalary(det.salary || det.المرتب || '');
         setLocation(det.location || det.المكان || '');
+        setGovernorate(det.governorate || '');
         setShift(det.shift || det.الشفت || det.مواعيد || '');
         setAgeMin(det.age_min ? String(det.age_min) : '');
         setAgeMax(det.age_max ? String(det.age_max) : '');
@@ -611,6 +643,7 @@ export const AdminOfferEditorPage: React.FC = () => {
         benefits: benefits,
         requirements: requirements,
         notes: notes.trim(),
+        governorate: governorate || null,
       };
 
       // Clean up form_fields array
@@ -1298,6 +1331,28 @@ export const AdminOfferEditorPage: React.FC = () => {
                       } focus:border-[#1FA98A] focus:ring-1 focus:ring-[#1FA98A] rounded-lg text-xs text-[#E6EDF2] placeholder-[#8B98A5] outline-none transition`}
                     />
                   </div>
+                </div>
+
+                {/* Governorate */}
+                <div className="space-y-1.5">
+                  <label className="block text-xs font-semibold text-[#E6EDF2]">
+                    المحافظة
+                  </label>
+                  <select
+                    value={governorate}
+                    onChange={(e) => setGovernorate(e.target.value)}
+                    className="w-full px-3 py-2.5 bg-[#1A232C] border border-[#232F3A] focus:border-[#1FA98A] focus:ring-1 focus:ring-[#1FA98A] rounded-lg text-xs text-[#E6EDF2] outline-none transition cursor-pointer"
+                  >
+                    <option value="">غير محدد</option>
+                    {EGYPT_GOVERNORATES.map((gov) => (
+                      <option key={gov} value={gov}>
+                        {gov}
+                      </option>
+                    ))}
+                    {Boolean(governorate && !EGYPT_GOVERNORATES.includes(governorate)) && (
+                      <option value={governorate}>{governorate}</option>
+                    )}
+                  </select>
                 </div>
 
                 {/* Shift */}
