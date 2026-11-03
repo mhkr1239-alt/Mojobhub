@@ -19,6 +19,7 @@ import { AdminLoginPage } from './pages/AdminLoginPage';
 function PublicLayout() {
   return (
     <div className="min-h-screen bg-[#F7F9FC] flex flex-col text-[#0A2540] font-sans selection:bg-[#E3EEF7] selection:text-[#0F4C81]">
+      <div className="bg-blobs" aria-hidden="true"><span className="blob-1"></span><span className="blob-2"></span></div>
       <Navbar />
       <main className="flex-1">
         <Outlet />
