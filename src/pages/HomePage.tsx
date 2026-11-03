@@ -68,28 +68,42 @@ export const HomePage: React.FC = () => {
   return (
     <div className="min-h-full pb-16" dir="rtl">
       {/* Hero Band */}
-      <section className="w-full bg-gradient-to-b from-[#E7F3F0] to-[#FBF9F5] border-b border-[#E7F3F0] py-10 sm:py-14 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0B2B26] tracking-tight leading-tight">
+      <section className="relative w-full bg-gradient-to-b from-[#E7F3F0] to-[#FBF9F5] border-b border-[#E7F3F0] py-10 sm:py-14 px-4 sm:px-6 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15,102,87,0.08),transparent_60%)] pointer-events-none" />
+        <div className="relative max-w-4xl mx-auto text-center">
+          <div
+            className="animate-fade-up text-xs font-bold text-[#0F6657] tracking-widest mb-3"
+            style={{ animationDelay: '0ms' }}
+          >
+            منصة توظيف مصرية
+          </div>
+          <h1
+            className="animate-fade-up text-3xl sm:text-4xl font-extrabold text-[#0B2B26] tracking-tight leading-tight"
+            style={{ animationDelay: '80ms' }}
+          >
             أهلاً بك في فرص التوظيف
           </h1>
-          <p className="mt-3 text-sm sm:text-base text-[#5B6B67] leading-relaxed max-w-xl mx-auto">
+          <p
+            className="animate-fade-up mt-3 text-sm sm:text-base text-[#5B6B67] leading-relaxed max-w-xl mx-auto"
+            style={{ animationDelay: '160ms' }}
+          >
             بوابتك المباشرة للتقديم على الوظائف المتاحة، وخدمات إضافية قريبًا. اختار الباب اللي
             يناسبك وابدأ.
           </p>
+          <div className="w-[48px] h-[2px] bg-[#C9822A] mx-auto mt-4 rounded-full" />
         </div>
       </section>
 
       {/* Two Doors */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-          {doors.map((door) => {
+          {doors.map((door, index) => {
             const inner = (
               <>
                 {/* Door header: icon + badge */}
                 <div className="flex items-start justify-between gap-3 mb-4">
                   <div
-                    className={`w-12 h-12 rounded-[14px] border flex items-center justify-center shrink-0 ${door.iconBg}`}
+                    className={`w-12 h-12 rounded-[14px] border flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 ${door.iconBg}`}
                   >
                     {door.icon}
                   </div>
@@ -105,16 +119,16 @@ export const HomePage: React.FC = () => {
                 {/* Stat (jobs door only) */}
                 {door.stat && (
                   <div className="inline-flex self-start items-center gap-1.5 text-xs font-semibold text-[#0F6657] bg-[#E7F3F0]/60 border border-[#0F6657]/10 px-2.5 py-1 rounded-full mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0F6657]"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0F6657] animate-pulse"></span>
                     <span>{door.stat}</span>
                   </div>
                 )}
 
                 {/* CTA pinned to bottom */}
                 <div className="mt-auto pt-3 border-t border-[#F1EFEA]">
-                  <span className="inline-flex items-center justify-center gap-2 bg-[#0F6657] group-hover:bg-[#0c5246] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] transition-colors shadow-xs w-full sm:w-auto">
+                  <span className="inline-flex items-center justify-center gap-2 bg-[#0F6657] group-hover:bg-[#0c5246] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95 shadow-xs w-full sm:w-auto">
                     <span>{door.cta}</span>
-                    <ArrowLeft className="w-4 h-4" />
+                    <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
                   </span>
                 </div>
               </>
@@ -124,7 +138,8 @@ export const HomePage: React.FC = () => {
               <Link
                 key={door.to}
                 to={door.to}
-                className="home-card-entry bg-white border border-[#EBE7DF] hover:shadow-md rounded-[16px] p-5 sm:p-6 transition-shadow flex flex-col group"
+                className="animate-fade-up shadow-soft hover:-translate-y-1 hover:shadow-lg transition-all duration-200 bg-white border border-[#EBE7DF] rounded-[16px] p-5 sm:p-6 flex flex-col group"
+                style={{ animationDelay: `${index * 80}ms` }}
               >
                 {inner}
               </Link>
@@ -133,8 +148,10 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Reassurance note */}
-        <div className="mt-6 p-4 bg-white/70 border border-[#EBE7DF] rounded-[16px] flex items-start gap-3">
-          <AlertCircle className="w-4.5 h-4.5 text-[#5B6B67]/70 shrink-0 mt-0.5" />
+        <div className="animate-fade-up mt-6 p-4 bg-white/70 border border-[#EBE7DF] rounded-[16px] flex items-start gap-3">
+          <div className="rounded-full bg-[#E7F3F0]/60 border border-[#EBE7DF] p-2 shrink-0">
+            <AlertCircle className="w-4 h-4 text-[#5B6B67]/70" />
+          </div>
           <p className="text-xs sm:text-sm text-[#5B6B67] leading-relaxed">
             التقديم متاح على مدار الساعة من موبايلك، وبياناتك تُستخدم لأغراض التوظيف فقط وفقًا
             لـ
