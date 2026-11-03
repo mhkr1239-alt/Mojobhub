@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { UserRound } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { getUserName } from '../lib/accounts';
 
 export const Navbar: React.FC = () => {
   const location = useLocation();
+  const { user, loading: authLoading } = useAuth();
+  const firstName = user ? getUserName(user).split(' ')[0] : '';
 
   return (
     <header className="bg-[var(--c-glass)] backdrop-blur-md border-b border-[var(--c-border)] sticky top-0 z-40" dir="rtl">
@@ -36,7 +41,7 @@ export const Navbar: React.FC = () => {
             </div>
           </Link>
 
-          {/* Navigation Action */}
+          {/* Navigation Action + Account */}
           <div className="flex items-center gap-1.5">
             <Link
               to="/jobs"
@@ -48,6 +53,35 @@ export const Navbar: React.FC = () => {
             >
               كل الوظائف
             </Link>
+
+            {/* حسابي / دخول */}
+            {!authLoading &&
+              (user ? (
+                <Link
+                  to="/account"
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+                    location.pathname.startsWith('/account')
+                      ? 'bg-[var(--c-accent)] text-[var(--c-on-accent)]'
+                      : 'bg-[var(--c-accent-soft)] text-[var(--c-accent)] border border-[var(--c-accent)]/20 hover:opacity-85'
+                  }`}
+                  title="مساحتي الخاصة"
+                >
+                  <UserRound className="w-3.5 h-3.5" />
+                  <span>{firstName || 'حسابي'}</span>
+                </Link>
+              ) : (
+                <Link
+                  to="/account/login"
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+                    location.pathname.startsWith('/account')
+                      ? 'bg-[var(--c-accent-soft)] text-[var(--c-accent)] border border-[var(--c-accent)]/20'
+                      : 'text-muted hover:text-ink hover:bg-[var(--c-accent-soft)]/60'
+                  }`}
+                >
+                  <UserRound className="w-3.5 h-3.5" />
+                  <span>دخول</span>
+                </Link>
+              ))}
           </div>
         </div>
       </div>

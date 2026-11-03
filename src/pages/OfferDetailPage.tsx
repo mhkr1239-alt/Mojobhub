@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { supabase, JobOffer, FormFieldDefinition } from '../lib/supabase';
 import { getJobTypeConfig } from '../lib/jobTypes';
 import { normalizeEgyptPhone } from '../lib/applicationUtils';
+import { useAuth } from '../context/AuthContext';
+import { getUserName, getUserWhatsapp } from '../lib/accounts';
 import { 
   ArrowRight, 
   ArrowLeft,
@@ -36,6 +38,7 @@ interface FormStep {
 
 export const OfferDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const { user, session } = useAuth();
   const [offer, setOffer] = useState<JobOffer | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -69,6 +72,15 @@ export const OfferDetailPage: React.FC = () => {
     if (!id) return;
     fetchOffer();
   }, [id]);
+
+  // تعبئة تلقائية من بيانات الحساب عند تسجيل الدخول — دون الكتابة فوق ما كتبه يدويًا
+  useEffect(() => {
+    if (!user) return;
+    const metaName = getUserName(user);
+    const metaWa = getUserWhatsapp(user);
+    if (metaName) setCandidateName((v) => v || metaName);
+    if (metaWa) setCandidateWhatsapp((v) => v || metaWa);
+  }, [user]);
 
   const fetchOffer = async () => {
     setLoading(true);
@@ -516,8 +528,7 @@ export const OfferDetailPage: React.FC = () => {
       const generatedRefCode = generateReferenceCode();
       finalData.reference_code = generatedRefCode;
 
-      // Insert directly into Supabase applications table (no .select() to avoid RLS error on anon insert)
-      const payload = {
+      const payload: Record<string, any> = {
         offer_id: offer.id,
         candidate_name: candidateName.trim(),
         candidate_whatsapp: normalizedWhatsapp,
@@ -525,9 +536,23 @@ export const OfferDetailPage: React.FC = () => {
         data: finalData,
       };
 
-      const { error: insertError } = await supabase
+      // ربط الطلب بحساب صاحبه عند تسجيل الدخول (العمود ينشئه سكربت SQL الخاص بالحسابات)
+      const sessionUserId = session?.user?.id;
+      if (sessionUserId) payload.user_id = sessionUserId;
+
+      let { error: insertError } = await supabase
         .from('applications')
         .insert(payload);
+
+      // تدهور آمن: لو عمود الربط لم يُنشأ بعد (قبل تشغيل SQL) نعيد الإرسال بدون ربط
+      if (insertError && sessionUserId && /user_id|PGRST204|schema cache/i.test(String(insertError.message || ''))) {
+        console.warn('[submit] user_id column not ready — retrying without link');
+        delete payload.user_id;
+        const retry = await supabase
+          .from('applications')
+          .insert(payload);
+        insertError = retry.error;
+      }
 
       if (insertError) {
         if (insertError.code === '23505') {
@@ -689,6 +714,37 @@ export const OfferDetailPage: React.FC = () => {
             <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--c-accent)] bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 px-3 py-1 rounded-full">
               <span>● تم استلام الطلب</span>
             </div>
+          </div>
+
+          {/* متابعة الطلب عبر الحساب */}
+          <div className="animate-fade-up mb-8" style={{ animationDelay: '400ms' }}>
+            {user ? (
+              <div className="rounded-[16px] border border-[var(--c-success)]/25 bg-[var(--c-success)]/10 p-4 text-center">
+                <p className="text-sm font-bold text-[var(--c-success)] mb-3 leading-relaxed">
+                  طلبك مرتبط بحسابك — تابع حالته من مساحتك في أي وقت.
+                </p>
+                <Link
+                  to="/account"
+                  className="btn-primary inline-flex items-center justify-center gap-2 font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95"
+                >
+                  <span>الذهاب إلى «مساحتي»</span>
+                </Link>
+              </div>
+            ) : (
+              <div className="rounded-[16px] border border-[var(--c-accent)]/20 bg-[var(--c-accent-soft)]/50 p-4 text-center">
+                <p className="text-sm font-bold text-ink mb-1">عايز تتابع طلبك بسهولة؟</p>
+                <p className="text-xs text-muted mb-3 leading-relaxed">
+                  أنشئ حسابًا ببريدك واسمك — برمز تحقق وبدون كلمة مرور — واربط الطلب ده برقمه المرجعي.
+                </p>
+                <Link
+                  to="/account/login"
+                  state={{ ref: referenceCode, whatsapp: candidateWhatsapp }}
+                  className="btn-primary inline-flex items-center justify-center gap-2 font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95"
+                >
+                  <span>إنشاء حساب ومتابعة الطلب</span>
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Single return button */}

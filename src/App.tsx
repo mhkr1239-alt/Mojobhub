@@ -10,6 +10,8 @@ import { JobsPage } from './pages/JobsPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { OfferDetailPage } from './pages/OfferDetailPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { AccountLoginPage } from './pages/AccountLoginPage';
+import { AccountPage } from './pages/AccountPage';
 import { AdminPage } from './pages/AdminPage';
 import { AdminApplicationDetailPage } from './pages/AdminApplicationDetailPage';
 import { AdminOffersPage } from './pages/AdminOffersPage';
@@ -74,6 +76,8 @@ export default function App() {
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/offers/:id" element={<OfferDetailPage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/account/login" element={<AccountLoginPage />} />
+            <Route path="/account" element={<AccountPage />} />
           </Route>
 
           {/* Admin Authentication Gate */}
