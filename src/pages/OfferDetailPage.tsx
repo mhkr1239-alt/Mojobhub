@@ -613,7 +613,7 @@ export const OfferDetailPage: React.FC = () => {
   if (submitSuccess) {
     return (
       <div className="max-w-lg mx-auto px-4 py-10" dir="rtl">
-        <div className="bg-white border border-[#EBE7DF] rounded-[24px] p-6 sm:p-8 text-center shadow-xs">
+        <div className="animate-pop bg-white border border-[#EBE7DF] rounded-[24px] p-6 sm:p-8 text-center shadow-soft">
           {/* Animated check: circle scales .8->1 once, path draws once, ~400ms */}
           <div className="w-16 h-16 bg-[#E7F3F0] text-[#0F6657] border border-[#0F6657]/20 rounded-full flex items-center justify-center mx-auto mb-4 animate-check-circle">
             <svg
@@ -629,17 +629,26 @@ export const OfferDetailPage: React.FC = () => {
             </svg>
           </div>
 
-          <h1 className="text-2xl font-extrabold text-[#0B2B26] mb-2">
+          <h1
+            className="animate-fade-up text-2xl font-extrabold text-[#0B2B26] mb-2"
+            style={{ animationDelay: '100ms' }}
+          >
             تم تقديم طلبك بنجاح
           </h1>
 
-          <p className="text-sm text-[#5B6B67] leading-relaxed mb-6">
+          <p
+            className="animate-fade-up text-sm text-[#5B6B67] leading-relaxed mb-6"
+            style={{ animationDelay: '180ms' }}
+          >
             بياناتك اتسجلت بنجاح، وطلبك أصبح لدى فريق التوظيف للمراجعة.
           </p>
 
           {/* Reference Code Card */}
           {referenceCode && (
-            <div className="bg-white border border-[#EBE7DF] rounded-[16px] p-5 text-center mb-6 shadow-xs">
+            <div
+              className="animate-fade-up bg-white border border-[#EBE7DF] rounded-[16px] p-5 text-center mb-6 shadow-xs"
+              style={{ animationDelay: '260ms' }}
+            >
               <div className="text-xs font-bold text-[#5B6B67] mb-1.5">رقم طلبك المرجعي</div>
               <div className="text-2xl sm:text-3xl font-black font-mono tracking-wider text-[#0F6657] mb-3 select-all" dir="ltr">
                 {referenceCode}
@@ -670,7 +679,10 @@ export const OfferDetailPage: React.FC = () => {
           )}
 
           {/* Small summary card */}
-          <div className="bg-[#FBF9F5] border border-[#F1EFEA] rounded-[16px] p-4 text-right mb-8">
+          <div
+            className="animate-fade-up bg-[#FBF9F5] border border-[#F1EFEA] rounded-[16px] p-4 text-right mb-8"
+            style={{ animationDelay: '340ms' }}
+          >
             <div className="text-xs font-medium text-[#5B6B67] mb-1">تفاصيل الطلب:</div>
             <div className="text-base font-bold text-[#0B2B26] mb-0.5">{offer.title}</div>
             <div className="text-sm text-[#5B6B67] font-medium mb-3">{offer.company_name}</div>
