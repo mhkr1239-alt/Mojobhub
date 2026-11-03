@@ -1,10 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { ArrowLeft, Briefcase, Sparkles, AlertCircle } from 'lucide-react';
+import {
+  ArrowLeft,
+  Briefcase,
+  Sparkles,
+  AlertCircle,
+  Search,
+  ClipboardList,
+  Send,
+} from 'lucide-react';
+
+const STEPS = [
+  {
+    n: '١',
+    icon: Search,
+    title: 'اختر الفرصة',
+    desc: 'تصفّح الوظائف المتاحة واختر ما يناسب خبرتك.',
+  },
+  {
+    n: '٢',
+    icon: ClipboardList,
+    title: 'املأ النموذج',
+    desc: 'بيانات قصيرة وواضحة من هاتفك مباشرة.',
+  },
+  {
+    n: '٣',
+    icon: Send,
+    title: 'أرسل طلبك',
+    desc: 'في أقل من دقيقة، وبرقم مرجعي لمتابعته.',
+  },
+];
 
 export const HomePage: React.FC = () => {
-  // Live count of active offers for Door 1 (read-only, public data)
+  // Live count of active offers (read-only, public data)
   const [activeCount, setActiveCount] = useState<number | null>(null);
   const [countError, setCountError] = useState<boolean>(false);
 
@@ -38,22 +67,18 @@ export const HomePage: React.FC = () => {
       title: 'الوظائف المتاحة',
       desc: 'استعرض الوظائف المفتوحة حاليًا واطّلع على التفاصيل وقدّم طلبك مباشرة في خطوات بسيطة.',
       badge: null as React.ReactNode,
-      stat: countError
-        ? null
-        : activeCount === null
-        ? 'جاري التحميل...'
-        : `${activeCount} ${activeCount === 1 ? 'فرصة متاحة الآن' : 'فرص متاحة الآن'}`,
       cta: 'دخول باب الوظائف',
       ctaSecondary: false,
       enabled: true,
+      chipStyle: undefined as React.CSSProperties | undefined,
     },
     {
       to: '/services',
-      icon: <Sparkles className="w-6 h-6 text-[var(--c-warn)]" />,
+      icon: <Sparkles className="w-6 h-6" />,
       title: 'خدماتنا',
       desc: 'باقة خدمات إضافية تقدملك بيها الدعم اللي محتاجه — بنجهّزها حاليًا عشان توصلك بأفضل شكل.',
       badge: (
-        <span className="inline-flex items-center gap-1.5 text-xs font-bold badge-warn px-2.5 py-1 rounded-full">
+        <span className="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full text-[var(--c-violet)] bg-[var(--c-violet)]/10 border border-[var(--c-violet)]/25">
           <span className="w-1.5 h-1.5 rounded-full bg-current"></span>
           قريبًا
         </span>
@@ -62,39 +87,102 @@ export const HomePage: React.FC = () => {
       cta: 'دخول باب الخدمات',
       ctaSecondary: true,
       enabled: true,
+      chipStyle: {
+        background: 'var(--c-violet-soft)',
+        color: 'var(--c-violet)',
+        borderColor: 'color-mix(in srgb, var(--c-violet) 18%, transparent)',
+      } as React.CSSProperties,
     },
   ];
 
   return (
     <div className="min-h-full pb-16" dir="rtl">
-      {/* Hero Band */}
-      <section className="relative w-full border-b border-[var(--c-border)] py-10 sm:py-14 px-4 sm:px-6 overflow-hidden">
-        <div className="relative max-w-4xl mx-auto text-center">
+      {/* ═══ البطلة الداكنة — الانطباع الأول القوي ═══ */}
+      <section className="sec-dark relative w-full overflow-hidden border-b border-white/10">
+        {/* توهجات حية بطيئة */}
+        <span
+          aria-hidden="true"
+          className="glow-orb"
+          style={{ width: 340, height: 340, top: -130, right: -90, background: 'rgba(37,99,235,0.38)' }}
+        ></span>
+        <span
+          aria-hidden="true"
+          className="glow-orb glow-orb-2"
+          style={{ width: 300, height: 300, bottom: -150, left: -70, background: 'rgba(56,189,248,0.24)' }}
+        ></span>
+
+        <div className="relative max-w-4xl mx-auto py-14 sm:py-20 px-4 sm:px-6 text-center">
           <div
-            className="animate-fade-up text-xs font-bold text-[var(--c-accent)] tracking-widest mb-3"
+            className="animate-fade-up inline-flex items-center gap-2 text-xs font-bold text-[var(--c-accent)] tracking-wide bg-[var(--c-accent-soft)] border border-[var(--c-border)] rounded-full px-4 py-1.5 mb-5"
             style={{ animationDelay: '0ms' }}
           >
-            منصة توظيف مصرية
+            <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+            منصة توظيف مصرية موثوقة
           </div>
+
           <h1
-            className="animate-fade-up text-[28px] font-extrabold text-ink tracking-tight leading-tight"
+            className="animate-fade-up text-[30px] sm:text-[40px] font-extrabold text-ink tracking-tight leading-[1.3]"
             style={{ animationDelay: '80ms' }}
           >
-            أهلاً بك في فرص التوظيف
+            فرصتك القادمة{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-l from-[var(--c-sky)] to-[var(--c-accent)]">
+              تبدأ من هنا
+            </span>
           </h1>
+
           <p
-            className="animate-fade-up mt-3 text-sm sm:text-base text-muted leading-relaxed max-w-xl mx-auto"
+            className="animate-fade-up mt-4 text-sm sm:text-base text-muted leading-relaxed max-w-xl mx-auto"
             style={{ animationDelay: '160ms' }}
           >
-            بوابتك المباشرة للتقديم على الوظائف المتاحة، وخدمات إضافية قريبًا. اختار الباب اللي
-            يناسبك وابدأ.
+            تصفّح الوظائف المتاحة وقدّم طلبك من هاتفك في أقل من دقيقة — بدون حساب وبدون تعقيد.
           </p>
-          <div className="w-[48px] h-[2px] bg-[var(--c-warn)] mx-auto mt-4 rounded-full" />
+
+          <div
+            className="animate-fade-up mt-7 flex flex-col sm:flex-row items-center justify-center gap-3"
+            style={{ animationDelay: '240ms' }}
+          >
+            <Link
+              to="/jobs"
+              className="btn-primary inline-flex items-center justify-center gap-2 font-bold text-sm px-7 py-3 rounded-[14px] transition-all active:scale-95 w-full sm:w-auto"
+            >
+              <span>تصفّح الوظائف</span>
+              <ArrowLeft className="w-4 h-4" />
+            </Link>
+            <Link
+              to="/services"
+              className="btn-secondary inline-flex items-center justify-center gap-2 font-bold text-sm px-7 py-3 rounded-[14px] transition-all active:scale-95 hover:text-ink w-full sm:w-auto"
+            >
+              <span>اكتشف خدماتنا</span>
+              <Sparkles className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* عدّاد حي */}
+          {!countError && (
+            <div
+              className="animate-fade-up mt-6 inline-flex items-center gap-2 text-xs font-semibold text-muted"
+              style={{ animationDelay: '320ms' }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--c-accent)] animate-pulse"></span>
+              <span>
+                {activeCount === null
+                  ? 'جاري تحميل الفرص...'
+                  : `${activeCount} ${activeCount === 1 ? 'فرصة متاحة الآن' : 'فرص متاحة الآن'}`}
+              </span>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Two Doors */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-8">
+      {/* ═══ المحتوى الفاتح — الأبواب ═══ */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10">
+        <div data-reveal className="reveal text-center mb-6">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
+            إلى أين تحب أن تبدأ؟
+          </h2>
+          <p className="mt-1.5 text-sm text-muted">بابان واضحان — اختر ما يناسبك.</p>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
           {doors.map((door, index) => {
             const inner = (
@@ -103,6 +191,7 @@ export const HomePage: React.FC = () => {
                 <div className="flex items-start justify-between gap-3 mb-4">
                   <div
                     className="w-12 h-12 rounded-[14px] flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 icon-chip"
+                    style={door.chipStyle}
                   >
                     {door.icon}
                   </div>
@@ -110,18 +199,10 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Title + description */}
-                <h2 className="text-xl font-bold text-ink leading-snug mb-1.5">
+                <h3 className="text-xl font-bold text-ink leading-snug mb-1.5">
                   {door.title}
-                </h2>
+                </h3>
                 <p className="text-sm text-muted leading-relaxed mb-4">{door.desc}</p>
-
-                {/* Stat (jobs door only) */}
-                {door.stat && (
-                  <div className="inline-flex self-start items-center gap-1.5 text-xs font-semibold badge-soft px-2.5 py-1 rounded-full mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-                    <span>{door.stat}</span>
-                  </div>
-                )}
 
                 {/* CTA pinned to bottom */}
                 <div className="mt-auto pt-3 border-t border-[var(--c-border)]">
@@ -154,8 +235,39 @@ export const HomePage: React.FC = () => {
           })}
         </div>
 
+        {/* ═══ شريط الإرشاد — ثلاث خطوات ═══ */}
+        <div data-reveal className="reveal mt-10">
+          <h3 className="text-lg sm:text-xl font-extrabold text-ink tracking-tight text-center">
+            تقديمك في ثلاث خطوات
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
+            {STEPS.map((step) => {
+              const StepIcon = step.icon;
+              return (
+                <div
+                  key={step.n}
+                  className="glass-card rounded-[16px] p-4 flex items-start gap-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                >
+                  <div className="relative shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 flex items-center justify-center">
+                      <StepIcon className="w-[18px] h-[18px] text-[var(--c-accent)]" />
+                    </div>
+                    <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[var(--c-accent)] text-[var(--c-on-accent)] text-[11px] font-extrabold flex items-center justify-center leading-none">
+                      {step.n}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-ink">{step.title}</p>
+                    <p className="text-xs text-muted leading-relaxed mt-0.5">{step.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Reassurance note */}
-        <div data-reveal className="reveal mt-6 p-4 glass-card rounded-[16px] flex items-start gap-3">
+        <div data-reveal className="reveal mt-8 p-4 glass-card rounded-[16px] flex items-start gap-3">
           <div className="rounded-full bg-[var(--c-accent-soft)]/60 border border-[var(--c-border)] p-2 shrink-0">
             <AlertCircle className="w-4 h-4 text-muted opacity-70" />
           </div>

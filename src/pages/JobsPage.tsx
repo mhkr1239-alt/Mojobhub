@@ -152,8 +152,8 @@ export const JobsPage: React.FC = () => {
 
   return (
     <div className="min-h-full pb-16" dir="rtl">
-      {/* 1. Hero Band: subtle two-stop gradient from --primary-soft to --bg */}
-      <section className="w-full border-b border-[var(--c-border)] py-10 sm:py-14 px-4 sm:px-6">
+      {/* 1. Hero Band: شريط فاتح بتدرج أزرق هادئ */}
+      <section className="band-soft w-full border-b border-[var(--c-border)] py-10 sm:py-14 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-6 sm:gap-8">
           {/* Headline & Subtext */}
           <div className="text-right max-w-xl">

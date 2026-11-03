@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, Outlet, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Outlet, Link, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { initReveal } from './lib/revealController';
 import { AdminProtectedRoute } from './components/AdminProtectedRoute';
@@ -18,6 +18,7 @@ import { AdminAiSettingsPage } from './pages/AdminAiSettingsPage';
 import { AdminLoginPage } from './pages/AdminLoginPage';
 
 function PublicLayout() {
+  const location = useLocation();
   // أنيميشن الظهور عند التمرير — مراقب واحد لكل الصفحات العامة
   useEffect(() => initReveal(), []);
 
@@ -26,19 +27,33 @@ function PublicLayout() {
       <div className="bg-blobs" aria-hidden="true"><span className="blob-1"></span><span className="blob-2"></span></div>
       <Navbar />
       <main className="flex-1">
-        <Outlet />
+        {/* انتقال صفحة سلس عند كل تنقل — key يعيد تركيب محتوى المسار مع حركة ظهور هادئة */}
+        <div key={location.pathname} className="animate-page-in">
+          <Outlet />
+        </div>
       </main>
-      <footer className="footer-deep border-t border-white/10 py-6 text-xs text-[var(--c-deep-ink)] opacity-80">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-right" dir="rtl">
-          <div>
-            <span>بوابة التقديم على الوظائف — جميع الحقوق محفوظة</span>
+      <footer className="footer-deep border-t border-white/10 pt-7 pb-6 text-xs text-[var(--c-deep-ink)]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col gap-4" dir="rtl">
+          {/* صف العلامة */}
+          <div className="flex items-center justify-center sm:justify-start gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center shrink-0">
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="3" y="6" width="5" height="11" rx="2.5" fill="var(--c-sky)" />
+                <rect x="12" y="3" width="5" height="14" rx="2.5" fill="var(--c-sky)" />
+              </svg>
+            </div>
+            <span className="font-extrabold text-sm">فرص التوظيف</span>
+            <span className="opacity-60">— بوابة التقديم المباشر</span>
           </div>
-          <div className="text-[var(--c-deep-ink)] opacity-70 flex items-center gap-3">
-            <Link to="/privacy" className="hover:text-[var(--c-accent)] underline underline-offset-2 transition-colors">
-              سياسة الخصوصية
-            </Link>
-            <span aria-hidden="true">•</span>
-            <span>تقديم مباشر وسريع للوظائف المتاحة</span>
+          <div className="border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-right opacity-80">
+            <span>جميع الحقوق محفوظة © {new Date().getFullYear()}</span>
+            <div className="flex items-center gap-3">
+              <Link to="/privacy" className="hover:text-[var(--c-sky)] underline underline-offset-2 transition-colors">
+                سياسة الخصوصية
+              </Link>
+              <span aria-hidden="true">•</span>
+              <span>تقديم مباشر وسريع للوظائف المتاحة</span>
+            </div>
           </div>
         </div>
       </footer>

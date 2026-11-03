@@ -14,26 +14,26 @@ export const jobTypeConfig: Record<JobTypeKey, JobTypeConfigItem> = {
   factory: {
     label: 'مصانع وعمالة',
     icon: Factory,
-    accent: 'var(--c-accent)',
-    softBg: 'var(--c-accent-soft)',
+    accent: 'var(--jt-factory)',
+    softBg: 'var(--jt-factory-soft)',
   },
   call_center: {
     label: 'كول سنتر وخدمة عملاء',
     icon: Headphones,
-    accent: 'var(--c-accent)',
-    softBg: 'var(--c-accent-soft)',
+    accent: 'var(--jt-call)',
+    softBg: 'var(--jt-call-soft)',
   },
   sales: {
     label: 'مبيعات وتلي سيلز',
     icon: TrendingUp,
-    accent: 'var(--c-accent)',
-    softBg: 'var(--c-accent-soft)',
+    accent: 'var(--jt-sales)',
+    softBg: 'var(--jt-sales-soft)',
   },
   other: {
     label: 'وظائف عامة',
     icon: Briefcase,
-    accent: 'var(--c-accent)',
-    softBg: 'var(--c-accent-soft)',
+    accent: 'var(--jt-other)',
+    softBg: 'var(--jt-other-soft)',
   },
 };
 
