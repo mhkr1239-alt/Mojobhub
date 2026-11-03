@@ -4,6 +4,10 @@
   color-scheme: light dark;
 }
 
+/* الثيم المفروض يدويًا يوجّه أدوات النظام الأصلية أيضًا (حقول، قوائم، شرائط تمرير) */
+:root[data-theme='light'] { color-scheme: light; }
+:root[data-theme='dark'] { color-scheme: dark; }
+
 :root {
   --c-bg: #FAF6F0;
   --c-ink: #3D2E24;

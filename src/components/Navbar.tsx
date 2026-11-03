@@ -1,8 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Moon, Sun } from 'lucide-react';
+
+type Theme = 'light' | 'dark';
+
+const THEME_CHROME: Record<Theme, string> = { light: '#FAF6F0', dark: '#1A1410' };
+
+/** يطبّق الثيم على الشجرة ويحفظه ويوحّد لون شريط المتصفح */
+function applyTheme(theme: Theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  try {
+    localStorage.setItem('theme', theme);
+  } catch {
+    /* التخزين غير متاح — الثيم يعمل للجلسة الحالية فقط */
+  }
+  document.querySelectorAll('meta[name="theme-color"]').forEach((m) => {
+    m.removeAttribute('media');
+    m.setAttribute('content', THEME_CHROME[theme]);
+  });
+}
 
 export const Navbar: React.FC = () => {
   const location = useLocation();
+
+  // الحالة الابتدائية: الثيم المحفوظ (وضعه سكربت index.html) وإلا ثيم النظام
+  const [theme, setTheme] = useState<Theme>(() => {
+    const saved = document.documentElement.getAttribute('data-theme');
+    if (saved === 'dark' || saved === 'light') return saved;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  const toggleTheme = () => {
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    applyTheme(next);
+  };
 
   return (
     <header className="bg-[var(--c-glass)] backdrop-blur-md border-b border-[var(--c-border)] sticky top-0 z-40" dir="rtl">
@@ -36,17 +68,33 @@ export const Navbar: React.FC = () => {
             </div>
           </Link>
 
-          {/* Navigation Action */}
-          <Link
-            to="/jobs"
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-              location.pathname === '/jobs' || location.pathname.startsWith('/offers/')
-                ? 'bg-[var(--c-accent-soft)] text-[var(--c-accent)] border border-[var(--c-accent)]/20'
-                : 'text-muted hover:text-ink hover:bg-[var(--c-accent-soft)]/60'
-            }`}
-          >
-            كل الوظائف
-          </Link>
+          {/* Navigation Action + Theme Toggle */}
+          <div className="flex items-center gap-1.5">
+            <Link
+              to="/jobs"
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+                location.pathname === '/jobs' || location.pathname.startsWith('/offers/')
+                  ? 'bg-[var(--c-accent-soft)] text-[var(--c-accent)] border border-[var(--c-accent)]/20'
+                  : 'text-muted hover:text-ink hover:bg-[var(--c-accent-soft)]/60'
+              }`}
+            >
+              كل الوظائف
+            </Link>
+
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'التبديل إلى المظهر الفاتح' : 'التبديل إلى المظهر الداكن'}
+              title={theme === 'dark' ? 'المظهر الفاتح' : 'المظهر الداكن'}
+              className="w-9 h-9 rounded-lg flex items-center justify-center text-muted hover:text-ink hover:bg-[var(--c-accent-soft)]/60 transition-colors"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-[18px] h-[18px]" />
+              ) : (
+                <Moon className="w-[18px] h-[18px]" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </header>
