@@ -801,7 +801,7 @@ export const OfferDetailPage: React.FC = () => {
           const JobIcon = jobType.icon;
 
           return (
-            <div className="bg-white border border-[#EBE7DF] rounded-[24px] p-5 sm:p-7 shadow-xs mb-5">
+            <div className="animate-fade-up bg-white border border-[#EBE7DF] rounded-[24px] p-5 sm:p-7 shadow-soft mb-5">
               <div className="flex items-start gap-4">
                 <div
                   className="w-14 h-14 rounded-[16px] flex items-center justify-center shrink-0 border"
@@ -817,7 +817,7 @@ export const OfferDetailPage: React.FC = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
                     <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0F6657] bg-[#E7F3F0] border border-[#0F6657]/15 px-2.5 py-0.5 rounded-full">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0F6657]"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0F6657] animate-pulse"></span>
                       <span>التقديم مفتوح</span>
                     </span>
 
@@ -857,7 +857,7 @@ export const OfferDetailPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={scrollToWizard}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#0F6657] hover:bg-[#0c5246] text-white font-bold text-base py-3 px-6 rounded-[12px] transition shadow-xs cursor-pointer"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#0F6657] hover:bg-[#0c5246] text-white font-bold text-base py-3 px-6 rounded-[12px] transition-all active:scale-95 hover:shadow-lg shadow-xs cursor-pointer"
                 >
                   <span>قدّم على الوظيفة</span>
                   <Sparkles className="w-4 h-4" />
@@ -869,7 +869,7 @@ export const OfferDetailPage: React.FC = () => {
                     const shareText = `وظيفة: ${offer.title} — ${offer.company_name}\nالتفاصيل والتقديم من هنا: ${window.location.href}`;
                     window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank', 'noopener,noreferrer');
                   }}
-                  className="w-full flex items-center justify-center gap-2 bg-white border border-[#EBE7DF] hover:bg-[#FBF9F5] text-[#0F6657] font-bold text-sm sm:text-base py-3.5 px-4 rounded-[16px] transition cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 bg-white border border-[#EBE7DF] hover:bg-[#FBF9F5] text-[#0F6657] font-bold text-sm sm:text-base py-3.5 px-4 rounded-[16px] transition-all active:scale-95 cursor-pointer"
                 >
                   <svg
                     className="w-5 h-5 fill-current shrink-0 text-[#0F6657]"
@@ -887,7 +887,7 @@ export const OfferDetailPage: React.FC = () => {
 
         {/* Section B: Highlight Cards (Salary, Location, Shift) with Colored Icon Chips on Neutral Cards */}
         {(salary || location || shift) && (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+          <div className="animate-fade-up grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
             {salary && (
               <div className="bg-white border border-[#EBE7DF] border-r-[3px] border-r-[#C9822A] rounded-[16px] p-4 shadow-xs">
                 <div className="flex items-center gap-3">
