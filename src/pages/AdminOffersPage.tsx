@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase, JobOffer } from '../lib/supabase';
+import { friendlyDbError } from '../lib/friendlyError';
 import { AdminNav } from '../components/AdminNav';
 import { 
   Briefcase, 
@@ -42,7 +43,7 @@ export const AdminOffersPage: React.FC = () => {
       setOffers((data as JobOffer[]) || []);
     } catch (err: any) {
       console.error('Error fetching offers:', err);
-      setError(err?.message || 'تعذر تحميل قائمة الوظائف من قاعدة البيانات.');
+      setError(friendlyDbError(err, 'تعذر تحميل قائمة الوظائف من قاعدة البيانات.'));
     } finally {
       setLoading(false);
     }
@@ -84,7 +85,7 @@ export const AdminOffersPage: React.FC = () => {
       );
       setActionMessage({
         type: 'error',
-        text: `فشل تعديل حالة الوظيفة: ${err?.message || 'حدث خطأ غير متوقع'}`,
+        text: `فشل تعديل حالة الوظيفة: ${friendlyDbError(err, 'حدث خطأ غير متوقع')}`,
       });
     } finally {
       setTogglingId(null);

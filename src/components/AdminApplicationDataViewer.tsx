@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { supabase, FormFieldDefinition } from '../lib/supabase';
+import { friendlyDbError } from '../lib/friendlyError';
 import { FileText, ExternalLink, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 export interface FileData {
@@ -36,7 +37,7 @@ export const AdminFileField: React.FC<{ fileData: FileData }> = ({ fileData }) =
         .createSignedUrl(fileData.storage_path, 300);
 
       if (signedErr || !data?.signedUrl) {
-        throw new Error(signedErr?.message || 'فشل إنشاء رابط التحميل');
+        throw new Error(friendlyDbError(signedErr, 'فشل إنشاء رابط التحميل'));
       }
 
       window.open(data.signedUrl, '_blank', 'noopener,noreferrer');

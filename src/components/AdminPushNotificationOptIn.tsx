@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Bell, BellRing, Check, AlertCircle, Loader2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { friendlyDbError } from '../lib/friendlyError';
 
 // Base64URL VAPID public key as instructed
 const VAPID_PUBLIC_KEY = 'BODyhokE54oWhYbft1vE-w5BTFu6KQAgQvZUg4aEAIPuqHTzeDjb1tTaQrA_Mt1C-3wg-az-VfGVfvTfv9Ib9-U';
@@ -114,7 +115,7 @@ export const AdminPushNotificationOptIn: React.FC = () => {
 
       if (dbError) {
         console.error('Supabase error inserting push subscription:', dbError);
-        throw new Error(dbError.message || 'حدث خطأ أثناء حفظ الاشتراك في قاعدة البيانات.');
+        throw new Error(friendlyDbError(dbError, 'حدث خطأ أثناء حفظ الاشتراك في قاعدة البيانات.'));
       }
 
       setIsSubscribed(true);
@@ -126,7 +127,7 @@ export const AdminPushNotificationOptIn: React.FC = () => {
       console.error('Subscription error:', err);
       setFeedback({
         type: 'error',
-        message: err?.message || 'فشل تفعيل الإشعارات، يرجى المحاولة مرة أخرى.'
+        message: friendlyDbError(err, 'فشل تفعيل الإشعارات، يرجى المحاولة مرة أخرى.')
       });
     } finally {
       setActionLoading(false);

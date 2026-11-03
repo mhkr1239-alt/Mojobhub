@@ -17,6 +17,7 @@ import {
   STATUS_METAS, 
   PIPELINE_STEPS 
 } from '../lib/applicationUtils';
+import { friendlyDbError } from '../lib/friendlyError';
 import { 
   ArrowRight, 
   User, 
@@ -110,7 +111,7 @@ export const AdminApplicationDetailPage: React.FC = () => {
       } catch (err: any) {
         console.error('Error fetching application detail:', err);
         if (isMounted) {
-          setFetchError(err?.message || 'حدث خطأ أثناء تحميل بيانات الطلب');
+          setFetchError(friendlyDbError(err, 'حدث خطأ أثناء تحميل بيانات الطلب'));
         }
       } finally {
         if (isMounted) {
@@ -200,7 +201,7 @@ export const AdminApplicationDetailPage: React.FC = () => {
       setApplication((prev) =>
         prev ? { ...prev, status: previousStatus, updated_at: previousUpdatedAt } : null
       );
-      setStatusError(err?.message || 'فشل تحديث حالة الطلب. يُرجى المحاولة مجددًا.');
+      setStatusError(friendlyDbError(err, 'فشل تحديث حالة الطلب. يُرجى المحاولة مجددًا.'));
     } finally {
       setStatusUpdating(false);
       setConfirmModal(null);
@@ -228,7 +229,7 @@ export const AdminApplicationDetailPage: React.FC = () => {
       setTimeout(() => setNotesSuccess(false), 3000);
     } catch (err: any) {
       console.error('Error saving admin notes:', err);
-      setNotesError(err?.message || 'فشل حفظ الملاحظات، تحقق من الاتصال.');
+      setNotesError(friendlyDbError(err, 'فشل حفظ الملاحظات، تحقق من الاتصال.'));
     } finally {
       setSavingNotes(false);
     }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../context/AuthContext';
+import { friendlyDbError } from '../lib/friendlyError';
 import { AdminNav } from '../components/AdminNav';
 import { 
   Sparkles, 
@@ -138,7 +139,7 @@ export const AdminAiSettingsPage: React.FC = () => {
       showToast('success', `تم حفظ اسم النموذج (${modelToSave}) بنجاح.`);
     } catch (err: any) {
       console.error('Error saving model setting:', err);
-      showToast('error', `فشل حفظ النموذج: ${err?.message || 'خطأ غير متوقع'}`);
+      showToast('error', `فشل حفظ النموذج: ${friendlyDbError(err, 'خطأ غير متوقع')}`);
     } finally {
       setSavingModel(false);
     }
@@ -212,7 +213,7 @@ export const AdminAiSettingsPage: React.FC = () => {
       setKeys(data || []);
     } catch (err: any) {
       console.error('Error loading API keys:', err);
-      showToast('error', `فشل تحميل المفاتيح: ${err?.message || 'خطأ غير متوقع'}`);
+      showToast('error', `فشل تحميل المفاتيح: ${friendlyDbError(err, 'خطأ غير متوقع')}`);
     } finally {
       setLoadingKeys(false);
     }
@@ -250,7 +251,7 @@ export const AdminAiSettingsPage: React.FC = () => {
       await fetchKeys();
     } catch (err: any) {
       console.error('Error adding key:', err);
-      showToast('error', `فشل إضافة المفتاح: ${err?.message || 'خطأ غير متوقع'}`);
+      showToast('error', `فشل إضافة المفتاح: ${friendlyDbError(err, 'خطأ غير متوقع')}`);
     } finally {
       setAddingKey(false);
     }

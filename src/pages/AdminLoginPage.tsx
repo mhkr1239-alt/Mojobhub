@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation, Navigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { friendlyDbError } from '../lib/friendlyError';
 import { Lock, Mail, AlertCircle, ArrowLeft, ShieldCheck, KeyRound } from 'lucide-react';
 
 export const AdminLoginPage: React.FC = () => {
@@ -32,18 +33,12 @@ export const AdminLoginPage: React.FC = () => {
     try {
       const { error } = await signIn(email.trim(), password);
       if (error) {
-        if (error.message.includes('Invalid login credentials')) {
-          setErrorMsg('بيانات الدخول غير صحيحة. تأكد من صحة البريد الإلكتروني وكلمة المرور.');
-        } else if (error.message.includes('Email not confirmed')) {
-          setErrorMsg('البريد الإلكتروني لم يتم تأكيده بعد في Supabase.');
-        } else {
-          setErrorMsg(error.message || 'فشل تسجيل الدخول، برجاء المحاولة مرة أخرى.');
-        }
+        setErrorMsg(friendlyDbError(error, 'فشل تسجيل الدخول، برجاء المحاولة مرة أخرى.'));
       } else {
         navigate(from, { replace: true });
       }
     } catch (err: any) {
-      setErrorMsg(err?.message || 'حدث خطأ غير متوقع أثناء تسجيل الدخول.');
+      setErrorMsg(friendlyDbError(err, 'حدث خطأ غير متوقع أثناء تسجيل الدخول.'));
     } finally {
       setSubmitting(false);
     }

@@ -5,6 +5,7 @@ import { AdminNav } from '../components/AdminNav';
 import { AdminStatusBadge } from '../components/AdminStatusBadge';
 import { AdminFieldValueViewer } from '../components/AdminApplicationDataViewer';
 import { STATUS_LIST, STATUS_METAS } from '../lib/applicationUtils';
+import { friendlyDbError } from '../lib/friendlyError';
 import { 
   RefreshCw, 
   Search, 
@@ -58,7 +59,7 @@ export const AdminPage: React.FC = () => {
       setLastRefreshed(new Date());
     } catch (err: any) {
       console.error('Error fetching applications from Supabase:', err);
-      setError(err?.message || 'فشل في تحميل طلبات التقديم من قاعدة البيانات.');
+      setError(friendlyDbError(err, 'فشل في تحميل طلبات التقديم من قاعدة البيانات.'));
     } finally {
       setLoading(false);
     }

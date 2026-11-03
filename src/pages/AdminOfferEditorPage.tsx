@@ -34,6 +34,7 @@ import {
   ArrowDownToLine
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { friendlyDbError } from '../lib/friendlyError';
 
 const EGYPT_GOVERNORATES = [
   'القاهرة',
@@ -197,7 +198,7 @@ export const AdminOfferEditorPage: React.FC = () => {
         console.error('Error loading offer:', err);
         setToastMessage({
           type: 'error',
-          text: `فشل تحميل الوظيفة: ${err?.message || 'خطأ غير متوقع'}`,
+          text: `فشل تحميل الوظيفة: ${friendlyDbError(err, 'خطأ غير متوقع')}`,
         });
       } finally {
         setInitialLoading(false);
@@ -477,7 +478,7 @@ export const AdminOfferEditorPage: React.FC = () => {
         } else {
           setAiError({
             isAllKeys: false,
-            message: resData?.message || 'حصل خطأ أثناء تحليل الإعلان، يرجى المحاولة مرة أخرى.',
+            message: friendlyDbError(resData, 'حصل خطأ أثناء تحليل الإعلان، يرجى المحاولة مرة أخرى.'),
             rawDetails: resData?.details ? String(resData.details) : null,
           });
         }
@@ -697,7 +698,7 @@ export const AdminOfferEditorPage: React.FC = () => {
       console.error('Error saving offer:', err);
       setToastMessage({
         type: 'error',
-        text: `فشل حفظ الوظيفة: ${err?.message || 'تأكد من صلاحيات قاعدة البيانات وحاول مجدداً'}`,
+        text: `فشل حفظ الوظيفة: ${friendlyDbError(err, 'تأكد من صلاحيات قاعدة البيانات وحاول مجدداً')}`,
       });
     } finally {
       setSaving(false);
