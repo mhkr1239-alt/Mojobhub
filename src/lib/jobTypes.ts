@@ -14,26 +14,26 @@ export const jobTypeConfig: Record<JobTypeKey, JobTypeConfigItem> = {
   factory: {
     label: 'مصانع وعمالة',
     icon: Factory,
-    accent: '#C9822A',
-    softBg: '#FDF6ED', // warm sand
+    accent: '#0F4C81',
+    softBg: '#E3EEF7',
   },
   call_center: {
     label: 'كول سنتر وخدمة عملاء',
     icon: Headphones,
-    accent: '#3978B8',
-    softBg: '#EEF4FB',
+    accent: '#0F4C81',
+    softBg: '#E3EEF7',
   },
   sales: {
     label: 'مبيعات وتلي سيلز',
     icon: TrendingUp,
-    accent: '#D96C5F',
-    softBg: '#FDF1F0',
+    accent: '#0F4C81',
+    softBg: '#E3EEF7',
   },
   other: {
     label: 'وظائف عامة',
     icon: Briefcase,
-    accent: '#8170B8',
-    softBg: '#F4F2FA',
+    accent: '#0F4C81',
+    softBg: '#E3EEF7',
   },
 };
 

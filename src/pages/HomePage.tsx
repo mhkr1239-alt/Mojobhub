@@ -34,8 +34,8 @@ export const HomePage: React.FC = () => {
   const doors = [
     {
       to: '/jobs',
-      icon: <Briefcase className="w-6 h-6 text-[#0F6657]" />,
-      iconBg: 'bg-[#E7F3F0] border-[#0F6657]/15',
+      icon: <Briefcase className="w-6 h-6 text-[#0F4C81]" />,
+      iconBg: 'bg-[#E3EEF7] border-[#0F4C81]/15',
       title: 'الوظائف المتاحة',
       desc: 'استعرض الوظائف المفتوحة حاليًا واطّلع على التفاصيل وقدّم طلبك مباشرة في خطوات بسيطة.',
       badge: null as React.ReactNode,
@@ -68,23 +68,23 @@ export const HomePage: React.FC = () => {
   return (
     <div className="min-h-full pb-16" dir="rtl">
       {/* Hero Band */}
-      <section className="relative w-full bg-gradient-to-b from-[#E7F3F0] to-[#FBF9F5] border-b border-[#E7F3F0] py-10 sm:py-14 px-4 sm:px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15,102,87,0.08),transparent_60%)] pointer-events-none" />
+      <section className="relative w-full bg-gradient-to-b from-[#E3EEF7] to-[#F7F9FC] border-b border-[#E3EEF7] py-10 sm:py-14 px-4 sm:px-6 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15, 76, 129, 0.08),transparent_60%)] pointer-events-none" />
         <div className="relative max-w-4xl mx-auto text-center">
           <div
-            className="animate-fade-up text-xs font-bold text-[#0F6657] tracking-widest mb-3"
+            className="animate-fade-up text-xs font-bold text-[#0F4C81] tracking-widest mb-3"
             style={{ animationDelay: '0ms' }}
           >
             منصة توظيف مصرية
           </div>
           <h1
-            className="animate-fade-up text-3xl sm:text-4xl font-extrabold text-[#0B2B26] tracking-tight leading-tight"
+            className="animate-fade-up text-3xl sm:text-4xl font-extrabold text-[#0A2540] tracking-tight leading-tight"
             style={{ animationDelay: '80ms' }}
           >
             أهلاً بك في فرص التوظيف
           </h1>
           <p
-            className="animate-fade-up mt-3 text-sm sm:text-base text-[#5B6B67] leading-relaxed max-w-xl mx-auto"
+            className="animate-fade-up mt-3 text-sm sm:text-base text-[#5A6B7E] leading-relaxed max-w-xl mx-auto"
             style={{ animationDelay: '160ms' }}
           >
             بوابتك المباشرة للتقديم على الوظائف المتاحة، وخدمات إضافية قريبًا. اختار الباب اللي
@@ -111,22 +111,22 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Title + description */}
-                <h2 className="text-lg sm:text-xl font-bold text-[#0B2B26] leading-snug mb-1.5">
+                <h2 className="text-lg sm:text-xl font-bold text-[#0A2540] leading-snug mb-1.5">
                   {door.title}
                 </h2>
-                <p className="text-sm text-[#5B6B67] leading-relaxed mb-4">{door.desc}</p>
+                <p className="text-sm text-[#5A6B7E] leading-relaxed mb-4">{door.desc}</p>
 
                 {/* Stat (jobs door only) */}
                 {door.stat && (
-                  <div className="inline-flex self-start items-center gap-1.5 text-xs font-semibold text-[#0F6657] bg-[#E7F3F0]/60 border border-[#0F6657]/10 px-2.5 py-1 rounded-full mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0F6657] animate-pulse"></span>
+                  <div className="inline-flex self-start items-center gap-1.5 text-xs font-semibold text-[#0F4C81] bg-[#E3EEF7]/60 border border-[#0F4C81]/10 px-2.5 py-1 rounded-full mb-4">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C81] animate-pulse"></span>
                     <span>{door.stat}</span>
                   </div>
                 )}
 
                 {/* CTA pinned to bottom */}
-                <div className="mt-auto pt-3 border-t border-[#F1EFEA]">
-                  <span className="inline-flex items-center justify-center gap-2 bg-[#0F6657] group-hover:bg-[#0c5246] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95 shadow-xs w-full sm:w-auto">
+                <div className="mt-auto pt-3 border-t border-[#EDF1F6]">
+                  <span className="inline-flex items-center justify-center gap-2 bg-[#0F4C81] group-hover:bg-[#0C3D68] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95 shadow-xs w-full sm:w-auto">
                     <span>{door.cta}</span>
                     <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
                   </span>
@@ -138,7 +138,7 @@ export const HomePage: React.FC = () => {
               <Link
                 key={door.to}
                 to={door.to}
-                className="animate-fade-up shadow-soft hover:-translate-y-1 hover:shadow-lg transition-all duration-200 bg-white border border-[#EBE7DF] rounded-[16px] p-5 sm:p-6 flex flex-col group"
+                className="animate-fade-up shadow-soft hover:-translate-y-1 hover:shadow-lg transition-all duration-200 bg-white border border-[#E2E8F0] rounded-[16px] p-5 sm:p-6 flex flex-col group"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
                 {inner}
@@ -148,16 +148,16 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Reassurance note */}
-        <div className="animate-fade-up mt-6 p-4 bg-white/70 border border-[#EBE7DF] rounded-[16px] flex items-start gap-3">
-          <div className="rounded-full bg-[#E7F3F0]/60 border border-[#EBE7DF] p-2 shrink-0">
-            <AlertCircle className="w-4 h-4 text-[#5B6B67]/70" />
+        <div className="animate-fade-up mt-6 p-4 bg-white/70 border border-[#E2E8F0] rounded-[16px] flex items-start gap-3">
+          <div className="rounded-full bg-[#E3EEF7]/60 border border-[#E2E8F0] p-2 shrink-0">
+            <AlertCircle className="w-4 h-4 text-[#5A6B7E]/70" />
           </div>
-          <p className="text-xs sm:text-sm text-[#5B6B67] leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#5A6B7E] leading-relaxed">
             التقديم متاح على مدار الساعة من موبايلك، وبياناتك تُستخدم لأغراض التوظيف فقط وفقًا
             لـ
             <Link
               to="/privacy"
-              className="text-[#0F6657] font-bold underline underline-offset-2 hover:text-[#0c5246] transition-colors"
+              className="text-[#0F4C81] font-bold underline underline-offset-2 hover:text-[#0C3D68] transition-colors"
             >
               سياسة الخصوصية
             </Link>

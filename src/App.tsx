@@ -18,18 +18,18 @@ import { AdminLoginPage } from './pages/AdminLoginPage';
 
 function PublicLayout() {
   return (
-    <div className="min-h-screen bg-[#FBF9F5] flex flex-col text-[#0B2B26] font-sans selection:bg-[#E7F3F0] selection:text-[#0F6657]">
+    <div className="min-h-screen bg-[#F7F9FC] flex flex-col text-[#0A2540] font-sans selection:bg-[#E3EEF7] selection:text-[#0F4C81]">
       <Navbar />
       <main className="flex-1">
         <Outlet />
       </main>
-      <footer className="bg-white border-t border-[#E7F3F0] py-6 text-xs text-[#5B6B67]">
+      <footer className="bg-white border-t border-[#E3EEF7] py-6 text-xs text-[#5A6B7E]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-right" dir="rtl">
           <div>
             <span>بوابة التقديم على الوظائف — جميع الحقوق محفوظة</span>
           </div>
-          <div className="text-[#5B6B67]/80 flex items-center gap-3">
-            <Link to="/privacy" className="hover:text-[#0F6657] underline underline-offset-2 transition-colors">
+          <div className="text-[#5A6B7E]/80 flex items-center gap-3">
+            <Link to="/privacy" className="hover:text-[#0F4C81] underline underline-offset-2 transition-colors">
               سياسة الخصوصية
             </Link>
             <span aria-hidden="true">•</span>
