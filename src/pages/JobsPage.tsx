@@ -369,9 +369,17 @@ export const JobsPage: React.FC = () => {
                         <h2 className="text-lg sm:text-xl font-bold text-[#0B2B26] leading-snug">
                           {offer.title}
                         </h2>
-                        <div className="flex items-center gap-1.5 text-sm text-[#5B6B67] font-medium mt-1">
-                          <Building2 className="w-4 h-4 text-[#5B6B67]/70 shrink-0" />
-                          <span>{offer.company_name}</span>
+                        <div className="flex flex-wrap items-center gap-2 text-sm text-[#5B6B67] font-medium mt-1">
+                          <div className="flex items-center gap-1.5">
+                            <Building2 className="w-4 h-4 text-[#5B6B67]/70 shrink-0" />
+                            <span>{offer.company_name}</span>
+                          </div>
+                          {details.governorate && (
+                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#0F6657] bg-[#E7F3F0] px-2 py-0.5 rounded-[8px]">
+                              <MapPin className="w-3.5 h-3.5 shrink-0" />
+                              <span>{details.governorate}</span>
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>
