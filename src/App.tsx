@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet, Link } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { initReveal } from './lib/revealController';
 import { AdminProtectedRoute } from './components/AdminProtectedRoute';
 import { Navbar } from './components/Navbar';
 import { AdminPwaSetup } from './components/AdminPwaSetup';
@@ -17,6 +18,9 @@ import { AdminAiSettingsPage } from './pages/AdminAiSettingsPage';
 import { AdminLoginPage } from './pages/AdminLoginPage';
 
 function PublicLayout() {
+  // أنيميشن الظهور عند التمرير — مراقب واحد لكل الصفحات العامة
+  useEffect(() => initReveal(), []);
+
   return (
     <div className="min-h-screen flex flex-col font-sans text-ink selection:bg-[var(--c-accent-soft)] selection:text-[var(--c-accent)]">
       <div className="bg-blobs" aria-hidden="true"><span className="blob-1"></span><span className="blob-2"></span></div>

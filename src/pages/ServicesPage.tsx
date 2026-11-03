@@ -5,7 +5,7 @@ import { Sparkles, ArrowRight } from 'lucide-react';
 export const ServicesPage: React.FC = () => {
   return (
     <div className="max-w-lg mx-auto px-4 py-14 pb-20 text-center" dir="rtl">
-      <div className="glass-card rounded-[24px] p-8 sm:p-10">
+      <div data-reveal className="reveal glass-card rounded-[24px] p-8 sm:p-10">
         {/* Icon */}
         <div className="w-16 h-16 bg-[var(--c-warn)]/10 border border-[var(--c-warn)]/25 rounded-full flex items-center justify-center mx-auto mb-4">
           <Sparkles className="w-8 h-8 text-[var(--c-warn)]" />

@@ -347,7 +347,8 @@ export const JobsPage: React.FC = () => {
               return (
                 <div
                   key={offer.id}
-                  className="animate-fade-up glass-card rounded-[16px] p-5 sm:p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl"
+                  data-reveal
+                  className="reveal glass-card rounded-[16px] p-5 sm:p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl"
                   style={{ animationDelay: staggerDelay }}
                 >
                   {/* Card Header: Icon Badge + Title & Company + Status dot */}

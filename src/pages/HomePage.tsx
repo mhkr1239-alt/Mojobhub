@@ -144,7 +144,8 @@ export const HomePage: React.FC = () => {
               <Link
                 key={door.to}
                 to={door.to}
-                className="animate-fade-up glass-card hover:-translate-y-1 hover:shadow-xl rounded-[16px] p-5 sm:p-6 flex flex-col group transition-all duration-200"
+                data-reveal
+                className="reveal glass-card hover:-translate-y-1 hover:shadow-xl rounded-[16px] p-5 sm:p-6 flex flex-col group transition-all duration-200"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
                 {inner}
@@ -154,7 +155,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Reassurance note */}
-        <div className="animate-fade-up mt-6 p-4 glass-card rounded-[16px] flex items-start gap-3">
+        <div data-reveal className="reveal mt-6 p-4 glass-card rounded-[16px] flex items-start gap-3">
           <div className="rounded-full bg-[var(--c-accent-soft)]/60 border border-[var(--c-border)] p-2 shrink-0">
             <AlertCircle className="w-4 h-4 text-muted opacity-70" />
           </div>
