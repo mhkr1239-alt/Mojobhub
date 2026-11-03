@@ -90,6 +90,9 @@
   .btn-secondary { background-color: transparent; border: 1px solid var(--c-border); color: var(--c-muted); }
   .footer-deep { background-color: var(--c-deep); color: var(--c-deep-ink); }
   .badge-soft { background-color: var(--c-accent-soft); color: var(--c-accent); }
+  body { background-color: var(--c-bg); color: var(--c-ink); }
+  .icon-chip { background: var(--c-accent-soft); color: var(--c-accent); border: 1px solid color-mix(in srgb, var(--c-accent) 18%, transparent); }
+  .badge-warn { color: var(--c-warn); background: color-mix(in srgb, var(--c-warn) 10%, transparent); border: 1px solid color-mix(in srgb, var(--c-warn) 25%, transparent); }
 }
 
 body {

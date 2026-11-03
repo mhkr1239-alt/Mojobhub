@@ -35,7 +35,6 @@ export const HomePage: React.FC = () => {
     {
       to: '/jobs',
       icon: <Briefcase className="w-6 h-6 text-[#0F4C81]" />,
-      iconBg: 'bg-[#E3EEF7] border-[#0F4C81]/15',
       title: 'الوظائف المتاحة',
       desc: 'استعرض الوظائف المفتوحة حاليًا واطّلع على التفاصيل وقدّم طلبك مباشرة في خطوات بسيطة.',
       badge: null as React.ReactNode,
@@ -51,11 +50,10 @@ export const HomePage: React.FC = () => {
     {
       to: '/services',
       icon: <Sparkles className="w-6 h-6 text-[#C9822A]" />,
-      iconBg: 'bg-[#C9822A]/10 border-[#C9822A]/25',
       title: 'خدماتنا',
       desc: 'باقة خدمات إضافية تقدملك بيها الدعم اللي محتاجه — بنجهّزها حاليًا عشان توصلك بأفضل شكل.',
       badge: (
-        <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C9822A] bg-[#C9822A]/10 border border-[#C9822A]/25 px-2.5 py-1 rounded-full">
+        <span className="inline-flex items-center gap-1.5 text-xs font-bold badge-warn px-2.5 py-1 rounded-full">
           <span className="w-1.5 h-1.5 rounded-full bg-[#C9822A]"></span>
           قريبًا
         </span>
@@ -70,29 +68,28 @@ export const HomePage: React.FC = () => {
   return (
     <div className="min-h-full pb-16" dir="rtl">
       {/* Hero Band */}
-      <section className="relative w-full bg-gradient-to-b from-[#E3EEF7] to-[#F7F9FC] border-b border-[#E3EEF7] py-10 sm:py-14 px-4 sm:px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15, 76, 129, 0.08),transparent_60%)] pointer-events-none" />
+      <section className="relative w-full border-b border-[var(--c-border)] py-10 sm:py-14 px-4 sm:px-6 overflow-hidden">
         <div className="relative max-w-4xl mx-auto text-center">
           <div
-            className="animate-fade-up text-xs font-bold text-[#0F4C81] tracking-widest mb-3"
+            className="animate-fade-up text-xs font-bold text-[var(--c-accent)] tracking-widest mb-3"
             style={{ animationDelay: '0ms' }}
           >
             منصة توظيف مصرية
           </div>
           <h1
-            className="animate-fade-up text-[28px] font-extrabold text-[#0A2540] tracking-tight leading-tight"
+            className="animate-fade-up text-[28px] font-extrabold text-ink tracking-tight leading-tight"
             style={{ animationDelay: '80ms' }}
           >
             أهلاً بك في فرص التوظيف
           </h1>
           <p
-            className="animate-fade-up mt-3 text-sm sm:text-base text-[#5A6B7E] leading-relaxed max-w-xl mx-auto"
+            className="animate-fade-up mt-3 text-sm sm:text-base text-muted leading-relaxed max-w-xl mx-auto"
             style={{ animationDelay: '160ms' }}
           >
             بوابتك المباشرة للتقديم على الوظائف المتاحة، وخدمات إضافية قريبًا. اختار الباب اللي
             يناسبك وابدأ.
           </p>
-          <div className="w-[48px] h-[2px] bg-[#C9822A] mx-auto mt-4 rounded-full" />
+          <div className="w-[48px] h-[2px] bg-[var(--c-warn)] mx-auto mt-4 rounded-full" />
         </div>
       </section>
 
@@ -105,7 +102,7 @@ export const HomePage: React.FC = () => {
                 {/* Door header: icon + badge */}
                 <div className="flex items-start justify-between gap-3 mb-4">
                   <div
-                    className={`w-12 h-12 rounded-[14px] border flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 ${door.iconBg}`}
+                    className="w-12 h-12 rounded-[14px] flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 icon-chip"
                   >
                     {door.icon}
                   </div>
@@ -113,28 +110,28 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Title + description */}
-                <h2 className="text-xl font-bold text-[#0A2540] leading-snug mb-1.5">
+                <h2 className="text-xl font-bold text-ink leading-snug mb-1.5">
                   {door.title}
                 </h2>
-                <p className="text-sm text-[#5A6B7E] leading-relaxed mb-4">{door.desc}</p>
+                <p className="text-sm text-muted leading-relaxed mb-4">{door.desc}</p>
 
                 {/* Stat (jobs door only) */}
                 {door.stat && (
-                  <div className="inline-flex self-start items-center gap-1.5 text-xs font-semibold text-[#0F4C81] bg-[#E3EEF7]/60 border border-[#0F4C81]/10 px-2.5 py-1 rounded-full mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C81] animate-pulse"></span>
+                  <div className="inline-flex self-start items-center gap-1.5 text-xs font-semibold badge-soft px-2.5 py-1 rounded-full mb-4">
+                    <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
                     <span>{door.stat}</span>
                   </div>
                 )}
 
                 {/* CTA pinned to bottom */}
-                <div className="mt-auto pt-3 border-t border-[#EDF1F6]">
+                <div className="mt-auto pt-3 border-t border-[var(--c-border)]">
                   {door.ctaSecondary ? (
-                    <span className="inline-flex items-center justify-center gap-2 bg-white border border-[#E2E8F0] group-hover:border-[#0F4C81]/40 text-[#5A6B7E] font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95 w-full sm:w-auto">
+                    <span className="inline-flex items-center justify-center gap-2 btn-secondary font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95 w-full sm:w-auto">
                       <span>{door.cta}</span>
                       <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
                     </span>
                   ) : (
-                    <span className="inline-flex items-center justify-center gap-2 bg-[#0F4C81] group-hover:bg-[#0C3D68] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95 shadow-xs w-full sm:w-auto">
+                    <span className="inline-flex items-center justify-center gap-2 btn-primary font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95 w-full sm:w-auto">
                       <span>{door.cta}</span>
                       <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
                     </span>
@@ -147,7 +144,7 @@ export const HomePage: React.FC = () => {
               <Link
                 key={door.to}
                 to={door.to}
-                className="animate-fade-up shadow-soft hover:-translate-y-1 hover:shadow-lg transition-all duration-200 bg-white border border-[#E2E8F0] rounded-[16px] p-5 sm:p-6 flex flex-col group"
+                className="animate-fade-up glass-card hover:-translate-y-1 hover:shadow-xl rounded-[16px] p-5 sm:p-6 flex flex-col group transition-all duration-200"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
                 {inner}
@@ -157,7 +154,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Reassurance note */}
-        <div className="animate-fade-up mt-6 p-4 bg-white/70 border border-[#E2E8F0] rounded-[16px] flex items-start gap-3">
+        <div className="animate-fade-up mt-6 p-4 glass-card rounded-[16px] flex items-start gap-3">
           <div className="rounded-full bg-[#E3EEF7]/60 border border-[#E2E8F0] p-2 shrink-0">
             <AlertCircle className="w-4 h-4 text-[#5A6B7E]/70" />
           </div>
