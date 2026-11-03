@@ -581,10 +581,10 @@ export const OfferDetailPage: React.FC = () => {
     return (
       <div className="max-w-2xl mx-auto px-4 py-12" dir="rtl">
         <div className="animate-pulse space-y-6">
-          <div className="h-4 bg-slate-200 rounded w-24"></div>
-          <div className="h-10 bg-slate-200 rounded w-3/4"></div>
-          <div className="h-28 bg-white border border-[#E2E8F0] rounded-[16px]"></div>
-          <div className="h-44 bg-white border border-[#E2E8F0] rounded-[16px]"></div>
+          <div className="h-4 bg-[var(--c-border)] rounded w-24"></div>
+          <div className="h-10 bg-[var(--c-border)] rounded w-3/4"></div>
+          <div className="h-28 glass-card rounded-[16px]"></div>
+          <div className="h-44 glass-card rounded-[16px]"></div>
         </div>
       </div>
     );
@@ -593,13 +593,13 @@ export const OfferDetailPage: React.FC = () => {
   if (error || !offer) {
     return (
       <div className="max-w-xl mx-auto px-4 py-12 text-center" dir="rtl">
-        <div className="bg-white border border-[#E2E8F0] rounded-[16px] p-6 shadow-xs">
-          <AlertCircle className="w-10 h-10 text-red-600 mx-auto mb-3" />
-          <h2 className="text-lg font-bold text-[#0A2540] mb-1">تعذر فتح الوظيفة</h2>
-          <p className="text-sm text-[#5A6B7E] mb-5">{error || 'الوظيفة غير متاحة حالياً.'}</p>
+        <div className="glass-card rounded-[16px] p-6">
+          <AlertCircle className="w-10 h-10 text-[var(--c-danger)] mx-auto mb-3" />
+          <h2 className="text-lg font-bold text-ink mb-1">تعذر فتح الوظيفة</h2>
+          <p className="text-sm text-muted mb-5">{error || 'الوظيفة غير متاحة حالياً.'}</p>
           <Link
             to="/jobs"
-            className="inline-flex items-center justify-center gap-2 bg-[#0F4C81] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] hover:bg-[#0C3D68] transition"
+            className="btn-primary inline-flex items-center justify-center gap-2 font-bold text-sm px-5 py-2.5 rounded-[12px] transition"
           >
             <ArrowRight className="w-4 h-4" />
             <span>العودة للوظائف المتاحة</span>
@@ -613,11 +613,11 @@ export const OfferDetailPage: React.FC = () => {
   if (submitSuccess) {
     return (
       <div className="max-w-lg mx-auto px-4 py-10" dir="rtl">
-        <div className="animate-pop bg-white border border-[#E2E8F0] rounded-[24px] p-6 sm:p-8 text-center shadow-soft">
+        <div className="animate-pop glass-card rounded-[24px] p-6 sm:p-8 text-center">
           {/* Animated check: circle scales .8->1 once, path draws once, ~400ms */}
-          <div className="w-16 h-16 bg-[#E3EEF7] text-[#0F4C81] border border-[#0F4C81]/20 rounded-full flex items-center justify-center mx-auto mb-4 animate-check-circle">
+          <div className="w-16 h-16 bg-[var(--c-success)]/15 text-[var(--c-success)] border border-[var(--c-success)]/25 rounded-full flex items-center justify-center mx-auto mb-4 animate-check-circle">
             <svg
-              className="w-8 h-8 text-[#0F4C81]"
+              className="w-8 h-8 text-[var(--c-success)]"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -630,14 +630,14 @@ export const OfferDetailPage: React.FC = () => {
           </div>
 
           <h1
-            className="animate-fade-up text-2xl font-extrabold text-[#0A2540] mb-2"
+            className="animate-fade-up text-2xl font-extrabold text-ink mb-2"
             style={{ animationDelay: '100ms' }}
           >
             تم تقديم طلبك بنجاح
           </h1>
 
           <p
-            className="animate-fade-up text-sm text-[#5A6B7E] leading-relaxed mb-6"
+            className="animate-fade-up text-sm text-muted leading-relaxed mb-6"
             style={{ animationDelay: '180ms' }}
           >
             بياناتك اتسجلت بنجاح، وطلبك أصبح لدى فريق التوظيف للمراجعة.
@@ -646,33 +646,33 @@ export const OfferDetailPage: React.FC = () => {
           {/* Reference Code Card */}
           {referenceCode && (
             <div
-              className="animate-fade-up bg-white border border-[#E2E8F0] rounded-[16px] p-5 text-center mb-6 shadow-xs"
+              className="animate-fade-up glass-card rounded-[16px] p-5 text-center mb-6"
               style={{ animationDelay: '260ms' }}
             >
-              <div className="text-xs font-bold text-[#5A6B7E] mb-1.5">رقم طلبك المرجعي</div>
-              <div className="text-2xl sm:text-3xl font-black font-mono tracking-wider text-[#0F4C81] mb-3 select-all" dir="ltr">
+              <div className="text-xs font-bold text-muted mb-1.5">رقم طلبك المرجعي</div>
+              <div className="text-2xl sm:text-3xl font-black font-mono tracking-wider text-[var(--c-accent)] mb-3 select-all" dir="ltr">
                 {referenceCode}
               </div>
               <div className="flex justify-center mb-2.5">
                 <button
                   type="button"
                   onClick={handleCopyReferenceCode}
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold rounded-[10px] border border-[#0F4C81]/20 bg-[#E3EEF7] text-[#0F4C81] hover:bg-[#D3E2F0] transition active:scale-95 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold rounded-[10px] border border-[var(--c-accent)]/20 bg-[var(--c-accent-soft)] text-[var(--c-accent)] hover:opacity-90 transition active:scale-95 cursor-pointer"
                 >
                   {copiedRef ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-[#0F4C81]" />
+                      <Check className="w-3.5 h-3.5 text-[var(--c-accent)]" />
                       <span>تم النسخ ✓</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3.5 h-3.5 text-[#0F4C81]" />
+                      <Copy className="w-3.5 h-3.5 text-[var(--c-accent)]" />
                       <span>نسخ الرقم</span>
                     </>
                   )}
                 </button>
               </div>
-              <p className="text-xs text-[#5A6B7E]">
+              <p className="text-xs text-muted">
                 احتفظ بالرقم ده — استخدمه لو راسلتنا عن طلبك
               </p>
             </div>
@@ -680,13 +680,13 @@ export const OfferDetailPage: React.FC = () => {
 
           {/* Small summary card */}
           <div
-            className="animate-fade-up bg-[#F7F9FC] border border-[#EDF1F6] rounded-[16px] p-4 text-right mb-8"
+            className="animate-fade-up bg-[var(--c-accent-soft)]/40 border border-[var(--c-border)] rounded-[16px] p-4 text-right mb-8"
             style={{ animationDelay: '340ms' }}
           >
-            <div className="text-xs font-medium text-[#5A6B7E] mb-1">تفاصيل الطلب:</div>
-            <div className="text-base font-bold text-[#0A2540] mb-0.5">{offer.title}</div>
-            <div className="text-sm text-[#5A6B7E] font-medium mb-3">{offer.company_name}</div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C81] bg-[#E3EEF7] border border-[#0F4C81]/20 px-3 py-1 rounded-full">
+            <div className="text-xs font-medium text-muted mb-1">تفاصيل الطلب:</div>
+            <div className="text-base font-bold text-ink mb-0.5">{offer.title}</div>
+            <div className="text-sm text-muted font-medium mb-3">{offer.company_name}</div>
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--c-accent)] bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 px-3 py-1 rounded-full">
               <span>● تم استلام الطلب</span>
             </div>
           </div>
@@ -694,7 +694,7 @@ export const OfferDetailPage: React.FC = () => {
           {/* Single return button */}
           <Link
             to="/jobs"
-            className="w-full inline-flex items-center justify-center gap-2 bg-[#0F4C81] hover:bg-[#0C3D68] text-white font-bold text-base px-6 py-3.5 rounded-[12px] transition shadow-xs"
+            className="btn-primary w-full inline-flex items-center justify-center gap-2 font-bold text-base px-6 py-3.5 rounded-[12px] transition"
           >
             <span>العودة للوظائف</span>
             <ArrowLeft className="w-4 h-4" />
@@ -796,12 +796,12 @@ export const OfferDetailPage: React.FC = () => {
   const currentStep = steps[currentStepIndex];
 
   return (
-    <div className="min-h-screen bg-[#F7F9FC] pb-24" dir="rtl">
+    <div className="min-h-screen pb-24" dir="rtl">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Back Link */}
         <Link
           to="/jobs"
-          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#5A6B7E] hover:text-[#0A2540] mb-5 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-muted hover:text-ink mb-5 transition-colors"
         >
           <ArrowRight className="w-4 h-4" />
           <span>كل الوظائف</span>
@@ -813,7 +813,7 @@ export const OfferDetailPage: React.FC = () => {
           const JobIcon = jobType.icon;
 
           return (
-            <div className="animate-fade-up bg-white border border-[#E2E8F0] rounded-[24px] p-5 sm:p-7 shadow-soft mb-5">
+            <div className="animate-fade-up glass-card rounded-[24px] p-5 sm:p-7 mb-5">
               <div className="flex items-start gap-4">
                 <div
                   className="w-14 h-14 rounded-[16px] flex items-center justify-center shrink-0 border"
@@ -828,8 +828,8 @@ export const OfferDetailPage: React.FC = () => {
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0F4C81] bg-[#E3EEF7] border border-[#0F4C81]/15 px-2.5 py-0.5 rounded-full">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C81] animate-pulse"></span>
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[var(--c-accent)] bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 px-2.5 py-0.5 rounded-full">
+                      <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
                       <span>التقديم مفتوح</span>
                     </span>
 
@@ -845,17 +845,17 @@ export const OfferDetailPage: React.FC = () => {
                     </span>
                   </div>
 
-                  <h1 className="text-xl sm:text-2xl font-extrabold text-[#0A2540] leading-snug">
+                  <h1 className="text-xl sm:text-2xl font-extrabold text-ink leading-snug">
                     {offer.title}
                   </h1>
 
-                  <div className="flex flex-wrap items-center gap-2 text-sm text-[#5A6B7E] font-medium mt-1">
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-muted font-medium mt-1">
                     <div className="flex items-center gap-1.5">
-                      <Building2 className="w-4 h-4 text-[#5A6B7E]/70 shrink-0" />
+                      <Building2 className="w-4 h-4 text-muted opacity-70 shrink-0" />
                       <span>{offer.company_name}</span>
                     </div>
                     {offer.details?.governorate && (
-                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#0F4C81] bg-[#E3EEF7] px-2 py-0.5 rounded-[8px]">
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--c-accent)] bg-[var(--c-accent-soft)] px-2 py-0.5 rounded-[8px]">
                         <MapPin className="w-3.5 h-3.5 shrink-0" />
                         <span>{offer.details.governorate}</span>
                       </span>
@@ -865,11 +865,11 @@ export const OfferDetailPage: React.FC = () => {
               </div>
 
               {/* Section E: CTA Button 1 right after Hero */}
-              <div className="mt-5 pt-4 border-t border-[#EDF1F6] flex flex-col gap-2.5">
+              <div className="mt-5 pt-4 border-t border-[var(--c-border)] flex flex-col gap-2.5">
                 <button
                   type="button"
                   onClick={scrollToWizard}
-                  className="hidden sm:inline-flex w-full items-center justify-center gap-2 bg-[#0F4C81] hover:bg-[#0C3D68] text-white font-bold text-base py-3 px-6 rounded-[12px] transition-all active:scale-95 hover:shadow-lg shadow-xs cursor-pointer"
+                  className="btn-primary hidden sm:inline-flex w-full items-center justify-center gap-2 font-bold text-base py-3 px-6 rounded-[12px] transition-all active:scale-95 hover:shadow-lg cursor-pointer"
                 >
                   <span>قدّم على الوظيفة</span>
                   <Sparkles className="w-4 h-4" />
@@ -881,10 +881,10 @@ export const OfferDetailPage: React.FC = () => {
                     const shareText = `وظيفة: ${offer.title} — ${offer.company_name}\nالتفاصيل والتقديم من هنا: ${window.location.href}`;
                     window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank', 'noopener,noreferrer');
                   }}
-                  className="w-full flex items-center justify-center gap-2 bg-white border border-[#E2E8F0] hover:bg-[#F7F9FC] text-[#0F4C81] font-bold text-sm sm:text-base py-3.5 px-4 rounded-[16px] transition-all active:scale-95 cursor-pointer"
+                  className="btn-secondary w-full flex items-center justify-center gap-2 border border-[var(--c-accent)]/30 text-[var(--c-accent)] font-bold text-sm sm:text-base py-3.5 px-4 rounded-[16px] transition-all active:scale-95 cursor-pointer"
                 >
                   <svg
-                    className="w-5 h-5 fill-current shrink-0 text-[#0F4C81]"
+                    className="w-5 h-5 fill-current shrink-0 text-[var(--c-accent)]"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -901,14 +901,14 @@ export const OfferDetailPage: React.FC = () => {
         {(salary || location || shift) && (
           <div className="animate-fade-up grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
             {salary && (
-              <div className="bg-white border border-[#E2E8F0] border-r-[3px] border-r-[#C9822A] rounded-[16px] p-4 shadow-xs">
+              <div className="bg-[var(--c-accent-soft)]/40 border border-[var(--c-border)] border-r-[3px] border-r-[var(--c-warn)] rounded-[16px] p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#C9822A]/15 border border-[#C9822A]/25 text-[#C9822A] flex items-center justify-center shrink-0">
-                    <Banknote className="w-5 h-5 text-[#C9822A]" />
+                  <div className="w-10 h-10 rounded-full bg-[var(--c-warn)]/15 border border-[var(--c-warn)]/25 text-[var(--c-warn)] flex items-center justify-center shrink-0">
+                    <Banknote className="w-5 h-5 text-[var(--c-warn)]" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs font-semibold text-[#5A6B7E] mb-0.5">المرتب</div>
-                    <div className="text-sm sm:text-base font-bold text-[#0A2540] leading-tight">
+                    <div className="text-xs font-semibold text-muted mb-0.5">المرتب</div>
+                    <div className="text-sm sm:text-base font-bold text-ink leading-tight">
                       {salary}
                     </div>
                   </div>
@@ -917,14 +917,14 @@ export const OfferDetailPage: React.FC = () => {
             )}
 
             {location && (
-              <div className="bg-white border border-[#E2E8F0] border-r-[3px] border-r-[#0F4C81] rounded-[16px] p-4 shadow-xs">
+              <div className="bg-[var(--c-accent-soft)]/40 border border-[var(--c-border)] border-r-[3px] border-r-[var(--c-accent)] rounded-[16px] p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#0F4C81]/15 border border-[#0F4C81]/25 text-[#0F4C81] flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-[#0F4C81]" />
+                  <div className="w-10 h-10 rounded-full bg-[var(--c-accent)]/15 border border-[var(--c-accent)]/20 text-[var(--c-accent)] flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-[var(--c-accent)]" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs font-semibold text-[#5A6B7E] mb-0.5">مكان الشغل</div>
-                    <div className="text-sm sm:text-base font-bold text-[#0A2540] leading-tight">
+                    <div className="text-xs font-semibold text-muted mb-0.5">مكان الشغل</div>
+                    <div className="text-sm sm:text-base font-bold text-ink leading-tight">
                       {location}
                     </div>
                   </div>
@@ -933,14 +933,14 @@ export const OfferDetailPage: React.FC = () => {
             )}
 
             {shift && (
-              <div className="bg-white border border-[#E2E8F0] border-r-[3px] border-r-[#0F4C81] rounded-[16px] p-4 shadow-xs">
+              <div className="bg-[var(--c-accent-soft)]/40 border border-[var(--c-border)] border-r-[3px] border-r-[var(--c-accent)] rounded-[16px] p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#0F4C81]/15 border border-[#0F4C81]/25 text-[#0F4C81] flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 text-[#0F4C81]" />
+                  <div className="w-10 h-10 rounded-full bg-[var(--c-accent)]/15 border border-[var(--c-accent)]/20 text-[var(--c-accent)] flex items-center justify-center shrink-0">
+                    <Clock className="w-5 h-5 text-[var(--c-accent)]" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs font-semibold text-[#5A6B7E] mb-0.5">مواعيد العمل</div>
-                    <div className="text-sm sm:text-base font-bold text-[#0A2540] leading-tight">
+                    <div className="text-xs font-semibold text-muted mb-0.5">مواعيد العمل</div>
+                    <div className="text-sm sm:text-base font-bold text-ink leading-tight">
                       {shift}
                     </div>
                   </div>
@@ -952,14 +952,14 @@ export const OfferDetailPage: React.FC = () => {
 
         {/* Section C: هل الوظيفة دي مناسبة ليك؟ */}
         {checklistItems.length > 0 && (
-          <div className="bg-white border border-[#E2E8F0] rounded-[16px] p-5 sm:p-6 shadow-xs mb-5">
-            <h2 className="text-base sm:text-lg font-bold text-[#0A2540] mb-3.5">
+          <div className="glass-card rounded-[16px] p-5 sm:p-6 mb-5">
+            <h2 className="text-base sm:text-lg font-bold text-ink mb-3.5">
               هل الوظيفة دي مناسبة ليك؟
             </h2>
             <div className="space-y-2.5">
               {checklistItems.map((item, index) => (
-                <div key={index} className="flex items-start gap-2.5 text-sm text-[#0A2540]">
-                  <div className="w-5 h-5 rounded-full bg-[#E3EEF7] border border-[#0F4C81]/15 flex items-center justify-center text-[#0F4C81] shrink-0 mt-0.5">
+                <div key={index} className="flex items-start gap-2.5 text-sm text-ink">
+                  <div className="w-5 h-5 rounded-full bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 flex items-center justify-center text-[var(--c-accent)] shrink-0 mt-0.5">
                     <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                   </div>
                   <span className="font-medium leading-relaxed">{item}</span>
@@ -971,14 +971,14 @@ export const OfferDetailPage: React.FC = () => {
 
         {/* Section D: المميزات (Benefits) - Mint #3F967F Chips */}
         {benefitsList.length > 0 && (
-          <div className="bg-white border border-[#E2E8F0] rounded-[16px] p-5 sm:p-6 shadow-xs mb-5">
-            <h2 className="text-base sm:text-lg font-bold text-[#0A2540] mb-3.5">
+          <div className="glass-card rounded-[16px] p-5 sm:p-6 mb-5">
+            <h2 className="text-base sm:text-lg font-bold text-ink mb-3.5">
               المميزات
             </h2>
             <div className="space-y-2.5">
               {benefitsList.map((benefit, index) => (
-                <div key={index} className="flex items-start gap-2.5 text-sm text-[#0A2540]">
-                  <div className="w-6 h-6 rounded-full bg-[#3F967F]/20 border border-[#3F967F]/35 flex items-center justify-center text-[#3F967F] shrink-0 mt-0.5">
+                <div key={index} className="flex items-start gap-2.5 text-sm text-ink">
+                  <div className="w-6 h-6 rounded-full bg-[var(--c-success)]/20 border border-[var(--c-success)]/35 flex items-center justify-center text-[var(--c-success)] shrink-0 mt-0.5">
                     <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                   </div>
                   <span className="font-medium leading-relaxed">{benefit}</span>
@@ -990,38 +990,38 @@ export const OfferDetailPage: React.FC = () => {
 
         {/* Section: ملاحظات (Notes) */}
         {notesText && (
-          <div className="bg-white border border-[#E2E8F0] rounded-[16px] p-5 sm:p-6 shadow-xs mb-5">
-            <h2 className="text-base sm:text-lg font-bold text-[#0A2540] mb-2.5 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-[#5A6B7E]" />
+          <div className="glass-card rounded-[16px] p-5 sm:p-6 mb-5">
+            <h2 className="text-base sm:text-lg font-bold text-ink mb-2.5 flex items-center gap-2">
+              <FileText className="w-5 h-5 text-muted" />
               <span>ملاحظات</span>
             </h2>
-            <p className="text-sm text-[#0A2540] font-medium leading-relaxed whitespace-pre-wrap">
+            <p className="text-sm text-ink font-medium leading-relaxed whitespace-pre-wrap">
               {notesText}
             </p>
           </div>
         )}
 
         {/* 3. قبل ما تقدم Box above the apply CTA */}
-        <div className="bg-[#E3EEF7] border border-[#C9822A]/25 rounded-[16px] p-5 mb-5 text-right">
-          <div className="flex items-center gap-2 text-[#C9822A] font-bold text-sm sm:text-base mb-3">
+        <div className="bg-[var(--c-accent-soft)]/50 border border-[var(--c-warn)]/30 rounded-[16px] p-5 mb-5 text-right">
+          <div className="flex items-center gap-2 text-[var(--c-warn)] font-bold text-sm sm:text-base mb-3">
             <AlertCircle className="w-5 h-5 shrink-0" />
             <span>قبل ما تقدم:</span>
           </div>
-          <div className="space-y-2 text-xs sm:text-sm text-[#0A2540] leading-relaxed font-medium">
+          <div className="space-y-2 text-xs sm:text-sm text-ink leading-relaxed font-medium">
             <div className="flex items-start gap-2">
-              <span className="text-[#C9822A] font-bold shrink-0">•</span>
+              <span className="text-[var(--c-warn)] font-bold shrink-0">•</span>
               <span>راجع الشروط كويس وتأكد إن متطلبات الوظيفة وسنّك مناسبين ليك.</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-[#C9822A] font-bold shrink-0">•</span>
+              <span className="text-[var(--c-warn)] font-bold shrink-0">•</span>
               <span>اتأكد إن بياناتك ورقم الواتساب مكتوبين بدقة عشان نقدر نتواصل معاك بسهولة.</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-[#C9822A] font-bold shrink-0">•</span>
+              <span className="text-[var(--c-warn)] font-bold shrink-0">•</span>
               <span>جهز الملفات المطلوبة (زي السيرة الذاتية أو صورة البطاقة) لو الوظيفة طلباها.</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-[#C9822A] font-bold shrink-0">•</span>
+              <span className="text-[var(--c-warn)] font-bold shrink-0">•</span>
               <span>بعض الوظائف بتتطلب مقابلة شخصية أو مكالمة تليفونية قبل القبول النهائي.</span>
             </div>
           </div>
@@ -1032,7 +1032,7 @@ export const OfferDetailPage: React.FC = () => {
           <button
             type="button"
             onClick={scrollToWizard}
-            className="w-full inline-flex items-center justify-center gap-2 bg-[#0F4C81] hover:bg-[#0C3D68] text-white font-bold text-base py-3.5 px-6 rounded-[12px] transition shadow-xs cursor-pointer"
+            className="btn-primary w-full inline-flex items-center justify-center gap-2 font-bold text-base py-3.5 px-6 rounded-[12px] transition cursor-pointer"
           >
             <span>قدّم على الوظيفة</span>
             <ArrowLeft className="w-4 h-4" />
@@ -1041,29 +1041,29 @@ export const OfferDetailPage: React.FC = () => {
 
         {/* Section F: Multi-step Application Wizard */}
         <div ref={wizardRef} className="scroll-mt-6">
-          <div className="bg-white border border-[#E2E8F0] rounded-[16px] shadow-xs overflow-hidden">
+          <div className="glass-card rounded-[16px] overflow-hidden">
             {/* Wizard Header / Intro copy */}
-            <div className="p-5 sm:p-6 border-b border-[#EDF1F6] bg-[#F7F9FC]/70">
-              <p className="text-xs sm:text-sm text-[#5A6B7E] leading-relaxed font-medium">
+            <div className="p-5 sm:p-6 border-b border-[var(--c-border)] bg-[var(--c-accent-soft)]/40">
+              <p className="text-xs sm:text-sm text-muted leading-relaxed font-medium">
                 جاهز؟ خلينا نقدمك 👋 — التقديم بياخد كام دقيقة حسب متطلبات الوظيفة، هنطلب منك بس البيانات المطلوبة للوظيفة دي.
               </p>
 
               {/* Progress Indicator with 250ms transition (if multi-step) */}
               {!isSingleStepForm && steps.length > 1 && (
-                <div className="mt-4 pt-4 border-t border-[#E2E8F0]/80">
-                  <div className="flex items-center justify-between text-xs font-bold text-[#0A2540] mb-2">
-                    <span className="text-[#0F4C81]">
+                <div className="mt-4 pt-4 border-t border-[var(--c-border)]">
+                  <div className="flex items-center justify-between text-xs font-bold text-ink mb-2">
+                    <span className="text-[var(--c-accent)]">
                       الخطوة {currentStepIndex + 1} من {steps.length}: {currentStep.title}
                     </span>
-                    <span className="text-[#5A6B7E] font-mono">
+                    <span className="text-muted font-mono">
                       {Math.round(((currentStepIndex + 1) / steps.length) * 100)}%
                     </span>
                   </div>
 
                   {/* Smooth progress bar with 250ms transition */}
-                  <div className="w-full bg-[#E3EEF7] h-1.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-[var(--c-accent-soft)] h-1.5 rounded-full overflow-hidden">
                     <div
-                      className="bg-[#0F4C81] h-full rounded-full transition-[width] duration-250 ease-out"
+                      className="bg-[var(--c-accent)] h-full rounded-full transition-[width] duration-250 ease-out"
                       style={{ width: `${Math.round(((currentStepIndex + 1) / steps.length) * 100)}%` }}
                     />
                   </div>
@@ -1073,8 +1073,8 @@ export const OfferDetailPage: React.FC = () => {
 
             {/* Error Banner if submit fails */}
             {submitError && (
-              <div className="m-5 p-4 bg-red-50 border border-red-200 rounded-[12px] flex items-start gap-3 text-red-700">
-                <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+              <div className="m-5 p-4 bg-[var(--c-danger)]/10 border border-[var(--c-danger)]/25 rounded-[12px] flex items-start gap-3 text-[var(--c-danger)]">
+                <AlertCircle className="w-5 h-5 text-[var(--c-danger)] shrink-0 mt-0.5" />
                 <div className="text-sm font-medium">
                   {submitError}
                 </div>
@@ -1105,8 +1105,8 @@ export const OfferDetailPage: React.FC = () => {
 
                 {/* 5. Required Consent Checkbox before submit */}
                 {(isSingleStepForm || currentStepIndex === steps.length - 1) && (
-                  <div className="pt-3 border-t border-[#EDF1F6]">
-                    <label className="flex items-start gap-2.5 cursor-pointer text-xs sm:text-sm text-[#0A2540] font-medium leading-relaxed select-none">
+                  <div className="pt-3 border-t border-[var(--c-border)]">
+                    <label className="flex items-start gap-2.5 cursor-pointer text-xs sm:text-sm text-ink font-medium leading-relaxed select-none">
                       <input
                         type="checkbox"
                         checked={consent}
@@ -1120,7 +1120,7 @@ export const OfferDetailPage: React.FC = () => {
                             });
                           }
                         }}
-                        className="w-4 h-4 mt-0.5 rounded border-[#E2E8F0] text-[#0F4C81] focus:ring-[#0F4C81] cursor-pointer shrink-0"
+                        className="w-4 h-4 mt-0.5 rounded border-[var(--c-glass-border)] text-[var(--c-accent)] focus:ring-[var(--c-accent)] cursor-pointer shrink-0"
                       />
                       <span>
                         أوافق على استخدام بياناتي وصوري لأغراض التوظيف ومشاركتها مع الجهة المسؤولة
@@ -1129,15 +1129,15 @@ export const OfferDetailPage: React.FC = () => {
                           to="/privacy"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#0F4C81] font-bold underline underline-offset-2 hover:text-[#0C3D68] transition-colors"
+                          className="text-[var(--c-accent)] font-bold underline underline-offset-2 hover:text-[var(--c-accent-hover)] transition-colors"
                         >
                           سياسة الخصوصية
                         </Link>
-                        . <span className="text-red-500">*</span>
+                        . <span className="text-[var(--c-danger)]">*</span>
                       </span>
                     </label>
                     {fieldErrors['consent'] && (
-                      <p className="text-xs font-semibold text-red-600 mt-1.5 flex items-center gap-1">
+                      <p className="text-xs font-semibold text-[var(--c-danger)] mt-1.5 flex items-center gap-1">
                         <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                         <span>{fieldErrors['consent']}</span>
                       </p>
@@ -1147,13 +1147,13 @@ export const OfferDetailPage: React.FC = () => {
               </div>
 
               {/* Wizard Bottom Controls & Trust Line */}
-              <div className="p-4 sm:p-5 bg-[#F7F9FC] border-t border-[#EDF1F6] flex flex-col gap-3">
+              <div className="p-4 sm:p-5 bg-[var(--c-accent-soft)]/40 border-t border-[var(--c-border)] flex flex-col gap-3">
                 <div className="flex items-center justify-between gap-3">
                   {!isSingleStepForm && currentStepIndex > 0 ? (
                     <button
                       type="button"
                       onClick={handlePrevStep}
-                      className="inline-flex items-center gap-1.5 bg-white border border-[#E2E8F0] hover:bg-[#F7F9FC] text-[#5A6B7E] font-bold text-sm px-4 py-2.5 rounded-[12px] transition cursor-pointer"
+                      className="inline-flex items-center gap-1.5 bg-[var(--c-glass)] border border-[var(--c-glass-border)] hover:bg-[var(--c-accent-soft)]/40 text-muted hover:text-ink font-bold text-sm px-4 py-2.5 rounded-[12px] transition cursor-pointer"
                     >
                       <ArrowRight className="w-4 h-4" />
                       <span>رجوع</span>
@@ -1166,7 +1166,7 @@ export const OfferDetailPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={handleNextStep}
-                      className="inline-flex items-center gap-2 bg-[#0F4C81] hover:bg-[#0C3D68] text-white font-bold text-sm px-6 py-2.5 rounded-[12px] transition shadow-xs cursor-pointer"
+                      className="btn-primary inline-flex items-center gap-2 font-bold text-sm px-6 py-2.5 rounded-[12px] transition cursor-pointer"
                     >
                       <span>التالي</span>
                       <ArrowLeft className="w-4 h-4" />
@@ -1176,10 +1176,10 @@ export const OfferDetailPage: React.FC = () => {
                     <button
                       type="submit"
                       disabled={submitting || submitStatus === 'sent'}
-                      className={`inline-flex items-center gap-2 font-bold text-sm px-6 py-2.5 rounded-[12px] transition shadow-xs cursor-pointer ${
+                      className={`inline-flex items-center gap-2 font-bold text-sm px-6 py-2.5 rounded-[12px] transition cursor-pointer ${
                         submitStatus === 'sent'
-                          ? 'bg-[#1FA98A] text-white'
-                          : 'bg-[#0F4C81] hover:bg-[#0C3D68] text-white disabled:opacity-50'
+                          ? 'bg-[var(--c-success)] text-white'
+                          : 'btn-primary disabled:opacity-50'
                       }`}
                     >
                       {submitStatus === 'sending' ? (
@@ -1204,19 +1204,19 @@ export const OfferDetailPage: React.FC = () => {
 
                 {/* 5. Trust Line under final submit button */}
                 {(isSingleStepForm || currentStepIndex === steps.length - 1) && (
-                  <div className="pt-3 border-t border-[#EDF1F6] flex items-center justify-center gap-3 sm:gap-4 text-[11px] sm:text-xs text-[#5A6B7E] font-medium w-full">
+                  <div className="pt-3 border-t border-[var(--c-border)] flex items-center justify-center gap-3 sm:gap-4 text-[11px] sm:text-xs text-muted font-medium w-full">
                     <span className="flex items-center gap-1">
-                      <ShieldCheck className="w-3.5 h-3.5 text-[#0F4C81]" />
+                      <ShieldCheck className="w-3.5 h-3.5 text-[var(--c-accent)]" />
                       <span>تقديم مباشر</span>
                     </span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
-                      <Lock className="w-3.5 h-3.5 text-[#0F4C81]" />
+                      <Lock className="w-3.5 h-3.5 text-[var(--c-accent)]" />
                       <span>بياناتك محفوظة</span>
                     </span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0F4C81]" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[var(--c-accent)]" />
                       <span>التقديم أونلاين</span>
                     </span>
                   </div>
@@ -1229,21 +1229,21 @@ export const OfferDetailPage: React.FC = () => {
 
       {/* Mobile Sticky CTA Bar while reading (Section E) */}
       {!isWizardActive && (
-        <div className="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-sm border-t border-[#E3EEF7] p-3 z-30 sm:hidden shadow-lg">
+        <div className="fixed bottom-0 inset-x-0 footer-deep backdrop-blur-sm border-t border-white/10 p-3 z-30 sm:hidden shadow-lg">
           <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
             <div className="min-w-0 flex-1">
-              <div className="text-xs font-bold text-[#0A2540] truncate">{offer.title}</div>
+              <div className="text-xs font-bold text-[var(--c-deep-ink)] truncate">{offer.title}</div>
               {salary ? (
-                <div className="text-[11px] text-[#0F4C81] font-semibold">{salary}</div>
+                <div className="text-[11px] text-[var(--c-accent)] font-semibold">{salary}</div>
               ) : (
-                <div className="text-[11px] text-[#5A6B7E] font-medium">التقديم متاح الآن</div>
+                <div className="text-[11px] text-[var(--c-deep-ink)] opacity-70 font-medium">التقديم متاح الآن</div>
               )}
             </div>
 
             <button
               type="button"
               onClick={scrollToWizard}
-              className="inline-flex items-center justify-center gap-1.5 bg-[#0F4C81] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] shadow-xs shrink-0 cursor-pointer hover:bg-[#0C3D68]"
+              className="btn-primary inline-flex items-center justify-center gap-1.5 font-bold text-sm px-5 py-2.5 rounded-[12px] shrink-0 cursor-pointer"
             >
               <span>قدّم الآن</span>
               <ArrowLeft className="w-3.5 h-3.5" />
@@ -1264,14 +1264,14 @@ export const OfferDetailPage: React.FC = () => {
     return (
       <div key={field.key} className="space-y-1.5 text-right">
         {field.type !== 'file' ? (
-          <label className="block text-xs sm:text-sm font-bold text-[#0A2540]">
+          <label className="block text-xs sm:text-sm font-bold text-ink">
             {label}
-            {field.required && <span className="text-red-500 mr-1">*</span>}
+            {field.required && <span className="text-[var(--c-danger)] mr-1">*</span>}
           </label>
         ) : fileObjects[field.key] ? (
-          <label className="block text-xs sm:text-sm font-bold text-[#0A2540]">
+          <label className="block text-xs sm:text-sm font-bold text-ink">
             {label}
-            {field.required && <span className="text-red-500 mr-1">*</span>}
+            {field.required && <span className="text-[var(--c-danger)] mr-1">*</span>}
           </label>
         ) : null}
 
@@ -1287,8 +1287,8 @@ export const OfferDetailPage: React.FC = () => {
             placeholder={`اكتب ${label.toLowerCase()}`}
             className={`w-full px-3.5 py-2.5 rounded-[12px] border text-sm transition outline-none ${
               isError
-                ? 'border-red-400 bg-red-50/20 focus:border-red-600 focus:ring-2 focus:ring-red-100'
-                : 'border-[#E2E8F0] focus:border-[#0F4C81] focus:ring-2 focus:ring-[#0F4C81]/15'
+                ? 'border-[var(--c-danger)] bg-[var(--c-danger)]/5 focus:border-[var(--c-danger)] focus:ring-2 focus:ring-[var(--c-danger)]/15'
+                : 'border-[var(--c-glass-border)] bg-[var(--c-glass)] text-ink focus:border-[var(--c-accent)] focus:ring-2 focus:ring-[var(--c-accent)]/15'
             }`}
           />
         )}
@@ -1305,8 +1305,8 @@ export const OfferDetailPage: React.FC = () => {
             placeholder="أدخل الرقم"
             className={`w-full px-3.5 py-2.5 rounded-[12px] border text-sm transition outline-none ${
               isError
-                ? 'border-red-400 bg-red-50/20 focus:border-red-600 focus:ring-2 focus:ring-red-100'
-                : 'border-[#E2E8F0] focus:border-[#0F4C81] focus:ring-2 focus:ring-[#0F4C81]/15'
+                ? 'border-[var(--c-danger)] bg-[var(--c-danger)]/5 focus:border-[var(--c-danger)] focus:ring-2 focus:ring-[var(--c-danger)]/15'
+                : 'border-[var(--c-glass-border)] bg-[var(--c-glass)] text-ink focus:border-[var(--c-accent)] focus:ring-2 focus:ring-[var(--c-accent)]/15'
             }`}
           />
         )}
@@ -1319,10 +1319,10 @@ export const OfferDetailPage: React.FC = () => {
             }}
             value={value}
             onChange={(e) => handleDynamicChange(field.key, e.target.value)}
-            className={`w-full px-3.5 py-2.5 rounded-[12px] border text-sm bg-white transition outline-none ${
+            className={`w-full px-3.5 py-2.5 rounded-[12px] border text-sm bg-[var(--c-glass)] text-ink transition outline-none ${
               isError
-                ? 'border-red-400 bg-red-50/20 focus:border-red-600 focus:ring-2 focus:ring-red-100'
-                : 'border-[#E2E8F0] focus:border-[#0F4C81] focus:ring-2 focus:ring-[#0F4C81]/15'
+                ? 'border-[var(--c-danger)] bg-[var(--c-danger)]/5 focus:border-[var(--c-danger)] focus:ring-2 focus:ring-[var(--c-danger)]/15'
+                : 'border-[var(--c-glass-border)] focus:border-[var(--c-accent)] focus:ring-2 focus:ring-[var(--c-accent)]/15'
             }`}
           >
             <option value="">-- اختار من القائمة --</option>
@@ -1337,7 +1337,7 @@ export const OfferDetailPage: React.FC = () => {
         {/* URL Input (e.g. Vocaroo Voice Note) */}
         {field.type === 'url' && (
           <div className="relative">
-            <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-[#5A6B7E]">
+            <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-muted">
               <LinkIcon className="w-4 h-4" />
             </div>
             <input
@@ -1351,8 +1351,8 @@ export const OfferDetailPage: React.FC = () => {
               placeholder="https://vocaroo.com/..."
               className={`w-full pr-10 pl-3.5 py-2.5 rounded-[12px] border text-sm font-mono transition outline-none text-left ${
                 isError
-                  ? 'border-red-400 bg-red-50/20 focus:border-red-600 focus:ring-2 focus:ring-red-100'
-                  : 'border-[#E2E8F0] focus:border-[#0F4C81] focus:ring-2 focus:ring-[#0F4C81]/15'
+                  ? 'border-[var(--c-danger)] bg-[var(--c-danger)]/5 focus:border-[var(--c-danger)] focus:ring-2 focus:ring-[var(--c-danger)]/15'
+                  : 'border-[var(--c-glass-border)] bg-[var(--c-glass)] text-ink focus:border-[var(--c-accent)] focus:ring-2 focus:ring-[var(--c-accent)]/15'
               }`}
             />
           </div>
@@ -1382,21 +1382,21 @@ export const OfferDetailPage: React.FC = () => {
                 }}
                 className={`border-2 border-dashed rounded-[16px] p-6 text-center transition-colors ${
                   isError
-                    ? 'border-red-300 bg-red-50/20'
-                    : 'border-[#E2E8F0] bg-[#F7F9FC] hover:bg-[#F4EFE6]/40 hover:border-[#0F4C81]/40'
+                    ? 'border-[var(--c-danger)]/40 bg-[var(--c-danger)]/5'
+                    : 'border-[var(--c-glass-border)] bg-[var(--c-glass)] hover:bg-[var(--c-accent-soft)]/40 hover:border-[var(--c-accent)]/40'
                 }`}
               >
-                <div className="w-12 h-12 mx-auto mb-2.5 rounded-full bg-[#E3EEF7] border border-[#0F4C81]/15 text-[#0F4C81] flex items-center justify-center">
+                <div className="w-12 h-12 mx-auto mb-2.5 rounded-full bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 text-[var(--c-accent)] flex items-center justify-center">
                   <Upload className="w-5 h-5" />
                 </div>
-                <div className="text-sm font-bold text-[#0A2540] mb-1">
+                <div className="text-sm font-bold text-ink mb-1">
                   {label}
-                  {field.required && <span className="text-red-500 mr-1">*</span>}
+                  {field.required && <span className="text-[var(--c-danger)] mr-1">*</span>}
                 </div>
-                <p className="text-xs text-[#5A6B7E] mb-3.5 font-medium">
+                <p className="text-xs text-muted mb-3.5 font-medium">
                   PDF أو صورة — حتى 5MB
                 </p>
-                <label className="inline-flex items-center justify-center gap-1.5 bg-[#0F4C81] hover:bg-[#0C3D68] text-white text-xs font-bold px-4 py-2.5 rounded-[12px] transition cursor-pointer shadow-xs">
+                <label className="btn-primary inline-flex items-center justify-center gap-1.5 text-xs font-bold px-4 py-2.5 rounded-[12px] transition cursor-pointer">
                   <span>اختيار الملف</span>
                   <input
                     type="file"
@@ -1412,16 +1412,16 @@ export const OfferDetailPage: React.FC = () => {
               </div>
             ) : (
               /* Selected file row */
-              <div className="flex items-center justify-between p-3.5 bg-[#F7F9FC] border border-[#E3EEF7] rounded-[12px] transition">
+              <div className="flex items-center justify-between p-3.5 bg-[var(--c-accent-soft)]/40 border border-[var(--c-border)] rounded-[12px] transition">
                 <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                  <div className="w-7 h-7 rounded-full bg-[#E3EEF7] border border-[#0F4C81]/20 text-[#0F4C81] flex items-center justify-center shrink-0">
+                  <div className="w-7 h-7 rounded-full bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 text-[var(--c-accent)] flex items-center justify-center shrink-0">
                     <Check className="w-4 h-4 stroke-[3]" />
                   </div>
                   <div className="min-w-0 flex-1 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-2">
-                    <span className="text-xs sm:text-sm font-bold text-[#0A2540] truncate">
+                    <span className="text-xs sm:text-sm font-bold text-ink truncate">
                       {fileObjects[field.key].name}
                     </span>
-                    <span className="text-[11px] sm:text-xs text-[#5A6B7E] font-mono shrink-0">
+                    <span className="text-[11px] sm:text-xs text-muted font-mono shrink-0">
                       ({formatFileSize(fileObjects[field.key].size)})
                     </span>
                   </div>
@@ -1430,7 +1430,7 @@ export const OfferDetailPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleFileChange(field.key, null)}
-                  className="w-7 h-7 flex items-center justify-center rounded-full text-[#5A6B7E] hover:text-red-600 hover:bg-red-50 transition cursor-pointer shrink-0"
+                  className="w-7 h-7 flex items-center justify-center rounded-full text-muted hover:text-[var(--c-danger)] hover:bg-[var(--c-danger)]/10 transition cursor-pointer shrink-0"
                   title="حذف الملف"
                 >
                   <X className="w-4 h-4" />
@@ -1442,7 +1442,7 @@ export const OfferDetailPage: React.FC = () => {
 
         {/* Inline Error Message */}
         {isError && (
-          <p className="text-xs font-semibold text-red-600 mt-1 flex items-center gap-1">
+          <p className="text-xs font-semibold text-[var(--c-danger)] mt-1 flex items-center gap-1">
             <AlertCircle className="w-3.5 h-3.5 shrink-0" />
             <span>{errorMsg}</span>
           </p>
@@ -1460,11 +1460,11 @@ export const OfferDetailPage: React.FC = () => {
       <div className="space-y-4">
         {/* candidate_name */}
         <div className="space-y-1.5 text-right">
-          <label className="block text-xs sm:text-sm font-bold text-[#0A2540]">
-            الاسم بالكامل <span className="text-red-500 mr-1">*</span>
+          <label className="block text-xs sm:text-sm font-bold text-ink">
+            الاسم بالكامل <span className="text-[var(--c-danger)] mr-1">*</span>
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-[#5A6B7E]">
+            <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-muted">
               <User className="w-4 h-4" />
             </div>
             <input
@@ -1477,13 +1477,13 @@ export const OfferDetailPage: React.FC = () => {
               placeholder="اكتب اسمك الثلاثي أو الرباعي"
               className={`w-full pr-10 pl-3.5 py-2.5 rounded-[12px] border text-sm transition outline-none ${
                 isNameError
-                  ? 'border-red-400 bg-red-50/20 focus:border-red-600 focus:ring-2 focus:ring-red-100'
-                  : 'border-[#E2E8F0] focus:border-[#0F4C81] focus:ring-2 focus:ring-[#0F4C81]/15'
+                  ? 'border-[var(--c-danger)] bg-[var(--c-danger)]/5 focus:border-[var(--c-danger)] focus:ring-2 focus:ring-[var(--c-danger)]/15'
+                  : 'border-[var(--c-glass-border)] bg-[var(--c-glass)] text-ink focus:border-[var(--c-accent)] focus:ring-2 focus:ring-[var(--c-accent)]/15'
               }`}
             />
           </div>
           {isNameError && (
-            <p className="text-xs font-semibold text-red-600 mt-1 flex items-center gap-1">
+            <p className="text-xs font-semibold text-[var(--c-danger)] mt-1 flex items-center gap-1">
               <AlertCircle className="w-3.5 h-3.5 shrink-0" />
               <span>{fieldErrors['candidate_name']}</span>
             </p>
@@ -1492,11 +1492,11 @@ export const OfferDetailPage: React.FC = () => {
 
         {/* candidate_whatsapp */}
         <div className="space-y-1.5 text-right">
-          <label className="block text-xs sm:text-sm font-bold text-[#0A2540]">
-            رقم WhatsApp <span className="text-red-500 mr-1">*</span>
+          <label className="block text-xs sm:text-sm font-bold text-ink">
+            رقم WhatsApp <span className="text-[var(--c-danger)] mr-1">*</span>
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-[#5A6B7E]">
+            <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-muted">
               <Phone className="w-4 h-4" />
             </div>
             <input
@@ -1510,21 +1510,21 @@ export const OfferDetailPage: React.FC = () => {
               placeholder="01XXXXXXXXX"
               className={`w-full pr-10 pl-3.5 py-2.5 rounded-[12px] border text-sm transition outline-none font-mono text-left ${
                 isWhatsappError
-                  ? 'border-red-400 bg-red-50/20 focus:border-red-600 focus:ring-2 focus:ring-red-100'
-                  : 'border-[#E2E8F0] focus:border-[#0F4C81] focus:ring-2 focus:ring-[#0F4C81]/15'
+                  ? 'border-[var(--c-danger)] bg-[var(--c-danger)]/5 focus:border-[var(--c-danger)] focus:ring-2 focus:ring-[var(--c-danger)]/15'
+                  : 'border-[var(--c-glass-border)] bg-[var(--c-glass)] text-ink focus:border-[var(--c-accent)] focus:ring-2 focus:ring-[var(--c-accent)]/15'
               }`}
             />
           </div>
           {offer?.details?.nationality_requirement === 'مصريين وأجانب' && (
-            <p className="text-xs text-[#0F4C81] font-medium bg-[#0F4C81]/10 border border-[#0F4C81]/20 rounded-lg px-2.5 py-1.5 mt-1">
+            <p className="text-xs text-[var(--c-accent)] font-medium bg-[var(--c-accent-soft)]/60 border border-[var(--c-accent)]/20 rounded-lg px-2.5 py-1.5 mt-1">
               لو رقمك مش مصري اكتبه بكود الدولة، مثال: +249...
             </p>
           )}
-          <p className="text-xs text-[#5A6B7E] font-medium">
+          <p className="text-xs text-muted font-medium">
             هنستخدمه للتواصل معاك لو احتجنا أي معلومة بخصوص طلبك.
           </p>
           {isWhatsappError && (
-            <p className="text-xs font-semibold text-red-600 mt-1 flex items-center gap-1">
+            <p className="text-xs font-semibold text-[var(--c-danger)] mt-1 flex items-center gap-1">
               <AlertCircle className="w-3.5 h-3.5 shrink-0" />
               <span>{fieldErrors['candidate_whatsapp']}</span>
             </p>
