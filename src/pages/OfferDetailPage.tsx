@@ -917,10 +917,10 @@ export const OfferDetailPage: React.FC = () => {
             )}
 
             {location && (
-              <div className="bg-white border border-[#E2E8F0] border-r-[3px] border-r-[#3978B8] rounded-[16px] p-4 shadow-xs">
+              <div className="bg-white border border-[#E2E8F0] border-r-[3px] border-r-[#0F4C81] rounded-[16px] p-4 shadow-xs">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#3978B8]/15 border border-[#3978B8]/25 text-[#3978B8] flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-[#3978B8]" />
+                  <div className="w-10 h-10 rounded-full bg-[#0F4C81]/15 border border-[#0F4C81]/25 text-[#0F4C81] flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-[#0F4C81]" />
                   </div>
                   <div className="min-w-0">
                     <div className="text-xs font-semibold text-[#5A6B7E] mb-0.5">مكان الشغل</div>
@@ -933,10 +933,10 @@ export const OfferDetailPage: React.FC = () => {
             )}
 
             {shift && (
-              <div className="bg-white border border-[#E2E8F0] border-r-[3px] border-r-[#8170B8] rounded-[16px] p-4 shadow-xs">
+              <div className="bg-white border border-[#E2E8F0] border-r-[3px] border-r-[#0F4C81] rounded-[16px] p-4 shadow-xs">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#8170B8]/15 border border-[#8170B8]/25 text-[#8170B8] flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 text-[#8170B8]" />
+                  <div className="w-10 h-10 rounded-full bg-[#0F4C81]/15 border border-[#0F4C81]/25 text-[#0F4C81] flex items-center justify-center shrink-0">
+                    <Clock className="w-5 h-5 text-[#0F4C81]" />
                   </div>
                   <div className="min-w-0">
                     <div className="text-xs font-semibold text-[#5A6B7E] mb-0.5">مواعيد العمل</div>
@@ -1002,7 +1002,7 @@ export const OfferDetailPage: React.FC = () => {
         )}
 
         {/* 3. قبل ما تقدم Box above the apply CTA */}
-        <div className="bg-[#FDF6ED] border border-[#C9822A]/25 rounded-[16px] p-5 mb-5 text-right">
+        <div className="bg-[#E3EEF7] border border-[#C9822A]/25 rounded-[16px] p-5 mb-5 text-right">
           <div className="flex items-center gap-2 text-[#C9822A] font-bold text-sm sm:text-base mb-3">
             <AlertCircle className="w-5 h-5 shrink-0" />
             <span>قبل ما تقدم:</span>

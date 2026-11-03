@@ -59,16 +59,16 @@ export const STATUS_METAS: Record<ApplicationStatus, StatusMeta> = {
   submitted: {
     key: 'submitted',
     label: 'جديد',
-    textColor: 'text-[#3978B8]',
-    bgColor: 'bg-[#3978B8]/15',
-    borderColor: 'border-[#3978B8]/30',
+    textColor: 'text-[#0F4C81]',
+    bgColor: 'bg-[#0F4C81]/15',
+    borderColor: 'border-[#0F4C81]/30',
   },
   sent_to_source: {
     key: 'sent_to_source',
     label: 'أُرسل للجهة',
-    textColor: 'text-[#8170B8]',
-    bgColor: 'bg-[#8170B8]/15',
-    borderColor: 'border-[#8170B8]/30',
+    textColor: 'text-[#5A6B7E]',
+    bgColor: 'bg-[#5A6B7E]/15',
+    borderColor: 'border-[#5A6B7E]/30',
   },
   accepted: {
     key: 'accepted',

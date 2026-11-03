@@ -403,17 +403,17 @@ export const JobsPage: React.FC = () => {
                         </div>
                       )}
                       {location && (
-                        <div className="flex items-center gap-2.5 bg-[#F7F9FC] border border-[#EDF1F6] border-r-[3px] border-r-[#3978B8] rounded-[12px] px-3 py-2 text-[#5A6B7E]">
-                          <div className="w-8 h-8 rounded-full bg-[#3978B8]/15 border border-[#3978B8]/25 text-[#3978B8] flex items-center justify-center shrink-0">
-                            <MapPin className="w-4 h-4 text-[#3978B8]" />
+                        <div className="flex items-center gap-2.5 bg-[#F7F9FC] border border-[#EDF1F6] border-r-[3px] border-r-[#0F4C81] rounded-[12px] px-3 py-2 text-[#5A6B7E]">
+                          <div className="w-8 h-8 rounded-full bg-[#0F4C81]/15 border border-[#0F4C81]/25 text-[#0F4C81] flex items-center justify-center shrink-0">
+                            <MapPin className="w-4 h-4 text-[#0F4C81]" />
                           </div>
                           <span className="truncate">{location}</span>
                         </div>
                       )}
                       {shift && (
-                        <div className="flex items-center gap-2.5 bg-[#F7F9FC] border border-[#EDF1F6] border-r-[3px] border-r-[#8170B8] rounded-[12px] px-3 py-2 text-[#5A6B7E]">
-                          <div className="w-8 h-8 rounded-full bg-[#8170B8]/15 border border-[#8170B8]/25 text-[#8170B8] flex items-center justify-center shrink-0">
-                            <Clock className="w-4 h-4 text-[#8170B8]" />
+                        <div className="flex items-center gap-2.5 bg-[#F7F9FC] border border-[#EDF1F6] border-r-[3px] border-r-[#0F4C81] rounded-[12px] px-3 py-2 text-[#5A6B7E]">
+                          <div className="w-8 h-8 rounded-full bg-[#0F4C81]/15 border border-[#0F4C81]/25 text-[#0F4C81] flex items-center justify-center shrink-0">
+                            <Clock className="w-4 h-4 text-[#0F4C81]" />
                           </div>
                           <span className="truncate">{shift}</span>
                         </div>
