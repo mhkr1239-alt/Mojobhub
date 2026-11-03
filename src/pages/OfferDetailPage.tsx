@@ -869,7 +869,7 @@ export const OfferDetailPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={scrollToWizard}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#0F4C81] hover:bg-[#0C3D68] text-white font-bold text-base py-3 px-6 rounded-[12px] transition-all active:scale-95 hover:shadow-lg shadow-xs cursor-pointer"
+                  className="hidden sm:inline-flex w-full items-center justify-center gap-2 bg-[#0F4C81] hover:bg-[#0C3D68] text-white font-bold text-base py-3 px-6 rounded-[12px] transition-all active:scale-95 hover:shadow-lg shadow-xs cursor-pointer"
                 >
                   <span>قدّم على الوظيفة</span>
                   <Sparkles className="w-4 h-4" />

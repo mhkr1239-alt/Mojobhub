@@ -165,12 +165,12 @@ export const JobsPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Live animated stat card: color --accent #C9822A */}
-          <div className="self-start sm:self-auto bg-white/90 backdrop-blur-xs border border-[#E3EEF7] rounded-[16px] px-6 py-4 shadow-xs flex sm:flex-col items-center sm:items-center gap-3 sm:gap-1 min-w-[170px]">
-            <span className="text-5xl sm:text-6xl font-extrabold text-[#C9822A] tracking-tight font-cairo leading-none">
+          {/* Slim counter line */}
+          <div className="flex items-center gap-2 py-1">
+            <span className="text-lg font-extrabold text-[#0F4C81] leading-none">
               {loading ? '...' : displayCount}
             </span>
-            <span className="text-xs sm:text-sm font-bold text-[#5A6B7E] text-center leading-tight">
+            <span className="text-sm font-medium text-[#5A6B7E]">
               فرصة عمل متاحة الآن
             </span>
           </div>
