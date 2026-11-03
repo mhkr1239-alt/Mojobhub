@@ -45,6 +45,7 @@ export const HomePage: React.FC = () => {
         ? 'جاري التحميل...'
         : `${activeCount} ${activeCount === 1 ? 'فرصة متاحة الآن' : 'فرص متاحة الآن'}`,
       cta: 'دخول باب الوظائف',
+      ctaSecondary: false,
       enabled: true,
     },
     {
@@ -61,6 +62,7 @@ export const HomePage: React.FC = () => {
       ),
       stat: null,
       cta: 'دخول باب الخدمات',
+      ctaSecondary: true,
       enabled: true,
     },
   ];
@@ -78,7 +80,7 @@ export const HomePage: React.FC = () => {
             منصة توظيف مصرية
           </div>
           <h1
-            className="animate-fade-up text-3xl sm:text-4xl font-extrabold text-[#0A2540] tracking-tight leading-tight"
+            className="animate-fade-up text-[28px] font-extrabold text-[#0A2540] tracking-tight leading-tight"
             style={{ animationDelay: '80ms' }}
           >
             أهلاً بك في فرص التوظيف
@@ -111,7 +113,7 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Title + description */}
-                <h2 className="text-lg sm:text-xl font-bold text-[#0A2540] leading-snug mb-1.5">
+                <h2 className="text-xl font-bold text-[#0A2540] leading-snug mb-1.5">
                   {door.title}
                 </h2>
                 <p className="text-sm text-[#5A6B7E] leading-relaxed mb-4">{door.desc}</p>
@@ -126,10 +128,17 @@ export const HomePage: React.FC = () => {
 
                 {/* CTA pinned to bottom */}
                 <div className="mt-auto pt-3 border-t border-[#EDF1F6]">
-                  <span className="inline-flex items-center justify-center gap-2 bg-[#0F4C81] group-hover:bg-[#0C3D68] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95 shadow-xs w-full sm:w-auto">
-                    <span>{door.cta}</span>
-                    <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
-                  </span>
+                  {door.ctaSecondary ? (
+                    <span className="inline-flex items-center justify-center gap-2 bg-white border border-[#E2E8F0] group-hover:border-[#0F4C81]/40 text-[#5A6B7E] font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95 w-full sm:w-auto">
+                      <span>{door.cta}</span>
+                      <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center justify-center gap-2 bg-[#0F4C81] group-hover:bg-[#0C3D68] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95 shadow-xs w-full sm:w-auto">
+                      <span>{door.cta}</span>
+                      <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+                    </span>
+                  )}
                 </div>
               </>
             );

@@ -157,7 +157,7 @@ export const JobsPage: React.FC = () => {
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-6 sm:gap-8">
           {/* Headline & Subtext */}
           <div className="text-right max-w-xl">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0A2540] tracking-tight leading-tight">
+            <h1 className="text-[28px] font-extrabold text-[#0A2540] tracking-tight leading-tight">
               الوظائف المتاحة
             </h1>
             <p className="mt-2 text-sm sm:text-base text-[#5A6B7E] leading-relaxed">

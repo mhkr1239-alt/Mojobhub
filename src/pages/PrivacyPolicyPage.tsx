@@ -38,7 +38,7 @@ export const PrivacyPolicyPage: React.FC = () => {
         <div className="w-14 h-14 rounded-[16px] bg-[#E3EEF7] border border-[#0F4C81]/20 flex items-center justify-center mx-auto mb-3">
           <ShieldCheck className="w-7 h-7 text-[#0F4C81]" />
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0A2540] tracking-tight">
+        <h1 className="text-[28px] font-extrabold text-[#0A2540] tracking-tight">
           سياسة الخصوصية
         </h1>
         <p className="text-sm text-[#5A6B7E] mt-2">
