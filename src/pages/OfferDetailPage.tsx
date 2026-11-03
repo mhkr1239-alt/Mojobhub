@@ -819,7 +819,7 @@ export const OfferDetailPage: React.FC = () => {
                   className="w-14 h-14 rounded-[16px] flex items-center justify-center shrink-0 border"
                   style={{
                     backgroundColor: jobType.softBg,
-                    borderColor: `${jobType.accent}33`,
+                    borderColor: 'color-mix(in srgb, var(--c-accent) 20%, transparent)',
                   }}
                   title={jobType.label}
                 >
@@ -837,7 +837,7 @@ export const OfferDetailPage: React.FC = () => {
                       className="text-[11px] font-bold px-2.5 py-0.5 rounded-full border"
                       style={{
                         backgroundColor: jobType.softBg,
-                        borderColor: `${jobType.accent}33`,
+                        borderColor: 'color-mix(in srgb, var(--c-accent) 20%, transparent)',
                         color: jobType.accent,
                       }}
                     >

@@ -34,7 +34,7 @@ export const HomePage: React.FC = () => {
   const doors = [
     {
       to: '/jobs',
-      icon: <Briefcase className="w-6 h-6 text-[#0F4C81]" />,
+      icon: <Briefcase className="w-6 h-6 text-[var(--c-accent)]" />,
       title: 'الوظائف المتاحة',
       desc: 'استعرض الوظائف المفتوحة حاليًا واطّلع على التفاصيل وقدّم طلبك مباشرة في خطوات بسيطة.',
       badge: null as React.ReactNode,
@@ -49,12 +49,12 @@ export const HomePage: React.FC = () => {
     },
     {
       to: '/services',
-      icon: <Sparkles className="w-6 h-6 text-[#C9822A]" />,
+      icon: <Sparkles className="w-6 h-6 text-[var(--c-warn)]" />,
       title: 'خدماتنا',
       desc: 'باقة خدمات إضافية تقدملك بيها الدعم اللي محتاجه — بنجهّزها حاليًا عشان توصلك بأفضل شكل.',
       badge: (
         <span className="inline-flex items-center gap-1.5 text-xs font-bold badge-warn px-2.5 py-1 rounded-full">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#C9822A]"></span>
+          <span className="w-1.5 h-1.5 rounded-full bg-current"></span>
           قريبًا
         </span>
       ),
@@ -155,15 +155,15 @@ export const HomePage: React.FC = () => {
 
         {/* Reassurance note */}
         <div className="animate-fade-up mt-6 p-4 glass-card rounded-[16px] flex items-start gap-3">
-          <div className="rounded-full bg-[#E3EEF7]/60 border border-[#E2E8F0] p-2 shrink-0">
-            <AlertCircle className="w-4 h-4 text-[#5A6B7E]/70" />
+          <div className="rounded-full bg-[var(--c-accent-soft)]/60 border border-[var(--c-border)] p-2 shrink-0">
+            <AlertCircle className="w-4 h-4 text-muted opacity-70" />
           </div>
-          <p className="text-xs sm:text-sm text-[#5A6B7E] leading-relaxed">
+          <p className="text-xs sm:text-sm text-muted leading-relaxed">
             التقديم متاح على مدار الساعة من موبايلك، وبياناتك تُستخدم لأغراض التوظيف فقط وفقًا
             لـ
             <Link
               to="/privacy"
-              className="text-[#0F4C81] font-bold underline underline-offset-2 hover:text-[#0C3D68] transition-colors"
+              className="text-[var(--c-accent)] font-bold underline underline-offset-2 hover:text-[var(--c-accent-hover)] transition-colors"
             >
               سياسة الخصوصية
             </Link>
