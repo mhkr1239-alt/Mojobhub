@@ -283,7 +283,7 @@ export const JobsPage: React.FC = () => {
                     key={tab.key}
                     type="button"
                     onClick={() => setSelectedType(tab.key)}
-                    className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all border ${
+                    className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all active:scale-95 border ${
                       isActive
                         ? 'bg-[#0F6657] text-white border-[#0F6657] shadow-xs'
                         : 'bg-white text-[#5B6B67] hover:text-[#0B2B26] hover:bg-[#FBF9F5] border-[#EBE7DF]'
@@ -304,7 +304,7 @@ export const JobsPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleClearFilters}
-                  className="text-xs text-[#0F6657] hover:underline font-semibold"
+                  className="text-xs text-[#0F6657] hover:underline font-semibold transition-transform active:scale-95"
                 >
                   مسح الفلاتر
                 </button>
@@ -324,7 +324,7 @@ export const JobsPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleClearFilters}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0F6657] hover:bg-[#0c5246] text-white text-xs sm:text-sm font-bold rounded-[12px] transition-colors shadow-xs"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0F6657] hover:bg-[#0c5246] text-white text-xs sm:text-sm font-bold rounded-[12px] transition-all active:scale-95 shadow-xs"
               >
                 <span>مسح البحث والفلاتر</span>
               </button>
@@ -342,12 +342,12 @@ export const JobsPage: React.FC = () => {
               const shift = details.shift || details.مواعيد;
               const typeConfig = getJobTypeConfig(offer.offer_type);
               const TypeIcon = typeConfig.icon;
-              const staggerDelay = `${Math.min(index, 3) * 50}ms`;
+              const staggerDelay = `${Math.min(index * 60, 480)}ms`;
 
               return (
                 <div
                   key={offer.id}
-                  className="home-card-entry bg-white border border-[#EBE7DF] hover:shadow-md rounded-[16px] p-5 sm:p-6 transition-shadow"
+                  className="animate-fade-up bg-white border border-[#EBE7DF] shadow-soft rounded-[16px] p-5 sm:p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
                   style={{ animationDelay: staggerDelay }}
                 >
                   {/* Card Header: Icon Badge + Title & Company + Status dot */}
@@ -425,7 +425,7 @@ export const JobsPage: React.FC = () => {
                   <div className="pt-3 border-t border-[#F1EFEA] flex items-center justify-end">
                     <Link
                       to={`/offers/${offer.id}`}
-                      className="inline-flex items-center justify-center gap-2 bg-[#0F6657] hover:bg-[#0c5246] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] transition-colors shadow-xs w-full sm:w-auto"
+                      className="inline-flex items-center justify-center gap-2 bg-[#0F6657] hover:bg-[#0c5246] text-white font-bold text-sm px-5 py-2.5 rounded-[12px] transition-all active:scale-95 shadow-xs w-full sm:w-auto"
                     >
                       <span>عرض التفاصيل والتقديم</span>
                       <ArrowLeft className="w-4 h-4" />
