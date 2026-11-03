@@ -24,13 +24,13 @@ function PublicLayout() {
       <main className="flex-1">
         <Outlet />
       </main>
-      <footer className="bg-white border-t border-[#E3EEF7] py-6 text-xs text-[#5A6B7E]">
+      <footer className="footer-deep border-t border-white/10 py-6 text-xs text-[var(--c-deep-ink)] opacity-80">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-right" dir="rtl">
           <div>
             <span>بوابة التقديم على الوظائف — جميع الحقوق محفوظة</span>
           </div>
-          <div className="text-[#5A6B7E]/80 flex items-center gap-3">
-            <Link to="/privacy" className="hover:text-[#0F4C81] underline underline-offset-2 transition-colors">
+          <div className="text-[var(--c-deep-ink)] opacity-70 flex items-center gap-3">
+            <Link to="/privacy" className="hover:text-[var(--c-accent)] underline underline-offset-2 transition-colors">
               سياسة الخصوصية
             </Link>
             <span aria-hidden="true">•</span>

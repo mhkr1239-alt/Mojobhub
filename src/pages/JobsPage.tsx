@@ -181,13 +181,13 @@ export const JobsPage: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-8">
         {/* Error State */}
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-[16px] flex items-start gap-3 text-red-700">
-            <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+          <div className="mb-6 p-4 bg-[var(--c-danger)]/10 border border-[var(--c-danger)]/25 rounded-[16px] flex items-start gap-3 text-[var(--c-danger)]">
+            <AlertCircle className="w-5 h-5 text-[var(--c-danger)] shrink-0 mt-0.5" />
             <div className="flex-1 text-sm font-medium">
               <p>{error}</p>
               <button
                 onClick={fetchOffers}
-                className="mt-2 text-xs font-bold bg-red-600 text-white px-3 py-1.5 rounded-[12px] hover:bg-red-700 transition"
+                className="mt-2 text-xs font-bold bg-[var(--c-danger)] text-white px-3 py-1.5 rounded-[12px] hover:opacity-90 transition"
               >
                 إعادة المحاولة
               </button>
