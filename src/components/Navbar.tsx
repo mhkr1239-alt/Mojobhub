@@ -67,6 +67,17 @@ export const Navbar: React.FC = () => {
           {/* Navigation Action + Account */}
           <div className="flex items-center gap-1.5">
             <Link
+              to="/services"
+              className={`hidden sm:inline-block px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+                location.pathname.startsWith('/services')
+                  ? 'bg-[var(--c-violet-soft)] text-[var(--c-violet)] border border-[var(--c-violet)]/20'
+                  : 'text-muted hover:text-ink hover:bg-[var(--c-violet-soft)]/60'
+              }`}
+            >
+              الخدمات
+            </Link>
+
+            <Link
               to="/jobs"
               className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
                 location.pathname === '/jobs' || location.pathname.startsWith('/offers/')

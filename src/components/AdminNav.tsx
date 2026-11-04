@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Briefcase, FileText, ShieldCheck, LogOut, ExternalLink, User, Sparkles } from 'lucide-react';
+import { Briefcase, FileText, ShieldCheck, LogOut, ExternalLink, User, Sparkles, Package } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { AdminPushNotificationOptIn } from './AdminPushNotificationOptIn';
 
 interface AdminNavProps {
-  activeTab?: 'applications' | 'offers' | 'ai-settings';
+  activeTab?: 'applications' | 'offers' | 'service-requests' | 'ai-settings';
 }
 
 export const AdminNav: React.FC<AdminNavProps> = ({ activeTab }) => {
@@ -16,6 +16,8 @@ export const AdminNav: React.FC<AdminNavProps> = ({ activeTab }) => {
     activeTab ||
     (location.pathname.startsWith('/admin/ai-settings')
       ? 'ai-settings'
+      : location.pathname.startsWith('/admin/service-requests')
+      ? 'service-requests'
       : location.pathname.startsWith('/admin/offers')
       ? 'offers'
       : 'applications');
@@ -88,6 +90,18 @@ export const AdminNav: React.FC<AdminNavProps> = ({ activeTab }) => {
             >
               <Briefcase className="w-3.5 h-3.5" />
               <span>إدارة الوظائف</span>
+            </Link>
+
+            <Link
+              to="/admin/service-requests"
+              className={`flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+                currentTab === 'service-requests'
+                  ? 'bg-[#131A21] text-[#1FA98A] border border-[#232F3A] shadow-xs'
+                  : 'text-[#8B98A5] hover:text-[#E6EDF2] hover:bg-[#131A21]/50'
+              }`}
+            >
+              <Package className="w-3.5 h-3.5" />
+              <span>طلبات الخدمات</span>
             </Link>
 
             <Link

@@ -8,6 +8,8 @@ import { AdminPwaSetup } from './components/AdminPwaSetup';
 import { HomePage } from './pages/HomePage';
 import { JobsPage } from './pages/JobsPage';
 import { ServicesPage } from './pages/ServicesPage';
+import { ServiceDetailPage } from './pages/ServiceDetailPage';
+import { ServiceRequestPage } from './pages/ServiceRequestPage';
 import { OfferDetailPage } from './pages/OfferDetailPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { AccountLoginPage } from './pages/AccountLoginPage';
@@ -15,6 +17,7 @@ import { AccountPage } from './pages/AccountPage';
 import { AdminPage } from './pages/AdminPage';
 import { AdminApplicationDetailPage } from './pages/AdminApplicationDetailPage';
 import { AdminOffersPage } from './pages/AdminOffersPage';
+import { AdminServiceRequestsPage } from './pages/AdminServiceRequestsPage';
 import { AdminOfferEditorPage } from './pages/AdminOfferEditorPage';
 import { AdminAiSettingsPage } from './pages/AdminAiSettingsPage';
 import { AdminLoginPage } from './pages/AdminLoginPage';
@@ -71,6 +74,8 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/jobs" element={<JobsPage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/:slug" element={<ServiceDetailPage />} />
+            <Route path="/services/:slug/request" element={<ServiceRequestPage />} />
             <Route path="/offers/:id" element={<OfferDetailPage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/account/login" element={<AccountLoginPage />} />
@@ -118,6 +123,14 @@ export default function App() {
             element={
               <AdminProtectedRoute>
                 <AdminOfferEditorPage />
+              </AdminProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/service-requests"
+            element={
+              <AdminProtectedRoute>
+                <AdminServiceRequestsPage />
               </AdminProtectedRoute>
             }
           />

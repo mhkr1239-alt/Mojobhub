@@ -75,16 +75,16 @@ export const HomePage: React.FC = () => {
     {
       to: '/services',
       icon: <Sparkles className="w-6 h-6" />,
-      title: 'خدماتنا',
-      desc: 'باقة خدمات إضافية تقدملك بيها الدعم اللي محتاجه — بنجهّزها حاليًا عشان توصلك بأفضل شكل.',
+      title: 'خدمات مهنية ورقمية',
+      desc: 'سيرة ذاتية ATS، تحسين LinkedIn، شعارات وهوية، عروض تقديمية، صفحات هبوط ومواقع، ولوحات Excel — اختر الباقة وأرسل طلبك.',
       badge: (
-        <span className="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full text-[var(--c-violet)] bg-[var(--c-violet)]/10 border border-[var(--c-violet)]/25">
+        <span className="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full text-[#0E8A7E] bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/25">
           <span className="w-1.5 h-1.5 rounded-full bg-current"></span>
-          قريبًا
+          10 خدمات متاحة الآن
         </span>
       ),
       stat: null,
-      cta: 'دخول باب الخدمات',
+      cta: 'استعرض الخدمات',
       ctaSecondary: true,
       enabled: true,
       chipStyle: {
