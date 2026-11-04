@@ -4,42 +4,51 @@
   color-scheme: light;
 
   /* ═══════════════════════════════════════════════════════════════
-     هوية JobHubMo الزرقاء — مزيج ثابت: بطلة داكنة كحلية + محتوى فاتح
-     مثلج + فوتر كحلي. الهوية لا تعتمد على ثيم النظام ولا تتقلب،
-     وكل قسم يحمل ثيمه المشتق من الأزرق بلا فوضى داخل الشاشة الواحدة.
+     هوية Mora (مورا) — وفق دليل العلامة v1.0:
+     كحلي عميق للثقة والنصوص، تركوازي للإجراء الأساسي، أزرق كوبالت
+     للثانوي، بنفسجي رقمي لمسات الخدمات، ذهبي بجرعات صغيرة.
+     التوزيع: 60% خلفيات فاتحة / 25% كحلي / 10% أزرق-تركوازي / 5% لمسات.
      ═══════════════════════════════════════════════════════════════ */
-  --c-bg: #F2F6FF;
-  --c-ink: #10254F;
-  --c-muted: #4C648F;
-  --c-border: #DBE5F6;
+  --mora-navy: #13263F;
+  --mora-blue: #4C83E8;
+  --mora-violet: #625BE7;
+  --mora-teal: #11A99A;
+  --mora-amber: #F3B84B;
+  --mora-background: #F6F8FB;
+  --mora-slate: #657487;
 
-  --c-accent: #2563EB;        /* الأزرق الملكي */
-  --c-accent-hover: #1D4ED8;
+  --c-bg: #F6F8FB;
+  --c-ink: #13263F;
+  --c-muted: #657487;
+  --c-border: #DCE4EE;
+
+  --c-accent: #11A99A;        /* التركوازي: الإجراء الأساسي والحالات الإيجابية */
+  --c-accent-hover: #0E8A7E;
   --c-on-accent: #FFFFFF;
-  --c-accent-soft: #E4ECFE;
-  --c-sky: #38BDF8;           /* الأزرق السماوي: تدرجات وإضاءات */
-  --c-violet: #7C3AED;        /* البنفسجي: ثيم الخدمات */
-  --c-violet-soft: #EFE9FE;
+  --c-accent-soft: #E1F3F0;
+  --c-sky: #4C83E8;           /* الأزرق الكوبالتي: الروابط الثانوية والتدرجات */
+  --c-violet: #625BE7;        /* البنفسجي الرقمي: ثيم الخدمات */
+  --c-violet-soft: #ECEBFB;
 
   --c-glass: rgba(255,255,255,0.72);
   --c-glass-border: rgba(255,255,255,0.85);
-  --c-glass-shadow: 0 8px 32px rgba(23,64,148,0.12);
+  --c-glass-shadow: 0 8px 32px rgba(19,38,63,0.10);
 
-  --c-deep: #0A1B3D;          /* الكحلي العميق: البطلة والفوتر */
-  --c-deep-ink: #EAF1FF;
+  --c-deep: #13263F;          /* الكحلي العميق: البطلة والفوتر */
+  --c-deep-ink: #E9EFF7;
 
-  --c-success: #0C9A6C;
+  --c-success: #11A99A;
   --c-danger: #DE4B4B;
-  --c-warn: #E8930C;
+  --c-warn: #B4831C;          /* ذهبي معتم للنص — الفاتح للتوهجات فقط */
 
-  --c-blob1: rgba(37,99,235,0.10);
-  --c-blob2: rgba(56,189,248,0.09);
+  --c-blob1: rgba(76,131,232,0.10);
+  --c-blob2: rgba(17,169,154,0.09);
 
-  /* شارات أنواع الوظائف — لون مساعد مميز لكل نوع، مشتق من الهوية */
-  --jt-factory: #2563EB;  --jt-factory-soft: #E4ECFE;
-  --jt-call:    #0284C7;  --jt-call-soft:    #E0F2FE;
-  --jt-sales:   #7C3AED;  --jt-sales-soft:   #EFE9FE;
-  --jt-other:   #0D9488;  --jt-other-soft:   #DCF5F1;
+  /* شارات أنواع الوظائف — لون مساعد مميز لكل نوع، مشتق من هوية Mora */
+  --jt-factory: #4C83E8;  --jt-factory-soft: #E8F0FD;
+  --jt-call:    #625BE7;  --jt-call-soft:    #ECEBFB;
+  --jt-sales:   #B4831C;  --jt-sales-soft:   #FBF1DD;
+  --jt-other:   #657487;  --jt-other-soft:   #E7EBF1;
 
   /* Admin Theme Tokens (لوحة الإدارة — مستقلة، إعادة تصميمها مرحلة لاحقة) */
   --admin-bg: #0B0F14;
@@ -57,22 +66,22 @@
    تعيد تعريف التوكنات محليًا فتنقلب كل عناصرها تلقائيًا:
    النصوص، الحدود، الأزرار، الزجاج — بلا كود مكرر في الصفحات. */
 .sec-dark {
-  --c-ink: #EAF1FF;
-  --c-muted: #A7BCE3;
+  --c-ink: #E9EFF7;
+  --c-muted: #9FB2C9;
   --c-border: rgba(255,255,255,0.14);
-  --c-accent: #7DAAFF;
-  --c-accent-hover: #9CC0FF;
-  --c-on-accent: #0A1B3D;
-  --c-accent-soft: rgba(125,170,255,0.16);
-  --c-sky: #7DD3FC;
+  --c-accent: #1FC1AE;
+  --c-accent-hover: #38CDBB;
+  --c-on-accent: #0C2A26;
+  --c-accent-soft: rgba(31,193,174,0.15);
+  --c-sky: #7FA9F2;
   --c-glass: rgba(255,255,255,0.06);
   --c-glass-border: rgba(255,255,255,0.14);
   --c-glass-shadow: 0 8px 32px rgba(0,0,0,0.35);
   color: var(--c-ink);
   background:
-    radial-gradient(640px 320px at 88% -12%, rgba(56,189,248,0.20), transparent 62%),
-    radial-gradient(720px 400px at 8% 112%, rgba(124,58,237,0.16), transparent 60%),
-    linear-gradient(180deg, #0A1B3D 0%, #0E2450 55%, #0A1B3D 100%);
+    radial-gradient(640px 320px at 88% -12%, rgba(76,131,232,0.22), transparent 62%),
+    radial-gradient(720px 400px at 8% 112%, rgba(98,91,231,0.16), transparent 60%),
+    linear-gradient(180deg, #13263F 0%, #1B3A5F 55%, #13263F 100%);
 }
 
 /* شريط فاتح هادئ لأعلى الصفحات الفاتحة (الوظائف) */
@@ -80,10 +89,10 @@
   background: linear-gradient(180deg, color-mix(in srgb, var(--c-accent) 9%, var(--c-bg)) 0%, var(--c-bg) 82%);
 }
 
-/* ثيم الخدمات الفرعي — بنفسجي مشتق من الهوية */
+/* ثيم الخدمات الفرعي — البنفسجي الرقمي المشتق من هوية Mora */
 .band-violet {
   background:
-    radial-gradient(520px 280px at 50% -40%, rgba(124,58,237,0.15), transparent 65%),
+    radial-gradient(520px 280px at 50% -40%, rgba(98,91,231,0.14), transparent 65%),
     var(--c-bg);
 }
 
@@ -99,7 +108,7 @@
   }
   .btn-primary:hover { filter: brightness(1.07); box-shadow: 0 6px 22px color-mix(in srgb, var(--c-accent) 42%, transparent); }
   .btn-secondary { background-color: transparent; border: 1px solid var(--c-border); color: var(--c-muted); }
-  .footer-deep { background: linear-gradient(180deg, var(--c-deep) 0%, #071230 100%); color: var(--c-deep-ink); }
+  .footer-deep { background: linear-gradient(180deg, var(--c-deep) 0%, #0C1A2E 100%); color: var(--c-deep-ink); }
   .badge-soft { background-color: var(--c-accent-soft); color: var(--c-accent); }
   body { background-color: var(--c-bg); color: var(--c-ink); }
   .icon-chip { background: var(--c-accent-soft); color: var(--c-accent); border: 1px solid color-mix(in srgb, var(--c-accent) 18%, transparent); }
@@ -107,7 +116,8 @@
 }
 
 body {
-  font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  /* خطوط Mora: IBM Plex Sans Arabic للعربية + Plus Jakarta Sans للاتينية والأرقام */
+  font-family: 'IBM Plex Sans Arabic', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -184,7 +194,7 @@ html { scroll-behavior: smooth; }
 }
 
 .shadow-soft {
-  box-shadow: 0 1px 2px rgba(10, 37, 64, 0.04), 0 8px 24px rgba(10, 37, 64, 0.06);
+  box-shadow: 0 1px 2px rgba(19, 38, 63, 0.04), 0 8px 24px rgba(19, 38, 63, 0.06);
 }
 
 @keyframes popIn {

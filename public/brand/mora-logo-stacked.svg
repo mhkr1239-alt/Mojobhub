@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 330" role="img" aria-labelledby="title desc">
+<title id="title">Mora stacked logo</title><desc id="desc">Standalone Mora symbol over the brand name.</desc>
+<defs>
+  <linearGradient id="moraGradient" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#625BE7"/>
+    <stop offset="0.52" stop-color="#4C83E8"/>
+    <stop offset="1" stop-color="#13263F"/>
+  </linearGradient>
+  <linearGradient id="moraTeal" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#11A99A"/>
+    <stop offset="1" stop-color="#4C83E8"/>
+  </linearGradient>
+</defs>
+<g transform="translate(76,24) scale(1.0)">
+<path d="M22 99 L61 35 Q69 21 78 35 L96 65 Q104 79 112 65 L130 35 Q139 21 147 35 L186 99" fill="none" stroke="url(#moraGradient)" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M82 76 Q103 91 127 59" fill="none" stroke="url(#moraTeal)" stroke-width="7" stroke-linecap="round"/>
+<path d="M104 7 L108 17 L118 21 L108 25 L104 35 L100 25 L90 21 L100 17 Z" fill="#F3B84B"/>
+</g>
+<text x="180" y="235" text-anchor="middle" font-family="Inter, Plus Jakarta Sans, Arial, sans-serif" font-size="68" font-weight="750" letter-spacing="-2" fill="#13263F">Mora</text>
+
+</svg>

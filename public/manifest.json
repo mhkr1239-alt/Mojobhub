@@ -1,6 +1,7 @@
 {
-  "name": "فرص التوظيف",
-  "short_name": "فرص",
+  "name": "مورا | Mora — فرص وظيفية وخدمات مهنية وحلول رقمية",
+  "short_name": "مورا",
+  "description": "منصة مورا: فرص وظيفية وخدمات مهنية وحلول رقمية للأفراد والشركات.",
   "id": "/admin",
   "lang": "ar",
   "dir": "rtl",
@@ -8,7 +9,7 @@
   "scope": "/admin",
   "display": "standalone",
   "background_color": "#0B0F14",
-  "theme_color": "#0B0F14",
+  "theme_color": "#13263F",
   "icons": [
     {
       "src": "/icon-192.png",

@@ -42,7 +42,7 @@ export const PrivacyPolicyPage: React.FC = () => {
           سياسة الخصوصية
         </h1>
         <p className="text-sm text-muted mt-2">
-          بوابة "فرص التوظيف" — توضح هذه الصفحة البيانات التي نجمعها وكيف نستخدمها ونحميها.
+          منصة "مورا" — توضح هذه الصفحة البيانات التي نجمعها وكيف نستخدمها ونحميها.
         </p>
         <p className="text-xs text-muted opacity-80 mt-1">آخر تحديث: 1 نوفمبر 2026</p>
       </div>

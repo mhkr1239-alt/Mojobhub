@@ -100,7 +100,7 @@ export const AccountLoginPage: React.FC = () => {
           <ShieldCheck className="w-7 h-7 text-[var(--c-accent)]" />
         </div>
         <h1 className="text-2xl font-extrabold text-ink tracking-tight">
-          {step === 'identity' ? 'حسابك في فرص التوظيف' : 'أدخل رمز التحقق'}
+          {step === 'identity' ? 'حسابك في مورا' : 'أدخل رمز التحقق'}
         </h1>
         <p className="mt-1.5 text-sm text-muted leading-relaxed">
           {step === 'identity'

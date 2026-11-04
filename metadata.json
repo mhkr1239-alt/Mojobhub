@@ -1,7 +1,8 @@
 {
-  "name": "Job Application Portal",
-  "description": "Job application and offers portal powered directly by Supabase.",
+  "name": "Mora — Professional Services & Jobs Platform",
+  "description": "Mora (مورا): career opportunities, professional services, and digital solutions in one place. Powered by Supabase.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
-

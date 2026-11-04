@@ -13,30 +13,53 @@ export const Navbar: React.FC = () => {
     <header className="bg-[var(--c-glass)] backdrop-blur-md border-b border-[var(--c-border)] sticky top-0 z-40" dir="rtl">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Custom Wordmark + Geometric Two-Bar Mark */}
+          {/* Mora Wordmark + Symbol (من ملف mora-symbol.svg الأصلي) */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            {/* Simple two-bar geometric mark in --primary */}
-            <div className="w-8 h-8 rounded-lg bg-[var(--c-accent-soft)] flex items-center justify-center group-hover:opacity-90 transition-colors">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 20 20"
+            <svg
+              viewBox="0 0 208 128"
+              className="h-8 w-[52px] shrink-0 group-hover:opacity-90 transition-opacity"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="شعار مورا"
+            >
+              <defs>
+                <linearGradient id="moraGradNav" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stopColor="#625BE7" />
+                  <stop offset="0.52" stopColor="#4C83E8" />
+                  <stop offset="1" stopColor="#13263F" />
+                </linearGradient>
+                <linearGradient id="moraTealNav" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stopColor="#11A99A" />
+                  <stop offset="1" stopColor="#4C83E8" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M22 99 L61 35 Q69 21 78 35 L96 65 Q104 79 112 65 L130 35 Q139 21 147 35 L186 99"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                className="shrink-0"
-              >
-                <rect x="3" y="6" width="5" height="11" rx="2.5" fill="var(--c-accent)" />
-                <rect x="12" y="3" width="5" height="14" rx="2.5" fill="var(--c-accent)" />
-              </svg>
-            </div>
+                stroke="url(#moraGradNav)"
+                strokeWidth="17"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M82 76 Q103 91 127 59"
+                fill="none"
+                stroke="url(#moraTealNav)"
+                strokeWidth="7"
+                strokeLinecap="round"
+              />
+              <path
+                d="M104 7 L108 17 L118 21 L108 25 L104 35 L100 25 L90 21 L100 17 Z"
+                fill="#F3B84B"
+              />
+            </svg>
 
             <div className="flex flex-col">
               <span className="font-extrabold text-lg sm:text-xl text-ink tracking-tight leading-none">
-                فرص التوظيف
+                مورا
               </span>
               <span className="text-[11px] text-muted font-medium leading-tight mt-0.5">
-                بوابة التقديم المباشر
+                مسارك المهني وحلولك الرقمية
               </span>
             </div>
           </Link>

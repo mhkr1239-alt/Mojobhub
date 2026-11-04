@@ -103,12 +103,12 @@ export const HomePage: React.FC = () => {
         <span
           aria-hidden="true"
           className="glow-orb"
-          style={{ width: 340, height: 340, top: -130, right: -90, background: 'rgba(37,99,235,0.38)' }}
+          style={{ width: 340, height: 340, top: -130, right: -90, background: 'rgba(76,131,232,0.32)' }}
         ></span>
         <span
           aria-hidden="true"
           className="glow-orb glow-orb-2"
-          style={{ width: 300, height: 300, bottom: -150, left: -70, background: 'rgba(56,189,248,0.24)' }}
+          style={{ width: 300, height: 300, bottom: -150, left: -70, background: 'rgba(17,169,154,0.22)' }}
         ></span>
 
         <div className="relative max-w-4xl mx-auto py-14 sm:py-20 px-4 sm:px-6 text-center">
@@ -117,16 +117,16 @@ export const HomePage: React.FC = () => {
             style={{ animationDelay: '0ms' }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-            منصة توظيف مصرية موثوقة
+            منصة مورا — فرص وظيفية وخدمات رقمية
           </div>
 
           <h1
             className="animate-fade-up text-[30px] sm:text-[40px] font-extrabold text-ink tracking-tight leading-[1.3]"
             style={{ animationDelay: '80ms' }}
           >
-            فرصتك القادمة{' '}
+            مسارك المهني وحلولك الرقمية{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-l from-[var(--c-sky)] to-[var(--c-accent)]">
-              تبدأ من هنا
+              في مكان واحد
             </span>
           </h1>
 
@@ -134,7 +134,7 @@ export const HomePage: React.FC = () => {
             className="animate-fade-up mt-4 text-sm sm:text-base text-muted leading-relaxed max-w-xl mx-auto"
             style={{ animationDelay: '160ms' }}
           >
-            تصفّح الوظائف المتاحة وقدّم طلبك من هاتفك في أقل من دقيقة — بدون حساب وبدون تعقيد.
+            اكتشف فرصًا مناسبة، واطلب خدمات تساعدك على التقدم مهنيًا ورقميًا — التقديم متاح من هاتفك في أقل من دقيقة.
           </p>
 
           <div
