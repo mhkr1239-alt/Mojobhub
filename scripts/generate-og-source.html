@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<style>
+  @font-face {
+    font-family: 'IBM Plex Sans Arabic';
+    font-weight: 400;
+    src: url('./plex-400.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'IBM Plex Sans Arabic';
+    font-weight: 600;
+    src: url('./plex-600.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'IBM Plex Sans Arabic';
+    font-weight: 700;
+    src: url('./plex-700.woff2') format('woff2');
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    background:
+      radial-gradient(900px 480px at 88% -20%, rgba(76,131,232,0.30), transparent 62%),
+      radial-gradient(820px 520px at 6% 118%, rgba(17,169,154,0.22), transparent 60%),
+      linear-gradient(160deg, #13263F 0%, #1B3A5F 58%, #13263F 100%);
+    color: #E9EFF7;
+    position: relative;
+  }
+  /* شبكة أمان 64px — كل المحتوى داخلها (WP-2.6) */
+  .frame {
+    position: absolute; inset: 64px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .brand-row { display: flex; align-items: center; gap: 22px; margin-bottom: 30px; }
+  .brand-row img.symbol { height: 88px; width: auto; display: block; }
+  .brand-name { display: flex; flex-direction: column; gap: 2px; }
+  .brand-name .ar { font-size: 54px; font-weight: 700; line-height: 1.05; color: #FFFFFF; letter-spacing: -0.5px; }
+  .brand-name .divider { color: rgba(233,239,247,0.5); font-weight: 400; }
+  .brand-name .en { font-size: 30px; font-weight: 600; color: #7FA9F2; letter-spacing: 0.5px; direction: ltr; text-align: right; }
+  .tagline {
+    font-size: 44px; font-weight: 600; line-height: 1.45; color: #E9EFF7;
+    max-width: 940px;
+  }
+  .tagline .accent { color: #1FC1AE; font-weight: 700; }
+  .en-line {
+    margin-top: 26px;
+    font-size: 24px; font-weight: 400; color: rgba(233,239,247,0.75);
+    direction: ltr; text-align: right;
+    letter-spacing: 0.3px;
+  }
+  .foot {
+    position: absolute; bottom: 64px; right: 64px; left: 64px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 19px; font-weight: 600; color: rgba(233,239,247,0.62);
+  }
+  .foot .dot { color: #11A99A; }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="brand-row">
+      <!-- الشعار الرسمي فقط (WP-2.6: ممنوع أي بديل توليدي) -->
+      <img class="symbol" src="/home/z/my-project/Mojobhub/public/brand/mora-symbol.svg" alt="" />
+      <div class="brand-name">
+        <div class="ar">مورا <span class="divider">|</span> <span class="en">Mora</span></div>
+      </div>
+    </div>
+    <div class="tagline">فرص وظيفية <span class="accent">وخدمات مهنية</span><br />وحلول رقمية</div>
+    <div class="en-line">Your next step, made clearer.</div>
+  </div>
+  <div class="foot">
+    <span>منصة مورا</span>
+    <span><span class="dot">●</span> قدّم من هاتفك في أقل من دقيقة</span>
+  </div>
+</body>
+</html>
