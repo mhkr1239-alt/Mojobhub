@@ -19,16 +19,18 @@
 
   --c-bg: #F6F8FB;
   --c-ink: #13263F;
-  --c-muted: #657487;
+  --c-muted: #5F6D7D;         /* WP-2.1 D3: 4.97:1 على #F6F8FB (كان #657487 = 4.48) */
   --c-border: #DCE4EE;
 
-  --c-accent: #11A99A;        /* التركوازي: الإجراء الأساسي والحالات الإيجابية */
+  --c-accent: #11A99A;        /* التركوازي: الإجراء الأساسي والحالات الإيجابية — لا يُمس كخلفية */
   --c-accent-hover: #0E8A7E;
-  --c-on-accent: #FFFFFF;
+  --c-on-accent: #13263F;     /* WP-2.1 D1: كحلي فوق تدرج accent — ≥4.72:1 في كل النقاط (كان أبيض 2.93) */
   --c-accent-soft: #E1F3F0;
+  --c-accent-soft-foreground: #08665B; /* WP-2.1 D2: نص/أيقونة دلالية فوق soft والأسطح الفاتحة — 5.97:1 */
   --c-sky: #4C83E8;           /* الأزرق الكوبالتي: الروابط الثانوية والتدرجات */
   --c-violet: #625BE7;        /* البنفسجي الرقمي: ثيم الخدمات */
   --c-violet-soft: #ECEBFB;
+  --c-violet-soft-foreground: #4A44C2; /* WP-2.1: نص فوق violet-soft — 6.16:1 (كان 4.28) */
 
   --c-glass: rgba(255,255,255,0.72);
   --c-glass-border: rgba(255,255,255,0.85);
@@ -39,16 +41,18 @@
 
   --c-success: #11A99A;
   --c-danger: #DE4B4B;
-  --c-warn: #B4831C;          /* ذهبي معتم للنص — الفاتح للتوهجات فقط */
+  --c-warn: #B4831C;          /* ذهبي معتم للأيقونات (3:1) — الفاتح للتوهجات فقط */
+  --c-warn-strong: #8A6512;   /* WP-2.1: نص الشارات الذهبية فوق تعتقتها — 4.76:1 (كان 3.03) */
 
   --c-blob1: rgba(76,131,232,0.10);
   --c-blob2: rgba(17,169,154,0.09);
 
-  /* شارات أنواع الوظائف — لون مساعد مميز لكل نوع، مشتق من هوية Mora */
-  --jt-factory: #4C83E8;  --jt-factory-soft: #E8F0FD;
-  --jt-call:    #625BE7;  --jt-call-soft:    #ECEBFB;
-  --jt-sales:   #B4831C;  --jt-sales-soft:   #FBF1DD;
-  --jt-other:   #657487;  --jt-other-soft:   #E7EBF1;
+  /* شارات أنواع الوظائف — لون مساعد مميز لكل نوع، مشتق من هوية Mora
+     strong = نص الشارة فوق soft (WP-2.1: كلها ≥4.74:1)؛ الأساس يبقى للأيقونات (≥3:1) */
+  --jt-factory: #4C83E8;        --jt-factory-soft: #E8F0FD;  --jt-factory-strong: #2B5FC4;
+  --jt-call:    #625BE7;        --jt-call-soft:    #ECEBFB;  --jt-call-strong:    #4A44C2;
+  --jt-sales:   #B4831C;        --jt-sales-soft:   #FBF1DD;  --jt-sales-strong:   #8A6512;
+  --jt-other:   #657487;        --jt-other-soft:   #E7EBF1;  --jt-other-strong:   #545F6E;
 
   /* Admin Theme Tokens (لوحة الإدارة — مستقلة، إعادة تصميمها مرحلة لاحقة) */
   --admin-bg: #0B0F14;
@@ -71,8 +75,9 @@
   --c-border: rgba(255,255,255,0.14);
   --c-accent: #1FC1AE;
   --c-accent-hover: #38CDBB;
-  --c-on-accent: #0C2A26;
+  --c-on-accent: #0C2A26;     /* الداكن يحتفظ بنصه الداكن فوق accent — 6.76:1، لا يتأثر بتغيير :root */
   --c-accent-soft: rgba(31,193,174,0.15);
+  --c-accent-soft-foreground: #4FD8C8; /* WP-2.1 امتداد D2 للداكن: 5.10:1 فوق أسوأ خلفية مركّبة (كان 3.95) */
   --c-sky: #7FA9F2;
   --c-glass: rgba(255,255,255,0.06);
   --c-glass-border: rgba(255,255,255,0.14);
@@ -109,10 +114,10 @@
   .btn-primary:hover { filter: brightness(1.07); box-shadow: 0 6px 22px color-mix(in srgb, var(--c-accent) 42%, transparent); }
   .btn-secondary { background-color: transparent; border: 1px solid var(--c-border); color: var(--c-muted); }
   .footer-deep { background: linear-gradient(180deg, var(--c-deep) 0%, #0C1A2E 100%); color: var(--c-deep-ink); }
-  .badge-soft { background-color: var(--c-accent-soft); color: var(--c-accent); }
+  .badge-soft { background-color: var(--c-accent-soft); color: var(--c-accent-soft-foreground); }
   body { background-color: var(--c-bg); color: var(--c-ink); }
-  .icon-chip { background: var(--c-accent-soft); color: var(--c-accent); border: 1px solid color-mix(in srgb, var(--c-accent) 18%, transparent); }
-  .badge-warn { color: var(--c-warn); background: color-mix(in srgb, var(--c-warn) 10%, transparent); border: 1px solid color-mix(in srgb, var(--c-warn) 25%, transparent); }
+  .icon-chip { background: var(--c-accent-soft); color: var(--c-accent-soft-foreground); border: 1px solid color-mix(in srgb, var(--c-accent) 18%, transparent); }
+  .badge-warn { color: var(--c-warn-strong); background: color-mix(in srgb, var(--c-warn) 10%, transparent); border: 1px solid color-mix(in srgb, var(--c-warn) 25%, transparent); }
 }
 
 body {

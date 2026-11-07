@@ -36,6 +36,8 @@ export interface ServiceCategory {
   /** لون تمييز الفئة — مشتق من توكنات Mora */
   color: string;
   colorSoft: string;
+  /** لون نص الفئة الصغير فوق soft/الفاتح — WP-2.1: ≥4.74:1 لكل الفئات */
+  colorStrong: string;
   descAr: string;
 }
 
@@ -66,6 +68,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     icon: '/brand/service-category-icons/career.svg',
     color: '#4C83E8',
     colorSoft: '#E8F0FD',
+    colorStrong: '#2B5FC4',
     descAr: 'سيرة ذاتية، لينكدإن، وإعداد كامل لمرحلة البحث عن وظيفة.',
   },
   {
@@ -76,6 +79,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     icon: '/brand/service-category-icons/design.svg',
     color: '#625BE7',
     colorSoft: '#ECEBFB',
+    colorStrong: '#4A44C2',
     descAr: 'شعارات، هوية بصرية، عروض تقديمية، وتصميمات سوشيال ميديا.',
   },
   {
@@ -86,6 +90,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     icon: '/brand/service-category-icons/web-tech.svg',
     color: '#11A99A',
     colorSoft: '#E1F3F0',
+    colorStrong: '#08665B',
     descAr: 'صفحات هبوط ومواقع أعمال جاهزة تعمل فعليًا على الجوال والحاسب.',
   },
   {
@@ -96,6 +101,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     icon: '/brand/service-category-icons/business.svg',
     color: '#B4831C',
     colorSoft: '#FBF1DD',
+    colorStrong: '#8A6512',
     descAr: 'إكسل ولوحات بيانات، مستندات أعمال، وتنظيم البيانات.',
   },
   {
@@ -106,6 +112,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     icon: '/brand/service-category-icons/media.svg',
     color: '#625BE7',
     colorSoft: '#ECEBFB',
+    colorStrong: '#4A44C2',
     descAr: 'مونتاج فيديو، تحرير صوت، وكتابة محتوى تسويقي.',
   },
   {
@@ -116,6 +123,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     icon: '/brand/service-category-icons/documents.svg',
     color: '#13263F',
     colorSoft: '#E7EBF1',
+    colorStrong: '#13263F',
     descAr: 'ترجمة، تدقيق لغوي، تفريغ صوتي، وتنسيق مستندات وأبحاث.',
   },
 ];

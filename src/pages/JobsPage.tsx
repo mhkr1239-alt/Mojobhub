@@ -167,7 +167,7 @@ export const JobsPage: React.FC = () => {
 
           {/* Slim counter line */}
           <div className="flex items-center gap-2 py-1">
-            <span className="text-lg font-extrabold text-[var(--c-accent)] leading-none">
+            <span className="text-lg font-extrabold text-[var(--c-accent-soft-foreground)] leading-none">
               {loading ? '...' : displayCount}
             </span>
             <span className="text-sm font-medium text-muted">
@@ -304,7 +304,7 @@ export const JobsPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleClearFilters}
-                  className="text-xs text-[var(--c-accent)] hover:underline font-semibold transition-transform active:scale-95"
+                  className="text-xs text-[var(--c-accent-soft-foreground)] hover:underline font-semibold transition-transform active:scale-95"
                 >
                   مسح الفلاتر
                 </button>
@@ -316,7 +316,7 @@ export const JobsPage: React.FC = () => {
         {/* 4. Empty State when search/filter yields zero results */}
         {!loading && !error && offers.length > 0 && filteredOffers.length === 0 && (
           <div className="text-center py-12 sm:py-16 glass-card rounded-[16px] p-8 space-y-3">
-            <div className="w-12 h-12 rounded-full bg-[var(--c-accent-soft)] text-[var(--c-accent)] flex items-center justify-center mx-auto mb-1">
+            <div className="w-12 h-12 rounded-full bg-[var(--c-accent-soft)] text-[var(--c-accent-soft-foreground)] flex items-center justify-center mx-auto mb-1">
               <Search className="w-6 h-6" />
             </div>
             <h3 className="text-base sm:text-lg font-bold text-ink">مفيش وظائف مطابقة لبحثك</h3>
@@ -405,16 +405,16 @@ export const JobsPage: React.FC = () => {
                       )}
                       {location && (
                         <div className="flex items-center gap-2.5 bg-[var(--c-accent-soft)]/40 border border-[var(--c-border)] border-r-[3px] border-r-[var(--c-accent)] rounded-[12px] px-3 py-2 text-muted">
-                          <div className="w-8 h-8 rounded-full bg-[var(--c-accent)]/10 border border-[var(--c-accent)]/25 text-[var(--c-accent)] flex items-center justify-center shrink-0">
-                            <MapPin className="w-4 h-4 text-[var(--c-accent)]" />
+                          <div className="w-8 h-8 rounded-full bg-[var(--c-accent)]/10 border border-[var(--c-accent)]/25 text-[var(--c-accent-soft-foreground)] flex items-center justify-center shrink-0">
+                            <MapPin className="w-4 h-4" />
                           </div>
                           <span className="truncate">{location}</span>
                         </div>
                       )}
                       {shift && (
                         <div className="flex items-center gap-2.5 bg-[var(--c-accent-soft)]/40 border border-[var(--c-border)] border-r-[3px] border-r-[var(--c-accent)] rounded-[12px] px-3 py-2 text-muted">
-                          <div className="w-8 h-8 rounded-full bg-[var(--c-accent)]/10 border border-[var(--c-accent)]/25 text-[var(--c-accent)] flex items-center justify-center shrink-0">
-                            <Clock className="w-4 h-4 text-[var(--c-accent)]" />
+                          <div className="w-8 h-8 rounded-full bg-[var(--c-accent)]/10 border border-[var(--c-accent)]/25 text-[var(--c-accent-soft-foreground)] flex items-center justify-center shrink-0">
+                            <Clock className="w-4 h-4" />
                           </div>
                           <span className="truncate">{shift}</span>
                         </div>

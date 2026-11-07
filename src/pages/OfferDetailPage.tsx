@@ -675,23 +675,23 @@ export const OfferDetailPage: React.FC = () => {
               style={{ animationDelay: '260ms' }}
             >
               <div className="text-xs font-bold text-muted mb-1.5">رقم طلبك المرجعي</div>
-              <div className="text-2xl sm:text-3xl font-black font-mono tracking-wider text-[var(--c-accent)] mb-3 select-all" dir="ltr">
+              <div className="text-2xl sm:text-3xl font-black font-mono tracking-wider text-[var(--c-accent-soft-foreground)] mb-3 select-all" dir="ltr">
                 {referenceCode}
               </div>
               <div className="flex justify-center mb-2.5">
                 <button
                   type="button"
                   onClick={handleCopyReferenceCode}
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold rounded-[10px] border border-[var(--c-accent)]/20 bg-[var(--c-accent-soft)] text-[var(--c-accent)] hover:opacity-90 transition active:scale-95 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold rounded-[10px] border border-[var(--c-accent)]/20 bg-[var(--c-accent-soft)] text-[var(--c-accent-soft-foreground)] hover:opacity-90 transition active:scale-95 cursor-pointer"
                 >
                   {copiedRef ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-[var(--c-accent)]" />
+                      <Check className="w-3.5 h-3.5" />
                       <span>تم النسخ ✓</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3.5 h-3.5 text-[var(--c-accent)]" />
+                      <Copy className="w-3.5 h-3.5" />
                       <span>نسخ الرقم</span>
                     </>
                   )}
@@ -711,7 +711,7 @@ export const OfferDetailPage: React.FC = () => {
             <div className="text-xs font-medium text-muted mb-1">تفاصيل الطلب:</div>
             <div className="text-base font-bold text-ink mb-0.5">{offer.title}</div>
             <div className="text-sm text-muted font-medium mb-3">{offer.company_name}</div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--c-accent)] bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 px-3 py-1 rounded-full">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--c-accent-soft-foreground)] bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 px-3 py-1 rounded-full">
               <span>● تم استلام الطلب</span>
             </div>
           </div>
@@ -884,7 +884,7 @@ export const OfferDetailPage: React.FC = () => {
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[var(--c-accent)] bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 px-2.5 py-0.5 rounded-full">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[var(--c-accent-soft-foreground)] bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 px-2.5 py-0.5 rounded-full">
                       <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
                       <span>التقديم مفتوح</span>
                     </span>
@@ -894,7 +894,7 @@ export const OfferDetailPage: React.FC = () => {
                       style={{
                         backgroundColor: jobType.softBg,
                         borderColor: 'color-mix(in srgb, var(--c-accent) 20%, transparent)',
-                        color: jobType.accent,
+                        color: jobType.accentStrong,
                       }}
                     >
                       {jobType.label}
@@ -911,7 +911,7 @@ export const OfferDetailPage: React.FC = () => {
                       <span>{offer.company_name}</span>
                     </div>
                     {offer.details?.governorate && (
-                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--c-accent)] bg-[var(--c-accent-soft)] px-2 py-0.5 rounded-[8px]">
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--c-accent-soft-foreground)] bg-[var(--c-accent-soft)] px-2 py-0.5 rounded-[8px]">
                         <MapPin className="w-3.5 h-3.5 shrink-0" />
                         <span>{offer.details.governorate}</span>
                       </span>
@@ -937,10 +937,10 @@ export const OfferDetailPage: React.FC = () => {
                     const shareText = `وظيفة: ${offer.title} — ${offer.company_name}\nالتفاصيل والتقديم من هنا: ${window.location.href}`;
                     window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank', 'noopener,noreferrer');
                   }}
-                  className="btn-secondary w-full flex items-center justify-center gap-2 border border-[var(--c-accent)]/30 text-[var(--c-accent)] font-bold text-sm sm:text-base py-3.5 px-4 rounded-[16px] transition-all active:scale-95 cursor-pointer"
+                  className="btn-secondary w-full flex items-center justify-center gap-2 border border-[var(--c-accent)]/30 text-[var(--c-accent-soft-foreground)] font-bold text-sm sm:text-base py-3.5 px-4 rounded-[16px] transition-all active:scale-95 cursor-pointer"
                 >
                   <svg
-                    className="w-5 h-5 fill-current shrink-0 text-[var(--c-accent)]"
+                    className="w-5 h-5 fill-current shrink-0"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -975,8 +975,8 @@ export const OfferDetailPage: React.FC = () => {
             {location && (
               <div className="bg-[var(--c-accent-soft)]/40 border border-[var(--c-border)] border-r-[3px] border-r-[var(--c-accent)] rounded-[16px] p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[var(--c-accent)]/15 border border-[var(--c-accent)]/20 text-[var(--c-accent)] flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-[var(--c-accent)]" />
+                  <div className="w-10 h-10 rounded-full bg-[var(--c-accent)]/15 border border-[var(--c-accent)]/20 text-[var(--c-accent-soft-foreground)] flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5" />
                   </div>
                   <div className="min-w-0">
                     <div className="text-xs font-semibold text-muted mb-0.5">مكان الشغل</div>
@@ -991,8 +991,8 @@ export const OfferDetailPage: React.FC = () => {
             {shift && (
               <div className="bg-[var(--c-accent-soft)]/40 border border-[var(--c-border)] border-r-[3px] border-r-[var(--c-accent)] rounded-[16px] p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[var(--c-accent)]/15 border border-[var(--c-accent)]/20 text-[var(--c-accent)] flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 text-[var(--c-accent)]" />
+                  <div className="w-10 h-10 rounded-full bg-[var(--c-accent)]/15 border border-[var(--c-accent)]/20 text-[var(--c-accent-soft-foreground)] flex items-center justify-center shrink-0">
+                    <Clock className="w-5 h-5" />
                   </div>
                   <div className="min-w-0">
                     <div className="text-xs font-semibold text-muted mb-0.5">مواعيد العمل</div>
@@ -1015,7 +1015,7 @@ export const OfferDetailPage: React.FC = () => {
             <div className="space-y-2.5">
               {checklistItems.map((item, index) => (
                 <div key={index} className="flex items-start gap-2.5 text-sm text-ink">
-                  <div className="w-5 h-5 rounded-full bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 flex items-center justify-center text-[var(--c-accent)] shrink-0 mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 flex items-center justify-center text-[var(--c-accent-soft-foreground)] shrink-0 mt-0.5">
                     <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                   </div>
                   <span className="font-medium leading-relaxed">{item}</span>
@@ -1059,25 +1059,25 @@ export const OfferDetailPage: React.FC = () => {
 
         {/* 3. قبل ما تقدم Box above the apply CTA */}
         <div className="bg-[var(--c-accent-soft)]/50 border border-[var(--c-warn)]/30 rounded-[16px] p-5 mb-5 text-right">
-          <div className="flex items-center gap-2 text-[var(--c-warn)] font-bold text-sm sm:text-base mb-3">
+          <div className="flex items-center gap-2 text-[var(--c-warn-strong)] font-bold text-sm sm:text-base mb-3">
             <AlertCircle className="w-5 h-5 shrink-0" />
             <span>قبل ما تقدم:</span>
           </div>
           <div className="space-y-2 text-xs sm:text-sm text-ink leading-relaxed font-medium">
             <div className="flex items-start gap-2">
-              <span className="text-[var(--c-warn)] font-bold shrink-0">•</span>
+              <span className="text-[var(--c-warn-strong)] font-bold shrink-0">•</span>
               <span>راجع الشروط كويس وتأكد إن متطلبات الوظيفة وسنّك مناسبين ليك.</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-[var(--c-warn)] font-bold shrink-0">•</span>
+              <span className="text-[var(--c-warn-strong)] font-bold shrink-0">•</span>
               <span>اتأكد إن بياناتك ورقم الواتساب مكتوبين بدقة عشان نقدر نتواصل معاك بسهولة.</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-[var(--c-warn)] font-bold shrink-0">•</span>
+              <span className="text-[var(--c-warn-strong)] font-bold shrink-0">•</span>
               <span>جهز الملفات المطلوبة (زي السيرة الذاتية أو صورة البطاقة) لو الوظيفة طلباها.</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-[var(--c-warn)] font-bold shrink-0">•</span>
+              <span className="text-[var(--c-warn-strong)] font-bold shrink-0">•</span>
               <span>بعض الوظائف بتتطلب مقابلة شخصية أو مكالمة تليفونية قبل القبول النهائي.</span>
             </div>
           </div>
@@ -1108,7 +1108,7 @@ export const OfferDetailPage: React.FC = () => {
               {!isSingleStepForm && steps.length > 1 && (
                 <div className="mt-4 pt-4 border-t border-[var(--c-border)]">
                   <div className="flex items-center justify-between text-xs font-bold text-ink mb-2">
-                    <span className="text-[var(--c-accent)]">
+                    <span className="text-[var(--c-accent-soft-foreground)]">
                       الخطوة {currentStepIndex + 1} من {steps.length}: {currentStep.title}
                     </span>
                     <span className="text-muted font-mono">
@@ -1185,7 +1185,7 @@ export const OfferDetailPage: React.FC = () => {
                           to="/privacy"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[var(--c-accent)] font-bold underline underline-offset-2 hover:text-[var(--c-accent-hover)] transition-colors"
+                          className="text-[var(--c-accent-soft-foreground)] font-bold underline underline-offset-2 hover:text-[var(--c-accent-hover)] transition-colors"
                         >
                           سياسة الخصوصية
                         </Link>
@@ -1442,7 +1442,7 @@ export const OfferDetailPage: React.FC = () => {
                     : 'border-[var(--c-glass-border)] bg-[var(--c-glass)] hover:bg-[var(--c-accent-soft)]/40 hover:border-[var(--c-accent)]/40'
                 }`}
               >
-                <div className="w-12 h-12 mx-auto mb-2.5 rounded-full bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 text-[var(--c-accent)] flex items-center justify-center">
+                <div className="w-12 h-12 mx-auto mb-2.5 rounded-full bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 text-[var(--c-accent-soft-foreground)] flex items-center justify-center">
                   <Upload className="w-5 h-5" />
                 </div>
                 <div className="text-sm font-bold text-ink mb-1">
@@ -1470,7 +1470,7 @@ export const OfferDetailPage: React.FC = () => {
               /* Selected file row */
               <div className="flex items-center justify-between p-3.5 bg-[var(--c-accent-soft)]/40 border border-[var(--c-border)] rounded-[12px] transition">
                 <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                  <div className="w-7 h-7 rounded-full bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 text-[var(--c-accent)] flex items-center justify-center shrink-0">
+                  <div className="w-7 h-7 rounded-full bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 text-[var(--c-accent-soft-foreground)] flex items-center justify-center shrink-0">
                     <Check className="w-4 h-4 stroke-[3]" />
                   </div>
                   <div className="min-w-0 flex-1 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-2">
@@ -1572,7 +1572,7 @@ export const OfferDetailPage: React.FC = () => {
             />
           </div>
           {offer?.details?.nationality_requirement === 'مصريين وأجانب' && (
-            <p className="text-xs text-[var(--c-accent)] font-medium bg-[var(--c-accent-soft)]/60 border border-[var(--c-accent)]/20 rounded-lg px-2.5 py-1.5 mt-1">
+            <p className="text-xs text-[var(--c-accent-soft-foreground)] font-medium bg-[var(--c-accent-soft)]/60 border border-[var(--c-accent)]/20 rounded-lg px-2.5 py-1.5 mt-1">
               لو رقمك مش مصري اكتبه بكود الدولة، مثال: +249...
             </p>
           )}

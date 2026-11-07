@@ -113,7 +113,7 @@ export const HomePage: React.FC = () => {
 
         <div className="relative max-w-4xl mx-auto py-14 sm:py-20 px-4 sm:px-6 text-center">
           <div
-            className="animate-fade-up inline-flex items-center gap-2 text-xs font-bold text-[var(--c-accent)] tracking-wide bg-[var(--c-accent-soft)] border border-[var(--c-border)] rounded-full px-4 py-1.5 mb-5"
+            className="animate-fade-up inline-flex items-center gap-2 text-xs font-bold text-[var(--c-accent-soft-foreground)] tracking-wide bg-[var(--c-accent-soft)] border border-[var(--c-border)] rounded-full px-4 py-1.5 mb-5"
             style={{ animationDelay: '0ms' }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
@@ -250,7 +250,7 @@ export const HomePage: React.FC = () => {
                 >
                   <div className="relative shrink-0">
                     <div className="w-10 h-10 rounded-full bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 flex items-center justify-center">
-                      <StepIcon className="w-[18px] h-[18px] text-[var(--c-accent)]" />
+                      <StepIcon className="w-[18px] h-[18px] text-[var(--c-accent-soft-foreground)]" />
                     </div>
                     <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[var(--c-accent)] text-[var(--c-on-accent)] text-[11px] font-extrabold flex items-center justify-center leading-none">
                       {step.n}
@@ -276,7 +276,7 @@ export const HomePage: React.FC = () => {
             لـ
             <Link
               to="/privacy"
-              className="text-[var(--c-accent)] font-bold underline underline-offset-2 hover:text-[var(--c-accent-hover)] transition-colors"
+              className="text-[var(--c-accent-soft-foreground)] font-bold underline underline-offset-2 hover:text-[var(--c-accent-hover)] transition-colors"
             >
               سياسة الخصوصية
             </Link>

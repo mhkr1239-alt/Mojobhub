@@ -6,8 +6,11 @@ export type JobTypeKey = 'factory' | 'call_center' | 'sales' | 'other';
 export interface JobTypeConfigItem {
   label: string;
   icon: LucideIcon;
+  /** لون الأيقونة فوق soft — ≥3:1 (WCAG عناصر رسومية) */
   accent: string;
   softBg: string;
+  /** لون نص الشارة فوق soft — WP-2.1: ≥4.74:1 (كان accent 3.02–4.28) */
+  accentStrong: string;
 }
 
 export const jobTypeConfig: Record<JobTypeKey, JobTypeConfigItem> = {
@@ -16,24 +19,28 @@ export const jobTypeConfig: Record<JobTypeKey, JobTypeConfigItem> = {
     icon: Factory,
     accent: 'var(--jt-factory)',
     softBg: 'var(--jt-factory-soft)',
+    accentStrong: 'var(--jt-factory-strong)',
   },
   call_center: {
     label: 'كول سنتر وخدمة عملاء',
     icon: Headphones,
     accent: 'var(--jt-call)',
     softBg: 'var(--jt-call-soft)',
+    accentStrong: 'var(--jt-call-strong)',
   },
   sales: {
     label: 'مبيعات وتلي سيلز',
     icon: TrendingUp,
     accent: 'var(--jt-sales)',
     softBg: 'var(--jt-sales-soft)',
+    accentStrong: 'var(--jt-sales-strong)',
   },
   other: {
     label: 'وظائف عامة',
     icon: Briefcase,
     accent: 'var(--jt-other)',
     softBg: 'var(--jt-other-soft)',
+    accentStrong: 'var(--jt-other-strong)',
   },
 };
 

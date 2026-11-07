@@ -36,7 +36,7 @@ export const PrivacyPolicyPage: React.FC = () => {
       {/* Header */}
       <div className="text-center mb-6">
         <div className="w-14 h-14 rounded-[16px] bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 flex items-center justify-center mx-auto mb-3">
-          <ShieldCheck className="w-7 h-7 text-[var(--c-accent)]" />
+          <ShieldCheck className="w-7 h-7 text-[var(--c-accent-soft-foreground)]" />
         </div>
         <h1 className="text-[28px] font-extrabold text-ink tracking-tight">
           سياسة الخصوصية
@@ -50,7 +50,7 @@ export const PrivacyPolicyPage: React.FC = () => {
       {/* Draft notice banner */}
       <div className="mb-6 p-4 bg-[var(--c-warn)]/10 border border-[var(--c-warn)]/25 rounded-[16px] flex items-start gap-3">
         <AlertCircle className="w-5 h-5 text-[var(--c-warn)] shrink-0 mt-0.5" />
-        <div className="text-xs sm:text-sm text-[var(--c-warn)] font-medium leading-relaxed">
+        <div className="text-xs sm:text-sm text-[var(--c-warn-strong)] font-medium leading-relaxed">
           هذه <span className="font-bold">مسودة سياسة خصوصية</span> تحتاج مراجعة قانونية قبل استقبال
           أول متقدم حقيقي. الفقرات هنا تصف طريقة عمل المنصة الفعلية حاليًا، وقد تتحدث الصياغة بعد
           المراجعة.
@@ -112,7 +112,7 @@ export const PrivacyPolicyPage: React.FC = () => {
             <li>لك الحق في طلب الاطلاع على بياناتك أو تصحيحها أو حذفها.</li>
             <li>الموافقة على هذه السياسة اختيارية، لكنها شرط لإرسال الطلب — لو لم توافق لن يتم إرسال أي بيانات.</li>
           </ul>
-          <div className="p-3 bg-[var(--c-warn)]/10 border border-[var(--c-warn)]/25 rounded-[12px] text-[var(--c-warn)] text-xs sm:text-sm font-medium">
+          <div className="p-3 bg-[var(--c-warn)]/10 border border-[var(--c-warn)]/25 rounded-[12px] text-[var(--c-warn-strong)] text-xs sm:text-sm font-medium">
             وسيلة التواصل لطلبات الاطلاع أو الحذف: غير محددة حاليًا — ستُحدَّث هذه الفقرة عند تحديد
             وسيلة التواصل الرسمية.
           </div>

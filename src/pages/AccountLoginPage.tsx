@@ -97,7 +97,7 @@ export const AccountLoginPage: React.FC = () => {
       {/* رأس الصفحة */}
       <div className="text-center mb-6">
         <div className="w-14 h-14 rounded-[16px] bg-[var(--c-accent-soft)] border border-[var(--c-accent)]/20 flex items-center justify-center mx-auto mb-4">
-          <ShieldCheck className="w-7 h-7 text-[var(--c-accent)]" />
+          <ShieldCheck className="w-7 h-7 text-[var(--c-accent-soft-foreground)]" />
         </div>
         <h1 className="text-2xl font-extrabold text-ink tracking-tight">
           {step === 'identity' ? 'حسابك في مورا' : 'أدخل رمز التحقق'}
@@ -129,7 +129,7 @@ export const AccountLoginPage: React.FC = () => {
           <div className="mb-5 p-3 rounded-[12px] bg-[var(--c-accent-soft)]/50 border border-[var(--c-accent)]/20 text-xs text-muted leading-relaxed">
             <span className="font-bold text-ink">خلينا نربط طلبك بحسابك.</span> أنشئ حسابك أولًا،
             وبعد الدخول اكتب الرقم المرجعي{' '}
-            <span className="font-mono font-bold text-[var(--c-accent)]" dir="ltr">
+            <span className="font-mono font-bold text-[var(--c-accent-soft-foreground)]" dir="ltr">
               {locationState.ref}
             </span>{' '}
             في صفحة «مساحتي» وهنكمله.
@@ -282,7 +282,7 @@ export const AccountLoginPage: React.FC = () => {
                 type="button"
                 disabled={cooldown > 0 || sending}
                 onClick={() => handleSendCode()}
-                className="text-[var(--c-accent)] hover:underline font-bold disabled:opacity-50 disabled:no-underline transition-all active:scale-95"
+                className="text-[var(--c-accent-soft-foreground)] hover:underline font-bold disabled:opacity-50 disabled:no-underline transition-all active:scale-95"
               >
                 {cooldown > 0 ? `إعادة الإرسال بعد ${cooldown} ثانية` : 'إعادة إرسال الرمز'}
               </button>
@@ -295,7 +295,7 @@ export const AccountLoginPage: React.FC = () => {
         بإنشاء حسابك أنت توافق على استخدام بياناتك لأغراض التوظيف فقط وفقًا لـ
         <Link
           to="/privacy"
-          className="text-[var(--c-accent)] font-bold underline underline-offset-2"
+          className="text-[var(--c-accent-soft-foreground)] font-bold underline underline-offset-2"
         >
           {' '}سياسة الخصوصية
         </Link>

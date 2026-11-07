@@ -132,11 +132,11 @@ export const AccountPage: React.FC = () => {
       <section className="band-soft w-full border-b border-[var(--c-border)]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
-            <div className="w-16 h-16 rounded-[18px] bg-gradient-to-bl from-[var(--c-accent)] to-[var(--c-sky)] text-white flex items-center justify-center text-2xl font-black shrink-0 shadow-soft">
+            <div className="w-16 h-16 rounded-[18px] bg-gradient-to-bl from-[var(--c-accent)] to-[var(--c-sky)] text-[var(--c-on-accent)] flex items-center justify-center text-2xl font-black shrink-0 shadow-soft">
               {firstLetter}
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-[11px] font-bold text-[var(--c-accent)] tracking-wide mb-0.5">
+              <div className="text-[11px] font-bold text-[var(--c-accent-soft-foreground)] tracking-wide mb-0.5">
                 مساحتك الخاصة
               </div>
               <h1 className="text-2xl font-extrabold text-ink tracking-tight truncate">
@@ -184,7 +184,7 @@ export const AccountPage: React.FC = () => {
 
           {/* الخدمة لم تُفعّل بعد (قبل تشغيل SQL) */}
           {appsNotSetUp && (
-            <div className="p-4 rounded-[16px] bg-[var(--c-warn)]/10 border border-[var(--c-warn)]/25 text-xs sm:text-sm text-[var(--c-warn)] font-medium leading-relaxed">
+            <div className="p-4 rounded-[16px] bg-[var(--c-warn)]/10 border border-[var(--c-warn)]/25 text-xs sm:text-sm text-[var(--c-warn-strong)] font-medium leading-relaxed">
               خدمة متابعة الطلبات لم تُفعّل على قاعدة البيانات بعد. الحساب يعمل، وهذه الخصية
               ستظهر تلقائيًا بعد تشغيل سكربت SQL الخاص بالحسابات.
             </div>
@@ -269,7 +269,7 @@ export const AccountPage: React.FC = () => {
                       {refCode && (
                         <span className="inline-flex items-center gap-1.5 text-muted font-medium">
                           <span className="text-[var(--c-muted)]">الرقم المرجعي:</span>
-                          <span className="font-mono font-bold text-[var(--c-accent)]" dir="ltr">
+                          <span className="font-mono font-bold text-[var(--c-accent-soft-foreground)]" dir="ltr">
                             {refCode}
                           </span>
                           <button
@@ -339,7 +339,7 @@ export const AccountPage: React.FC = () => {
                   </div>
                 )}
                 {linkNotSetUp && (
-                  <p className="text-[11px] text-[var(--c-warn)] font-medium leading-relaxed">
+                  <p className="text-[11px] text-[var(--c-warn-strong)] font-medium leading-relaxed">
                     ملاحظة: هذه الخصية تحتاج تشغيل سكربت SQL الخاص بالحسابات على قاعدة البيانات.
                   </p>
                 )}
@@ -408,7 +408,7 @@ export const AccountPage: React.FC = () => {
             وفقًا لـ
             <Link
               to="/privacy"
-              className="text-[var(--c-accent)] font-bold underline underline-offset-2 hover:text-[var(--c-accent-hover)] transition-colors"
+              className="text-[var(--c-accent-soft-foreground)] font-bold underline underline-offset-2 hover:text-[var(--c-accent-hover)] transition-colors"
             >
               سياسة الخصوصية
             </Link>

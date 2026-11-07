@@ -70,7 +70,7 @@ export const Navbar: React.FC = () => {
               to="/services"
               className={`hidden sm:inline-block px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
                 location.pathname.startsWith('/services')
-                  ? 'bg-[var(--c-violet-soft)] text-[var(--c-violet)] border border-[var(--c-violet)]/20'
+                  ? 'bg-[var(--c-violet-soft)] text-[var(--c-violet-soft-foreground)] border border-[var(--c-violet)]/20'
                   : 'text-muted hover:text-ink hover:bg-[var(--c-violet-soft)]/60'
               }`}
             >
@@ -81,7 +81,7 @@ export const Navbar: React.FC = () => {
               to="/jobs"
               className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
                 location.pathname === '/jobs' || location.pathname.startsWith('/offers/')
-                  ? 'bg-[var(--c-accent-soft)] text-[var(--c-accent)] border border-[var(--c-accent)]/20'
+                  ? 'bg-[var(--c-accent-soft)] text-[var(--c-accent-soft-foreground)] border border-[var(--c-accent)]/20'
                   : 'text-muted hover:text-ink hover:bg-[var(--c-accent-soft)]/60'
               }`}
             >
@@ -96,7 +96,7 @@ export const Navbar: React.FC = () => {
                   className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
                     location.pathname.startsWith('/account')
                       ? 'bg-[var(--c-accent)] text-[var(--c-on-accent)]'
-                      : 'bg-[var(--c-accent-soft)] text-[var(--c-accent)] border border-[var(--c-accent)]/20 hover:opacity-85'
+                      : 'bg-[var(--c-accent-soft)] text-[var(--c-accent-soft-foreground)] border border-[var(--c-accent)]/20 hover:opacity-85'
                   }`}
                   title="مساحتي الخاصة"
                 >
@@ -108,7 +108,7 @@ export const Navbar: React.FC = () => {
                   to="/account/login"
                   className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
                     location.pathname.startsWith('/account')
-                      ? 'bg-[var(--c-accent-soft)] text-[var(--c-accent)] border border-[var(--c-accent)]/20'
+                      ? 'bg-[var(--c-accent-soft)] text-[var(--c-accent-soft-foreground)] border border-[var(--c-accent)]/20'
                       : 'text-muted hover:text-ink hover:bg-[var(--c-accent-soft)]/60'
                   }`}
                 >

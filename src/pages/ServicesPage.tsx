@@ -34,7 +34,7 @@ export const ServicesPage: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* ─── ترويسة القسم ─── */}
         <header className="pt-12 pb-8 text-center reveal" data-reveal>
-          <div className="inline-flex items-center gap-2 text-xs font-bold text-[var(--c-violet)] bg-[var(--c-violet-soft)] border border-[var(--c-violet)]/20 px-4 py-1.5 rounded-full mb-4">
+          <div className="inline-flex items-center gap-2 text-xs font-bold text-[var(--c-violet-soft-foreground)] bg-[var(--c-violet-soft)] border border-[var(--c-violet)]/20 px-4 py-1.5 rounded-full mb-4">
             <Sparkles className="w-3.5 h-3.5" />
             <span>خدمات تنفذها مورا مباشرة — جودة واحدة ومراجعة بشرية</span>
           </div>
@@ -88,9 +88,11 @@ export const ServicesPage: React.FC = () => {
                 type="button"
                 onClick={() => setActiveCat(active ? null : cat.id)}
                 className={`shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold border transition ${
-                  active ? 'text-white border-transparent' : 'glass-card text-muted hover:text-ink'
+                  active
+                    ? 'text-[var(--c-ink)]' // WP-2.1: كحلي فوق soft للفئة — 12.75–13.60:1 (كان أبيض فوق اللون الصلب — يفشل في 3 فئات)
+                    : 'glass-card text-muted hover:text-ink'
                 }`}
-                style={active ? { backgroundColor: cat.color } : undefined}
+                style={active ? { backgroundColor: cat.colorSoft, borderColor: cat.color } : undefined}
               >
                 <img src={cat.icon} alt="" aria-hidden="true" className="w-4 h-4" />
                 <span>{cat.nameAr}</span>
@@ -123,7 +125,7 @@ export const ServicesPage: React.FC = () => {
           <ol className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             {SERVICE_PROCESS_STEPS.map((step, i) => (
               <li key={step.title} className="glass-card rounded-[16px] p-4 shadow-soft">
-                <div className="w-7 h-7 rounded-full bg-[var(--c-violet)]/10 border border-[var(--c-violet)]/25 text-[var(--c-violet)] text-xs font-extrabold flex items-center justify-center mb-2.5">
+                <div className="w-7 h-7 rounded-full bg-[var(--c-violet)]/10 border border-[var(--c-violet)]/25 text-[var(--c-violet-soft-foreground)] text-xs font-extrabold flex items-center justify-center mb-2.5">
                   {i + 1}
                 </div>
                 <h3 className="text-sm font-bold text-ink mb-1">{step.title}</h3>
@@ -191,21 +193,20 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
         </div>
         {available ? (
           <span
-            className="inline-flex items-center gap-1.5 text-[10px] font-extrabold px-2.5 py-1 rounded-full"
-            style={{ color: '#0E8A7E', backgroundColor: '#E1F3F0' }}
+            className="inline-flex items-center gap-1.5 text-[10px] font-extrabold px-2.5 py-1 rounded-full badge-soft"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-current" />
             متاح الآن
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1.5 text-[10px] font-extrabold px-2.5 py-1 rounded-full text-[var(--c-warn)] bg-[var(--c-warn)]/10 border border-[var(--c-warn)]/25">
+          <span className="inline-flex items-center gap-1.5 text-[10px] font-extrabold px-2.5 py-1 rounded-full text-[var(--c-warn-strong)] bg-[var(--c-warn)]/10 border border-[var(--c-warn)]/25">
             <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
             قريبًا
           </span>
         )}
       </div>
 
-      <p className="text-[10px] font-bold mb-1" style={{ color: cat.color }}>
+      <p className="text-[10px] font-bold mb-1" style={{ color: cat.colorStrong }}>
         {cat.nameAr}
       </p>
       <h3 className="text-base font-extrabold text-ink leading-snug mb-1.5">{service.titleAr}</h3>

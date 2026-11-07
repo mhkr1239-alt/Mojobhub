@@ -349,7 +349,7 @@ export const ServiceRequestPage: React.FC = () => {
               />
               <span className="text-xs text-muted leading-relaxed">
                 أوافق على{' '}
-                <Link to="/privacy" className="text-[var(--c-accent)] font-bold underline underline-offset-2">
+                <Link to="/privacy" className="text-[var(--c-accent-soft-foreground)] font-bold underline underline-offset-2">
                   سياسة الخصوصية
                 </Link>{' '}
                 وشروط طلب الخدمة: السعر النهائي يُعتمد بعد المراجعة، وعدد التعديلات وفق الباقة المختارة.

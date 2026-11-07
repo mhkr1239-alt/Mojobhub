@@ -53,15 +53,15 @@ export const ServiceDetailPage: React.FC = () => {
             </div>
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ color: cat.color, backgroundColor: cat.colorSoft }}>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ color: cat.colorStrong, backgroundColor: cat.colorSoft }}>
                   {cat.nameAr}
                 </span>
                 {available ? (
-                  <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full text-[#0E8A7E] bg-[#E1F3F0]">
+                  <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full badge-soft">
                     متاح للطلب
                   </span>
                 ) : (
-                  <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full text-[var(--c-warn)] bg-[var(--c-warn)]/10">
+                  <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full text-[var(--c-warn-strong)] bg-[var(--c-warn)]/10">
                     قريبًا
                   </span>
                 )}
@@ -113,7 +113,7 @@ export const ServiceDetailPage: React.FC = () => {
               <ol className="space-y-2.5">
                 {SERVICE_PROCESS_STEPS.map((step, i) => (
                   <li key={step.title} className="glass-card rounded-[14px] p-3.5 flex items-start gap-3 shadow-soft">
-                    <div className="w-7 h-7 rounded-full bg-[var(--c-violet)]/10 border border-[var(--c-violet)]/25 text-[var(--c-violet)] text-xs font-extrabold flex items-center justify-center shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-[var(--c-violet)]/10 border border-[var(--c-violet)]/25 text-[var(--c-violet-soft-foreground)] text-xs font-extrabold flex items-center justify-center shrink-0">
                       {i + 1}
                     </div>
                     <div>
@@ -160,7 +160,7 @@ export const ServiceDetailPage: React.FC = () => {
         ) : (
           /* ─── حالة قريبًا ─── */
           <div className="glass-card rounded-[20px] p-8 text-center" data-reveal>
-            <div className="inline-flex items-center gap-2 text-sm font-bold text-[var(--c-warn)] bg-[var(--c-warn)]/10 border border-[var(--c-warn)]/25 px-4 py-2 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 text-sm font-bold text-[var(--c-warn-strong)] bg-[var(--c-warn)]/10 border border-[var(--c-warn)]/25 px-4 py-2 rounded-full mb-4">
               <span className="w-2 h-2 rounded-full bg-current animate-pulse"></span>
               <span>قريبًا</span>
             </div>
