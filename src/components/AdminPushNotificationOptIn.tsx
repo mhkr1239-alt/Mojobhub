@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Bell, BellRing, Check, AlertCircle, Loader2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { friendlyDbError } from '../lib/friendlyError';
+import { setupAdminServiceWorker, getAdminRegistration } from '../lib/adminServiceWorker';
 
 // Base64URL VAPID public key as instructed
 const VAPID_PUBLIC_KEY = 'BODyhokE54oWhYbft1vE-w5BTFu6KQAgQvZUg4aEAIPuqHTzeDjb1tTaQrA_Mt1C-3wg-az-VfGVfvTfv9Ib9-U';
@@ -42,21 +43,14 @@ export const AdminPushNotificationOptIn: React.FC = () => {
           return;
         }
 
-        // Check if service worker is registered and has existing push subscription
-        const registration = await navigator.serviceWorker.getRegistration('/service-worker.js');
+        // Check the admin-scoped registration via the unified helper (WP-2.2)
+        // (الاستعلام القديم getRegistration('/service-worker.js') كان يطابق ضد النطاق
+        //  وسيصمت بعد تضييق النطاق إلى /admin/ — استُبدل بالمسار الموحد)
+        const registration = await getAdminRegistration();
         if (registration) {
           const subscription = await registration.pushManager.getSubscription();
           if (isMounted) {
             setIsSubscribed(!!subscription);
-          }
-        } else {
-          // Check any active registration
-          const readyReg = await navigator.serviceWorker.ready.catch(() => null);
-          if (readyReg) {
-            const subscription = await readyReg.pushManager.getSubscription();
-            if (isMounted) {
-              setIsSubscribed(!!subscription);
-            }
           }
         }
       } catch (err) {
@@ -84,8 +78,11 @@ export const AdminPushNotificationOptIn: React.FC = () => {
         throw new Error('متصفحك الحالي لا يدعم الإشعارات الفورية (Push Notifications).');
       }
 
-      // Step 1: Register Service Worker
-      const registration = await navigator.serviceWorker.register('/service-worker.js');
+      // Step 1: Register admin service worker via the unified helper (scope /admin/)
+      const registration = await setupAdminServiceWorker();
+      if (!registration) {
+        throw new Error('تعذر تجهيز خدمة الإشعارات في هذا المتصفح.');
+      }
       await navigator.serviceWorker.ready;
 
       // Step 2: Request permission
