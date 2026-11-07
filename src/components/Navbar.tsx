@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { UserRound } from 'lucide-react';
+import { UserRound, Menu, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { getUserName } from '../lib/accounts';
 
@@ -8,6 +8,29 @@ export const Navbar: React.FC = () => {
   const location = useLocation();
   const { user, loading: authLoading } = useAuth();
   const firstName = user ? getUserName(user).split(' ')[0] : '';
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // إغلاق القائمة عند الانتقال إلى مسار جديد (WP-2.3)
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  // إغلاق القائمة بزر Escape (WP-2.3)
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [menuOpen]);
+
+  const navLinkClass = (active: boolean) =>
+    `block px-3.5 py-3 rounded-xl text-sm font-bold transition-colors ${
+      active
+        ? 'bg-[var(--c-accent-soft)] text-[var(--c-accent-soft-foreground)]'
+        : 'text-ink hover:bg-[var(--c-accent-soft)]/50'
+    }`;
 
   return (
     <header className="bg-[var(--c-glass)] backdrop-blur-md border-b border-[var(--c-border)] sticky top-0 z-40" dir="rtl">
@@ -64,7 +87,7 @@ export const Navbar: React.FC = () => {
             </div>
           </Link>
 
-          {/* Navigation Action + Account */}
+          {/* Navigation Action + Account (desktop) */}
           <div className="flex items-center gap-1.5">
             <Link
               to="/services"
@@ -116,9 +139,67 @@ export const Navbar: React.FC = () => {
                   <span>دخول</span>
                 </Link>
               ))}
+
+            {/* زر قائمة الجوال (WP-2.3) — <640px، هدف لمس ≥44px */}
+            <button
+              type="button"
+              className="sm:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg text-ink hover:bg-[var(--c-accent-soft)]/60 transition-colors"
+              aria-label={menuOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              {menuOpen ? <X className="w-5.5 h-5.5" /> : <Menu className="w-5.5 h-5.5" />}
+            </button>
           </div>
         </div>
       </div>
+
+      {/* قائمة الجوال (WP-2.3) — قائمة منسدلة بسيطة: بلا احتجاز تركيز ولا modal */}
+      {menuOpen && (
+        <nav
+          id="mobile-nav"
+          aria-label="قائمة التصفح للجوال"
+          className="sm:hidden border-t border-[var(--c-border)] bg-[var(--c-bg)] shadow-soft"
+        >
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex flex-col gap-1">
+            <Link to="/" className={navLinkClass(location.pathname === '/')}>
+              الرئيسية
+            </Link>
+            <Link to="/services" className={navLinkClass(location.pathname.startsWith('/services'))}>
+              الخدمات
+            </Link>
+            <Link
+              to="/jobs"
+              className={navLinkClass(location.pathname === '/jobs' || location.pathname.startsWith('/offers/'))}
+            >
+              كل الوظائف
+            </Link>
+            {!authLoading &&
+              (user ? (
+                <Link to="/account" className={navLinkClass(location.pathname.startsWith('/account'))}>
+                  <span className="inline-flex items-center gap-2">
+                    <UserRound className="w-4 h-4" />
+                    حسابي{firstName ? ` — ${firstName}` : ''}
+                  </span>
+                </Link>
+              ) : (
+                <Link to="/account/login" className={navLinkClass(location.pathname.startsWith('/account'))}>
+                  <span className="inline-flex items-center gap-2">
+                    <UserRound className="w-4 h-4" />
+                    دخول / إنشاء حساب
+                  </span>
+                </Link>
+              ))}
+            <Link
+              to="/services"
+              className="btn-primary mt-2 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-bold"
+            >
+              اطلب خدمة
+            </Link>
+          </div>
+        </nav>
+      )}
     </header>
   );
 };
