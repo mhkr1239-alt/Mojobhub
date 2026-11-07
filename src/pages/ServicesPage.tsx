@@ -31,7 +31,8 @@ export const ServicesPage: React.FC = () => {
 
   return (
     <div className="band-violet min-h-full pb-16" dir="rtl">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      {/* WP-2.4: 100%+16px موبايل / مرن+24px تابلت / max-w-6xl (1152px) ≥1024px */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* ─── ترويسة القسم ─── */}
         <header className="pt-12 pb-8 text-center reveal" data-reveal>
           <div className="inline-flex items-center gap-2 text-xs font-bold text-[var(--c-violet-soft-foreground)] bg-[var(--c-violet-soft)] border border-[var(--c-violet)]/20 px-4 py-1.5 rounded-full mb-4">
@@ -60,13 +61,15 @@ export const ServicesPage: React.FC = () => {
           />
         </div>
 
-        {/* ─── فلاتر الفئات ─── */}
-        <div
-          className="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-8"
-          role="group"
-          aria-label="تصفية حسب الفئة"
-          data-reveal
-        >
+        {/* ─── فلاتر الفئات (WP-2.4) ───
+            موبايل: تمرير أفقي + تلاشٍ حافة كمؤشر بصري على محتوى إضافي
+            ≥640px: التفاف تلقائي لصف ثانٍ بدل القص */}
+        <div className="relative mb-8" data-reveal>
+          <div
+            className="flex gap-2 overflow-x-auto no-scrollbar pb-2 sm:flex-wrap sm:overflow-visible [mask-image:linear-gradient(to_left,black_86%,transparent_99%)] sm:[mask-image:none]"
+            role="group"
+            aria-label="تصفية حسب الفئة"
+          >
           <button
             type="button"
             onClick={() => setActiveCat(null)}
@@ -100,16 +103,17 @@ export const ServicesPage: React.FC = () => {
               </button>
             );
           })}
+          </div>
         </div>
 
-        {/* ─── شبكة الخدمات ─── */}
+        {/* ─── شبكة الخدمات (WP-2.4: أعمدة 1/2/3) ─── */}
         {filtered.length === 0 ? (
           <div className="glass-card rounded-[20px] p-10 text-center" data-reveal>
             <p className="text-sm text-muted mb-1">لا توجد خدمة مطابقة لبحثك</p>
             <p className="text-xs text-muted/80">جرّب كلمة أخرى مثل «سيرة» أو «موقع» أو تصفح فئة مختلفة.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-14">
             {filtered.map((service, i) => (
               <ServiceCard key={service.slug} service={service} index={i} />
             ))}
