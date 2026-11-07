@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { UserRound, Menu, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { getUserName } from '../lib/accounts';
+import { BrandSymbol } from './BrandLogo';
 
 export const Navbar: React.FC = () => {
   const location = useLocation();
@@ -38,44 +39,12 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Mora Wordmark + Symbol (من ملف mora-symbol.svg الأصلي) */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <svg
-              viewBox="0 0 208 128"
-              className="h-8 w-[52px] shrink-0 group-hover:opacity-90 transition-opacity"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="شعار مورا"
-            >
-              <defs>
-                <linearGradient id="moraGradNav" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor="#625BE7" />
-                  <stop offset="0.52" stopColor="#4C83E8" />
-                  <stop offset="1" stopColor="#13263F" />
-                </linearGradient>
-                <linearGradient id="moraTealNav" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stopColor="#11A99A" />
-                  <stop offset="1" stopColor="#4C83E8" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M22 99 L61 35 Q69 21 78 35 L96 65 Q104 79 112 65 L130 35 Q139 21 147 35 L186 99"
-                fill="none"
-                stroke="url(#moraGradNav)"
-                strokeWidth="17"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M82 76 Q103 91 127 59"
-                fill="none"
-                stroke="url(#moraTealNav)"
-                strokeWidth="7"
-                strokeLinecap="round"
-              />
-              <path
-                d="M104 7 L108 17 L118 21 L108 25 L104 35 L100 25 L90 21 L100 17 Z"
-                fill="#F3B84B"
-              />
-            </svg>
+            {/* WP-2.5: المصدر الوحيد للشعار public/brand/mora-symbol.svg — بلا paths يدوية */}
+            <BrandSymbol
+              size={32}
+              alt=""
+              className="shrink-0 group-hover:opacity-90 transition-opacity"
+            />
 
             <div className="flex flex-col">
               <span className="font-extrabold text-lg sm:text-xl text-ink tracking-tight leading-none">
